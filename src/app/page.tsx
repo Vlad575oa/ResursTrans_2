@@ -1,20 +1,30 @@
 import dynamic from "next/dynamic";
-import Header from "@/components/sections/fleettech/Header";
+import Header from "@/components/sections/fleetcorp-enterprise/Header";
 
 // Lazy load below-fold components (Performance Rule #5)
 const Hero = dynamic(
-  () => import("@/components/sections/fleettech/Hero"),
-  { loading: () => <div className="h-[800px] bg-background-dark" /> }
+  () => import("@/components/sections/fleetcorp-enterprise/Hero"),
+  { loading: () => <div className="h-[400px] bg-background-dark" /> }
 );
 
-const CaseStudies = dynamic(
-  () => import("@/components/sections/fleettech/CaseStudies"),
-  { loading: () => <div className="h-[600px] bg-[#0c1017]" /> }
+const Benefits = dynamic(
+  () => import("@/components/sections/fleetcorp-enterprise/Benefits"),
+  { loading: () => <div className="h-[600px] bg-background-dark" /> }
+);
+
+const Timeline = dynamic(
+  () => import("@/components/sections/fleetcorp-enterprise/Timeline"),
+  { loading: () => <div className="h-[500px] bg-[#0b0d10]" /> }
+);
+
+const CTASection = dynamic(
+  () => import("@/components/sections/fleetcorp-enterprise/CTASection"),
+  { loading: () => <div className="h-[400px] bg-background-dark" /> }
 );
 
 const Footer = dynamic(
-  () => import("@/components/sections/fleettech/Footer"),
-  { loading: () => <div className="h-[100px] bg-[#0c1017]" /> }
+  () => import("@/components/sections/fleetcorp-enterprise/Footer"),
+  { loading: () => <div className="h-[300px] bg-[#0b0d10]" /> }
 );
 
 export default function Home() {
@@ -26,8 +36,14 @@ export default function Home() {
       {/* Main Hero Section - ATF Content (Server Rendered) */}
       <Hero />
 
-      {/* Case Studies Section - Lazy loaded */}
-      <CaseStudies />
+      {/* Benefits Section - Lazy loaded */}
+      <Benefits />
+
+      {/* Timeline Section - Lazy loaded */}
+      <Timeline />
+
+      {/* CTA Section - Lazy loaded */}
+      <CTASection />
 
       {/* Footer */}
       <Footer />

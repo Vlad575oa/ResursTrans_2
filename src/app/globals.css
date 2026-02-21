@@ -364,3 +364,16 @@ details[open] summary~* {
   background-size: 40px 40px;
   mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
 }
+
+/* FleetCorp Enterprise Styles */
+.glass-card {
+  background: rgba(22, 27, 34, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.text-gradient {
+  background: linear-gradient(to right, #ffffff, #94a3b8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
