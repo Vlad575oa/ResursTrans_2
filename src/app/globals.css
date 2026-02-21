@@ -12,7 +12,7 @@
   /* Design System 2.0 - Earth Stability */
   --color-cloud-dancer: #F0EDE9;
   --color-anthracite-core: #2D2E30;
-  --color-burnt-terra: #B5651D;
+  --color-burnt-terra: #256af4;
   --color-safe-green: #4C6444;
 
   --color-liquid-silver: #E5E7EB;
@@ -314,4 +314,53 @@ details[open] summary~* {
   animation: orb-c 30s ease-in-out infinite;
   top: 35%;
   left: 30%;
+}
+
+/* FleetCorp Styles */
+.text-glow {
+  text-shadow: 0 0 20px rgba(37, 106, 244, 0.5);
+}
+
+.glass-panel {
+  background: rgba(10, 14, 26, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 106, 244, 0.15);
+}
+
+.glass-panel-solutions {
+  background: rgba(17, 24, 39, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(37, 106, 244, 0.1);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+}
+
+/* Infinite Scroll Animation */
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 40s linear infinite;
+}
+
+/* Management Model Styles */
+.card-hover:hover {
+  box-shadow: 0 0 30px -10px rgba(37, 106, 244, 0.3);
+  border-color: #256af4;
+}
+
+.bg-grid-pattern {
+  background-image: linear-gradient(to right, #1f2937 1px, transparent 1px),
+    linear-gradient(to bottom, #1f2937 1px, transparent 1px);
+}
+
+.bg-grid-fade {
+  background-size: 40px 40px;
+  mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
 }
