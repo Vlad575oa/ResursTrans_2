@@ -1,4 +1,5 @@
 import Link from "next/link";
+import EconomicImpact from "@/components/sections/guardian/EconomicImpact";
 
 const losses = [
   {
@@ -539,6 +540,9 @@ export default function GuardianPage() {
           </section>
         </main>
       </section>
+
+      {/* Economic Impact Section */}
+      <EconomicImpact />
     </div>
   );
 }
