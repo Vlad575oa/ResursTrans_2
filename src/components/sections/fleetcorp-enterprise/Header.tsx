@@ -11,6 +11,9 @@ export default function Header() {
           <h2 className="text-white text-xl font-bold tracking-tight">FleetCorp</h2>
         </div>
         <nav className="hidden md:flex items-center gap-8">
+          <Link className="text-sm font-medium text-slate-300 hover:text-white transition-colors" href="/">
+            Главная
+          </Link>
           <Link className="text-sm font-medium text-slate-300 hover:text-white transition-colors" href="#solutions">
             Solutions
           </Link>

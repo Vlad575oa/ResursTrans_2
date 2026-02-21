@@ -29,6 +29,9 @@ export default function HeaderScroll() {
         <h2 className="text-white text-xl font-bold tracking-tight">FleetCorp</h2>
       </div>
       <nav className="hidden md:flex items-center gap-8">
+        <a className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/">
+          Главная
+        </a>
         <a className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#services">
           Услуги
         </a>
