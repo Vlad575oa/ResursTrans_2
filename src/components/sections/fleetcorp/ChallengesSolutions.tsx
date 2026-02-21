@@ -124,7 +124,7 @@ export default function ChallengesSolutions() {
           </div>
 
           {/* Decorative background card */}
-          <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-2xl border border-[#282e39] bg-[#111318]" />
+          <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-2xl border border-border-dark bg-[#0d1117]" />
         </div>
       </div>
     </section>

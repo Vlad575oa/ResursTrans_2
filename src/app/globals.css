@@ -24,11 +24,11 @@
   --color-navy: #0B1F3B;
   --color-navy-light: #153055;
   --color-background-offset: #F4F6F9;
-  --color-background-dark-fleet: #23190f;
+  --color-background-dark-fleet: #0a0e1a;
   /* Extracted HTML Specs */
   --color-primary: #f57a00;
   --color-background-light: #f8f7f5;
-  --color-background-dark: #23190f;
+  --color-background-dark: #0a0e1a;
   --color-navy-custom: #0B1F3B;
 
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;

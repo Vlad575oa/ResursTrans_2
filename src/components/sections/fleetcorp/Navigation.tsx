@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Navigation() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-white/5 bg-[#101622]/80 backdrop-blur-md px-6 py-4 md:px-10 lg:px-20 transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between border-b border-white/5 bg-background-dark/80 backdrop-blur-md px-6 py-4 md:px-10 lg:px-20 transition-all duration-300">
       <div className="flex items-center gap-4 text-white">
         <div className="flex items-center justify-center size-10 rounded bg-gradient-to-br from-primary to-blue-700 text-white shadow-[0_0_15px_rgba(37,106,244,0.3)]">
           <span className="material-symbols-outlined text-2xl">local_shipping</span>
