@@ -1,5 +1,62 @@
 import Link from "next/link";
 
+const losses = [
+  {
+    id: 1,
+    type: "Excessive Idling",
+    description: "Engine running for >45m while stationary. Fuel waste detected.",
+    cost: "-$12.50 EST",
+    time: "10:42 AM",
+    icon: "hourglass_top",
+    iconColor: "text-yellow-500",
+    iconBg: "bg-yellow-500/10",
+    statusColor: "text-yellow-400",
+    statusBorder: "border-yellow-500/20",
+  },
+  {
+    id: 2,
+    type: "Fuel Anomaly",
+    description: "Sudden drop rate detected during route break.",
+    cost: "CRITICAL",
+    time: "09:15 AM",
+    icon: "local_gas_station",
+    iconColor: "text-red-500",
+    iconBg: "bg-red-500/10",
+    statusColor: "text-red-400",
+    statusBorder: "border-red-500/20",
+  },
+  {
+    id: 3,
+    type: "Route Deviation",
+    description: "Vehicle left designated geofence zone Sector 4.",
+    cost: "LOGGED",
+    time: "08:30 AM",
+    icon: "wrong_location",
+    iconColor: "text-blue-400",
+    iconBg: "bg-blue-500/10",
+    statusColor: "text-blue-300",
+    statusBorder: "border-blue-500/20",
+  },
+  {
+    id: 4,
+    type: "Tire Pressure Low",
+    description: "",
+    cost: "",
+    time: "",
+    icon: "check_circle",
+    iconColor: "text-green-500",
+    iconBg: "bg-green-500/10",
+    statusColor: "text-slate-600",
+    resolved: true,
+  },
+];
+
+const stats = [
+  { label: "Total Loss", value: "-$420.50", color: "text-red-400" },
+  { label: "Resolution", value: "84%", color: "text-primary" },
+  { label: "Pending", value: "3", color: "text-yellow-400" },
+];
+
 export default function GuardianPage() {
   return (
     <div className="relative min-h-screen w-full flex flex-col bg-grain overflow-x-hidden">
@@ -208,6 +265,279 @@ export default function GuardianPage() {
             </div>
           </div>
         </div>
+      </section>
+
+      {/* Guardian Fleet Command Section */}
+      <section className="relative z-10 border-t border-[#2C3A37] bg-[#101413]">
+        {/* Header */}
+        <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-[#2C3A37] bg-[#101413]/90 backdrop-blur-md px-6 py-4 lg:px-10">
+          <div className="flex items-center gap-8">
+            <div className="flex items-center gap-3 text-white group cursor-pointer">
+              <div className="size-8 text-primary flex items-center justify-center bg-[#2C3A37] rounded-full">
+                <span className="material-symbols-outlined text-[20px]">local_shipping</span>
+              </div>
+              <h2 className="text-white text-lg font-bold tracking-tight">
+                GUARDIAN <span className="text-primary font-normal text-sm ml-1 opacity-80">| FLEET COMMAND</span>
+              </h2>
+            </div>
+            <nav className="hidden xl:flex items-center gap-1 p-1 bg-[#1c2624] rounded-full border border-[#2C3A37]">
+              <Link className="text-slate-300 hover:text-primary hover:bg-[#2C3A37] px-4 py-2 rounded-full text-sm font-medium transition-all" href="#">
+                Dashboard
+              </Link>
+              <Link className="text-slate-300 hover:text-primary hover:bg-[#2C3A37] px-4 py-2 rounded-full text-sm font-medium transition-all" href="#">
+                Live Map
+              </Link>
+              <Link className="bg-primary text-[#101413] px-4 py-2 rounded-full text-sm font-bold shadow-[0_0_15px_rgba(19,236,218,0.3)]" href="#">
+                Loss Analysis
+              </Link>
+              <Link className="text-slate-300 hover:text-primary hover:bg-[#2C3A37] px-4 py-2 rounded-full text-sm font-medium transition-all" href="#">
+                Digital Control
+              </Link>
+              <Link className="text-slate-300 hover:text-primary hover:bg-[#2C3A37] px-4 py-2 rounded-full text-sm font-medium transition-all" href="#">
+                Drivers
+              </Link>
+            </nav>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="hidden md:flex items-center bg-[#1c2624] rounded-full px-4 py-2 border border-[#2C3A37] w-64 focus-within:border-primary/50 transition-colors">
+              <span className="material-symbols-outlined text-slate-400 text-[20px]">search</span>
+              <input className="bg-transparent border-none text-sm text-white focus:ring-0 w-full placeholder:text-slate-500 font-mono" placeholder="Search Unit ID..." type="text"/>
+            </div>
+            <button className="flex items-center justify-center size-10 rounded-full bg-[#1c2624] text-white hover:bg-primary hover:text-[#101413] transition-colors border border-[#2C3A37] relative">
+              <span className="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-[#1c2624]"></span>
+              <span className="material-symbols-outlined text-[20px]">notifications</span>
+            </button>
+            <button className="flex items-center justify-center size-10 rounded-full bg-[#1c2624] text-white hover:bg-primary hover:text-[#101413] transition-colors border border-[#2C3A37]">
+              <span className="material-symbols-outlined text-[20px]">account_circle</span>
+            </button>
+          </div>
+        </header>
+
+        {/* Main Content */}
+        <main className="flex-1 flex flex-col lg:flex-row overflow-hidden">
+          {/* Left Panel: Losses Feed */}
+          <aside className="w-full lg:w-[420px] xl:w-[480px] flex flex-col border-r border-[#2C3A37] bg-[#101413] relative z-10">
+            <div className="p-6 pb-2">
+              <div className="flex items-end justify-between mb-6">
+                <div>
+                  <h1 className="text-3xl font-bold text-white mb-1">Losses Feed</h1>
+                  <p className="text-slate-400 text-sm font-mono">UNIT 734-ALPHA • REAL-TIME</p>
+                </div>
+                <button className="size-10 rounded-full bg-[#2C3A37] hover:bg-primary hover:text-[#101413] text-primary transition-all flex items-center justify-center">
+                  <span className="material-symbols-outlined">tune</span>
+                </button>
+              </div>
+              
+              {/* Stats Strip */}
+              <div className="flex gap-3 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+                {stats.map((stat) => (
+                  <div key={stat.label} className="flex flex-col bg-[#1c2624] rounded-2xl p-4 min-w-[120px] border border-[#2C3A37]">
+                    <span className="text-xs text-slate-400 font-mono uppercase">{stat.label}</span>
+                    <span className={`text-xl font-bold ${stat.color}`}>{stat.value}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Scrollable Notes List */}
+            <div className="flex-1 overflow-y-auto px-6 pb-6 space-y-4">
+              {losses.map((loss) => (
+                <div
+                  key={loss.id}
+                  className={`group transition-all rounded-[2rem] p-5 border relative ${
+                    loss.resolved
+                      ? "opacity-60 hover:opacity-100 border-dashed border-[#2C3A37]"
+                      : "bg-[#2C3A37]/40 hover:bg-[#2C3A37]/60 border-[#2C3A37]/50 hover:border-primary/30"
+                  }`}
+                >
+                  {!loss.resolved && (
+                    <div className="absolute top-5 right-5 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <button className="size-8 rounded-full bg-[#101413] text-slate-400 hover:text-white flex items-center justify-center">
+                        <span className="material-symbols-outlined text-[18px]">close</span>
+                      </button>
+                      <button className="size-8 rounded-full bg-primary text-[#101413] flex items-center justify-center shadow-lg shadow-primary/20">
+                        <span className="material-symbols-outlined text-[18px]">check</span>
+                      </button>
+                    </div>
+                  )}
+                  
+                  <div className="flex gap-4">
+                    <div className={`size-12 rounded-full ${loss.iconBg} ${loss.iconColor} flex items-center justify-center flex-shrink-0`}>
+                      <span className="material-symbols-outlined">{loss.icon}</span>
+                    </div>
+                    <div className={`flex-1 ${loss.resolved ? 'pr-0' : 'pr-16'}`}>
+                      {loss.resolved ? (
+                        <>
+                          <h3 className="text-slate-400 font-medium text-base line-through">{loss.type}</h3>
+                          <span className="text-xs text-slate-600 font-mono">RESOLVED</span>
+                        </>
+                      ) : (
+                        <>
+                          <h3 className="text-white font-bold text-lg leading-tight mb-1">{loss.type}</h3>
+                          <p className="text-slate-300 text-sm mb-3">{loss.description}</p>
+                          <div className="flex items-center gap-3">
+                            <span className={`px-3 py-1 rounded-full bg-[#101413] text-xs font-mono ${loss.statusColor} border ${loss.statusBorder}`}>
+                              {loss.cost}
+                            </span>
+                            <span className="text-xs text-slate-500 font-mono">{loss.time}</span>
+                          </div>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Bottom Action */}
+            <div className="p-6 border-t border-[#2C3A37] mt-auto bg-[#101413]/95 backdrop-blur">
+              <button className="w-full py-3 rounded-full bg-[#2C3A37] hover:bg-slate-700 text-white font-medium transition-colors flex items-center justify-center gap-2">
+                <span className="material-symbols-outlined">add</span>
+                Add Manual Note
+              </button>
+            </div>
+          </aside>
+
+          {/* Right Panel: Digital Twin */}
+          <section className="flex-1 relative bg-[#101413] overflow-hidden flex flex-col">
+            {/* Background Grid Effect */}
+            <div className="absolute inset-0 z-0 opacity-10" style={{ backgroundImage: "radial-gradient(circle at center, #2C3A37 1px, transparent 1px)", backgroundSize: "40px 40px" }}></div>
+            <div className="absolute inset-0 bg-gradient-to-t from-[#101413] via-transparent to-[#101413] z-0 pointer-events-none"></div>
+
+            {/* Top Data Bar */}
+            <div className="relative z-10 w-full p-6 flex justify-between items-start">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-bold font-mono tracking-wider mb-2">
+                  <span className="size-2 rounded-full bg-primary animate-pulse"></span>
+                  LIVE CONNECTION
+                </div>
+                <h2 className="text-4xl font-bold text-white tracking-tight">Digital Twin</h2>
+              </div>
+              <div className="flex gap-4">
+                <div className="glass-panel px-4 py-3 rounded-2xl flex flex-col items-end">
+                  <span className="text-xs text-slate-400 font-mono">UPTIME</span>
+                  <span className="text-xl font-bold text-white font-mono">98.4%</span>
+                </div>
+                <div className="glass-panel px-4 py-3 rounded-2xl flex flex-col items-end">
+                  <span className="text-xs text-slate-400 font-mono">HEALTH</span>
+                  <span className="text-xl font-bold text-primary font-mono">A-</span>
+                </div>
+              </div>
+            </div>
+
+            {/* 3D Visualization Area */}
+            <div className="flex-1 relative flex items-center justify-center wireframe-container z-0">
+              <div className="relative w-[600px] aspect-[16/9] wireframe-truck transition-transform duration-500 ease-out group/truck">
+                <img
+                  alt="Truck Wireframe"
+                  className="w-full h-full object-contain opacity-90 drop-shadow-[0_0_30px_rgba(19,236,218,0.3)]"
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZcTSic_auUrD37fJ8nDah9Su6ZdJva2y3vCjy1vbmjVrrMDhU3lS1W-ljW-wPt1Qk3WbSAdzr421pVp5QDFndJNV2mS6Q5LsUuqGfwUYzzJLoXxF1zxFaROXnKzv-cYH2ODz0uJru7cqJ2voLhgW1EnqVXP9wSESsLJ-DVzJB-dYMOEqj0dBwlLinQJCmdQbJiFJoBBmWaKv-sa45xP7YG1li5F6t1sWDFOyiXuN5rVSNvtjrne3Tztgsi7VBrS_Aq-Mo9k9rOhJq"
+                  style={{ filter: "grayscale(100%) brightness(0.6) sepia(1) hue-rotate(130deg) saturate(3)" }}
+                />
+                
+                {/* Hotspot 1: Cabin */}
+                <div className="absolute top-[30%] left-[65%] group/hotspot">
+                  <div className="relative cursor-pointer size-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
+                    <div className="size-1.5 bg-primary rounded-full"></div>
+                  </div>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto">
+                    <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
+                      <span className="material-symbols-outlined text-primary text-sm">airline_seat_recline_extra</span>
+                      <span className="text-white font-bold text-sm">CABIN STATUS</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-xs font-mono">
+                        <span className="text-slate-400">Driver Fatigue</span>
+                        <span className="text-green-400">Normal</span>
+                      </div>
+                      <div className="w-full bg-white/10 rounded-full h-1">
+                        <div className="bg-green-400 w-[20%] h-full rounded-full"></div>
+                      </div>
+                      <div className="flex justify-between items-center text-xs font-mono pt-1">
+                        <span className="text-slate-400">Temp</span>
+                        <span className="text-white">21°C</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hotspot 2: Engine */}
+                <div className="absolute top-[60%] left-[70%] group/hotspot">
+                  <div className="relative cursor-pointer size-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
+                    <div className="size-1.5 bg-primary rounded-full"></div>
+                  </div>
+                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 -translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto z-20">
+                    <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
+                      <span className="material-symbols-outlined text-primary text-sm">settings</span>
+                      <span className="text-white font-bold text-sm">ENGINE TELEMETRY</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-xs font-mono">
+                        <span className="text-slate-400">Oil Pressure</span>
+                        <span className="text-green-400">Optimal</span>
+                      </div>
+                      <div className="flex justify-between items-center text-xs font-mono">
+                        <span className="text-slate-400">RPM</span>
+                        <span className="text-yellow-400">0 (Idle)</span>
+                      </div>
+                      <div className="flex justify-between items-center text-xs font-mono pt-1">
+                        <span className="text-slate-400">Vibration</span>
+                        <span className="text-white">0.04mm/s</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Hotspot 3: Fuel Tank */}
+                <div className="absolute top-[65%] left-[40%] group/hotspot">
+                  <div className="relative cursor-pointer size-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
+                    <div className="size-1.5 bg-primary rounded-full"></div>
+                  </div>
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto">
+                    <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
+                      <span className="material-symbols-outlined text-red-400 text-sm">local_gas_station</span>
+                      <span className="text-white font-bold text-sm">FUEL LEVELS</span>
+                    </div>
+                    <div className="space-y-2">
+                      <div className="flex justify-between items-center text-xs font-mono">
+                        <span className="text-slate-400">Capacity</span>
+                        <span className="text-red-400">64% (Dropping)</span>
+                      </div>
+                      <div className="w-full bg-white/10 rounded-full h-1 overflow-hidden">
+                        <div className="bg-gradient-to-r from-red-500 to-yellow-500 w-[64%] h-full rounded-full"></div>
+                      </div>
+                      <div className="flex justify-between items-center text-xs font-mono pt-1">
+                        <span className="text-slate-400">Est. Range</span>
+                        <span className="text-white">450 km</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floor Reflection Glow */}
+              <div className="absolute bottom-[10%] w-[500px] h-[100px] bg-primary/10 blur-[60px] rounded-[100%] pointer-events-none transform scale-y-50"></div>
+            </div>
+
+            {/* Bottom Controls */}
+            <div className="relative z-10 p-6 flex justify-between items-end bg-gradient-to-t from-[#101413] to-transparent">
+              <div className="flex gap-2">
+                <button className="glass-panel hover:bg-[#2C3A37] text-slate-300 hover:text-white px-5 py-3 rounded-full text-sm font-medium transition-all flex items-center gap-2">
+                  <span className="material-symbols-outlined text-lg">3d_rotation</span>
+                  Rotate View
+                </button>
+                <button className="glass-panel hover:bg-[#2C3A37] text-slate-300 hover:text-white px-5 py-3 rounded-full text-sm font-medium transition-all flex items-center gap-2">
+                  <span className="material-symbols-outlined text-lg">view_in_ar</span>
+                  Component List
+                </button>
+              </div>
+              <div className="text-right">
+                <p className="text-xs text-slate-500 font-mono mb-1">LAST SYNC</p>
+                <p className="text-white font-mono">2026-10-24 14:32:05 UTC</p>
+              </div>
+            </div>
+          </section>
+        </main>
       </section>
     </div>
   );
