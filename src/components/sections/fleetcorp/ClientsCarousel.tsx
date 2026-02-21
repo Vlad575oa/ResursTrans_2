@@ -25,12 +25,13 @@ export default function ClientsCarousel() {
       <div className="relative w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
         <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
           {allClients.map((client, index) => (
-            <li key={`${client.name}-${index}`} aria-hidden={index >= clients.length}>
+            <li key={`${client.name}-${index}`} aria-hidden={index >= clients.length} className="flex flex-col items-center gap-2">
               <img
                 alt={client.name}
                 className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
                 src={client.src}
               />
+              <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">{client.name}</span>
             </li>
           ))}
         </ul>
