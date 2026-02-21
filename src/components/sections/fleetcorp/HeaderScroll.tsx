@@ -32,6 +32,9 @@ export default function HeaderScroll() {
         <a className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/">
           Главная
         </a>
+        <a className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/guardian">
+          Главная 2
+        </a>
         <a className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="#services">
           Услуги
         </a>
