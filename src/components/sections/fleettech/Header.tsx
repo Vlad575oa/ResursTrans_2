@@ -31,7 +31,8 @@ export default function Header() {
               <Link className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="/">Сайт 1</Link>
               <Link className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="/guardian">Сайт 2</Link>
               <Link className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="/enterprise">Калькулятор</Link>
-              <Link className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="/showcase">Витрина</Link>
+              <Link className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="/showcase">Выбор стиля</Link>
+              <Link className="text-slate-600 dark:text-slate-300 hover:text-primary dark:hover:text-primary text-sm font-semibold transition-colors" href="/interactive">Интерактив</Link>
               <Link className="text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-400 transition-colors relative group" href="/legal-audit" title="Законодательство">
                 <span className="material-symbols-outlined !text-[20px]">gavel</span>
                 <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Законодательство</span>
@@ -84,7 +85,14 @@ export default function Header() {
               href="/showcase"
               onClick={() => setIsMenuOpen(false)}
             >
-              Витрина
+              Выбор стиля
+            </Link>
+            <Link
+              className="text-slate-800 dark:text-slate-200 hover:text-primary text-xl font-bold transition-colors border-b border-slate-200 dark:border-white/10 pb-4 text-center"
+              href="/interactive"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Интерактив
             </Link>
             <Link
               className="text-orange-500 hover:text-orange-400 text-xl font-bold transition-colors border-b border-slate-200 dark:border-white/10 pb-4 text-center flex items-center justify-center gap-2"

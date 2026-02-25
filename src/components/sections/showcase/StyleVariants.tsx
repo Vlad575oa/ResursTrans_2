@@ -1,6 +1,8 @@
 "use client";
 
+import { useState } from "react";
 import dynamic from "next/dynamic";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NeoBrutalism = dynamic(() => import("./styles/NeoBrutalism"), { loading: () => <div className="h-64 bg-slate-800 rounded-2xl animate-pulse" /> });
 const Glassmorphism = dynamic(() => import("./styles/Glassmorphism"), { loading: () => <div className="h-64 bg-slate-800 rounded-2xl animate-pulse" /> });
@@ -46,12 +48,67 @@ const stylesArray = [
     { id: 20, name: "Low Poly", component: LowPoly },
 ];
 
+function InteractiveWrapper({ children, id }: { children: React.ReactNode, id: number }) {
+    const [state, setState] = useState(0);
+
+    if (id < 11) return <div className="w-full h-full">{children}</div>;
+
+    const handleClick = () => setState(s => (s + 1) % 4);
+
+    const filters = [
+        "none",
+        "hue-rotate(90deg) brightness(1.2) saturate(1.2)",
+        "hue-rotate(210deg) contrast(1.1)",
+        "brightness(0.7) grayscale(0.2) contrast(1.2)"
+    ];
+
+    return (
+        <div
+            onClick={handleClick}
+            className="group relative cursor-pointer active:scale-[0.99] transition-all duration-300"
+        >
+            <div
+                style={{ filter: filters[state], transition: "filter 0.8s cubic-bezier(0.4, 0, 0.2, 1)" }}
+                className="w-full h-full"
+            >
+                {children}
+            </div>
+            <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity bg-white/5 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10 pointer-events-none flex items-center gap-2">
+                <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                <span className="text-[10px] font-black uppercase tracking-widest text-emerald-500">
+                    Click to Shift Shade
+                </span>
+            </div>
+        </div>
+    );
+}
+
 export default function StyleVariants() {
     return (
-        <div className="space-y-16">
+        <div className="space-y-24">
             {stylesArray.map((style) => (
-                <section key={style.id} id={`style-${style.id}`}>
-                    <style.component />
+                <section key={style.id} id={`style-${style.id}`} className="group/section">
+                    <div className="flex items-center gap-6 mb-8">
+                        <span className="text-7xl font-black text-white/5 tabular-nums leading-none select-none transition-colors group-hover/section:text-emerald-500/10">
+                            {style.id.toString().padStart(2, '0')}
+                        </span>
+                        <div className="flex flex-col gap-1">
+                            <h2 className="text-sm font-black uppercase tracking-[0.4em] text-white/80">
+                                {style.name}
+                            </h2>
+                            <div className="h-[2px] w-12 bg-emerald-500/50 rounded-full" />
+                        </div>
+                        <div className="h-[1px] flex-1 bg-white/[0.03]" />
+                        {style.id >= 11 && (
+                            <span className="text-[9px] font-bold uppercase tracking-widest text-emerald-500/50 bg-emerald-500/5 px-3 py-1 rounded-full border border-emerald-500/10">
+                                Interactive Lab
+                            </span>
+                        )}
+                    </div>
+
+                    <InteractiveWrapper id={style.id}>
+                        <style.component />
+                    </InteractiveWrapper>
                 </section>
             ))}
         </div>

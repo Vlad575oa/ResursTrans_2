@@ -42,7 +42,10 @@ export default function Header() {
             Калькулятор
           </Link>
           <Link className="px-5 py-2 text-xs font-bold tracking-wider text-white hover:text-primary transition-colors" href="/showcase">
-            Витрина
+            Выбор стиля
+          </Link>
+          <Link className="px-5 py-2 text-xs font-bold tracking-wider text-white hover:text-primary transition-colors" href="/interactive">
+            Интерактив
           </Link>
           <Link className="px-3 py-2 text-white hover:text-orange-400 transition-colors relative group" href="/legal-audit" title="Законодательство">
             <span className="material-symbols-outlined !text-[18px]">gavel</span>
@@ -104,7 +107,14 @@ export default function Header() {
               href="/showcase"
               onClick={() => setIsMenuOpen(false)}
             >
-              Витрина
+              Выбор стиля
+            </Link>
+            <Link
+              className="text-white hover:text-primary text-xl font-bold tracking-wider transition-colors border-b border-white/10 pb-4 text-center"
+              href="/interactive"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Интерактив
             </Link>
             <Link
               className="text-orange-400 hover:text-orange-300 text-xl font-bold tracking-wider transition-colors border-b border-white/10 pb-4 text-center flex items-center justify-center gap-2"

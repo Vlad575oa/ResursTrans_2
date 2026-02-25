@@ -56,8 +56,11 @@ export default function HeaderScroll() {
             <Link className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/enterprise">
               Калькулятор
             </Link>
+            <Link className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/showcase">
+              Выбор стиля
+            </Link>
             <Link className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/interactive">
-              Игры
+              Интерактив
             </Link>
             <Link className="text-slate-300 hover:text-orange-400 transition-colors relative group" href="/legal-audit" title="Законодательство">
               <span className="material-symbols-outlined !text-[20px]">gavel</span>
@@ -105,10 +108,17 @@ export default function HeaderScroll() {
             </Link>
             <Link
               className="text-slate-200 hover:text-white text-xl font-medium transition-colors border-b border-white/10 pb-4"
+              href="/showcase"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Выбор стиля
+            </Link>
+            <Link
+              className="text-slate-200 hover:text-white text-xl font-medium transition-colors border-b border-white/10 pb-4"
               href="/interactive"
               onClick={() => setIsMenuOpen(false)}
             >
-              Игры
+              Интерактив
             </Link>
             <Link
               className="text-orange-400 hover:text-orange-300 text-xl font-medium transition-colors border-b border-white/10 pb-4 flex items-center gap-2"

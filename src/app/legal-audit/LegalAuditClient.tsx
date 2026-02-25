@@ -264,7 +264,8 @@ export default function LegalAuditPage() {
                             <Link className="text-sm font-medium hover:text-blue-500 transition-colors text-slate-400" href="/">Сайт 1</Link>
                             <Link className="text-sm font-medium hover:text-blue-500 transition-colors text-slate-400" href="/guardian">Сайт 2</Link>
                             <Link className="text-sm font-medium hover:text-blue-500 transition-colors text-slate-400" href="/enterprise">Калькулятор</Link>
-                            <Link className="text-sm font-medium hover:text-blue-500 transition-colors text-slate-400" href="/showcase">Витрина</Link>
+                            <Link className="text-sm font-medium hover:text-blue-500 transition-colors text-slate-400" href="/showcase">Выбор стиля</Link>
+                            <Link className="text-sm font-medium hover:text-blue-500 transition-colors text-slate-400" href="/interactive">Интерактив</Link>
                             <Link className="text-orange-500 border-b-2 border-orange-500 pb-1 transition-colors relative group" href="/legal-audit" title="Законодательство">
                                 <span className="material-symbols-outlined !text-[20px]">gavel</span>
                                 <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Законодательство</span>
@@ -329,7 +330,14 @@ export default function LegalAuditPage() {
                                     href="/showcase"
                                     onClick={() => setIsMenuOpen(false)}
                                 >
-                                    Витрина
+                                    Выбор стиля
+                                </Link>
+                                <Link
+                                    className="text-slate-300 hover:text-blue-400 py-3 text-lg font-bold border-b border-white/5 transition-colors"
+                                    href="/interactive"
+                                    onClick={() => setIsMenuOpen(false)}
+                                >
+                                    Интерактив
                                 </Link>
                                 <Link
                                     className="text-orange-400 hover:text-orange-300 py-3 text-lg font-bold border-b border-white/5 transition-colors flex items-center gap-2"

@@ -43,7 +43,8 @@ export default function EnterprisePage() {
                             <Link className="text-sm font-medium hover:text-primary transition-colors text-white" href="/">Сайт 1</Link>
                             <Link className="text-sm font-medium hover:text-primary transition-colors text-white" href="/guardian">Сайт 2</Link>
                             <Link className="text-sm font-medium hover:text-primary transition-colors text-white" href="/enterprise">Калькулятор</Link>
-                            <Link className="text-sm font-medium hover:text-primary transition-colors text-white" href="/showcase">Витрина</Link>
+                            <Link className="text-sm font-medium hover:text-primary transition-colors text-white" href="/showcase">Выбор стиля</Link>
+                            <Link className="text-sm font-medium hover:text-primary transition-colors text-white" href="/interactive">Интерактив</Link>
                             <Link className="text-white hover:text-orange-400 transition-colors relative group" href="/legal-audit" title="Законодательство">
                                 <span className="material-symbols-outlined !text-[20px]">gavel</span>
                                 <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Законодательство</span>
@@ -99,7 +100,14 @@ export default function EnterprisePage() {
                             href="/showcase"
                             onClick={() => setIsMenuOpen(false)}
                         >
-                            Витрина
+                            Выбор стиля
+                        </Link>
+                        <Link
+                            className="text-slate-200 hover:text-primary text-xl font-bold transition-colors border-b border-white/10 pb-4 text-center"
+                            href="/interactive"
+                            onClick={() => setIsMenuOpen(false)}
+                        >
+                            Интерактив
                         </Link>
                         <Link
                             className="text-orange-400 hover:text-orange-300 text-xl font-bold transition-colors border-b border-white/10 pb-4 text-center flex items-center justify-center gap-2"

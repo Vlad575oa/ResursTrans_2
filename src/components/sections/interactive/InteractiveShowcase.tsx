@@ -6,16 +6,17 @@ const ChaosTamer = dynamic(() => import("./games/ChaosTamer"), { loading: () => 
 const RouteMap = dynamic(() => import("./games/RouteMap"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
 
 // New Games
-const LogisticsTetris = dynamic(() => import("./games/LogisticsTetris"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
-const RouteMaster = dynamic(() => import("./games/RouteMaster"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
-const FineDetector = dynamic(() => import("./games/FineDetector"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
-const DeadlineRunner = dynamic(() => import("./games/DeadlineRunner"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
-const ForkliftSim = dynamic(() => import("./games/ForkliftSim"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
-const TariffAlchemy = dynamic(() => import("./games/TariffAlchemy"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
-const EcoDrive = dynamic(() => import("./games/EcoDrive"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
-const LogisticsScanner = dynamic(() => import("./games/LogisticsScanner"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
-const WeightControl = dynamic(() => import("./games/WeightControl"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
-const TimeMachine = dynamic(() => import("./games/TimeMachine"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+// New Games
+const AngryLoader = dynamic(() => import("./games/AngryLoader"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+const SteroidTetris = dynamic(() => import("./games/SteroidTetris"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+const TrafficController = dynamic(() => import("./games/TrafficController"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+const MonsterTruckBuilder = dynamic(() => import("./games/MonsterTruckBuilder"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+const LieDetector = dynamic(() => import("./games/LieDetector"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+const CargoPinball = dynamic(() => import("./games/CargoPinball"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+const WhereIsMyCargo = dynamic(() => import("./games/WhereIsMyCargo"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+const LogisticRange = dynamic(() => import("./games/LogisticRange"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+const MusicalMotor = dynamic(() => import("./games/MusicalMotor"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
+const CatchBenefit = dynamic(() => import("./games/CatchBenefit"), { loading: () => <div className="h-64 bg-slate-800 rounded-3xl animate-pulse" /> });
 
 export default function InteractiveShowcase() {
     return (
@@ -32,16 +33,16 @@ export default function InteractiveShowcase() {
             <section id="new-games" className="pt-8 border-t border-white/5">
                 <h2 className="text-xl font-bold text-slate-500 uppercase tracking-[0.3em] mb-8">Новые испытания</h2>
                 <div className="grid grid-cols-1 lg:grid-cols-1 gap-12">
-                    <LogisticsTetris />
-                    <RouteMaster />
-                    <FineDetector />
-                    <DeadlineRunner />
-                    <ForkliftSim />
-                    <TariffAlchemy />
-                    <EcoDrive />
-                    <LogisticsScanner />
-                    <WeightControl />
-                    <TimeMachine />
+                    <AngryLoader />
+                    <SteroidTetris />
+                    <TrafficController />
+                    <MonsterTruckBuilder />
+                    <LieDetector />
+                    <CargoPinball />
+                    <WhereIsMyCargo />
+                    <LogisticRange />
+                    <MusicalMotor />
+                    <CatchBenefit />
                 </div>
             </section>
         </div>
