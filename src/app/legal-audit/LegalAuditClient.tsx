@@ -21,6 +21,9 @@ import {
     ClipboardCheck,
     Phone,
     Send,
+    Loader2,
+    Globe,
+    MessageCircle,
 } from "lucide-react";
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -238,6 +241,59 @@ function CopyButton({ text }: { text: string }) {
 export default function LegalAuditPage() {
     const [checked, setChecked] = useState<Set<string>>(new Set());
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+    // AI Check State
+    const [auditUrl, setAuditUrl] = useState("");
+    const [isChecking, setIsChecking] = useState(false);
+    const [checkError, setCheckError] = useState("");
+    const [auditResult, setAuditResult] = useState<{
+        domain: string;
+        red: string[];
+        yellow: string[];
+        green: string[];
+    } | null>(null);
+
+    const handleAuditCheck = async (e: React.FormEvent) => {
+        e.preventDefault();
+        if (!auditUrl.trim()) return;
+
+        let formattedUrl = auditUrl;
+        if (!/^https?:\/\//i.test(formattedUrl)) {
+            formattedUrl = `https://${formattedUrl}`;
+        }
+
+        setIsChecking(true);
+        setCheckError("");
+        setAuditResult(null);
+
+        try {
+            const res = await fetch("/api/audit", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ url: formattedUrl })
+            });
+            const data = await res.json();
+
+            if (!res.ok) throw new Error(data.error || "Ошибка соединения.");
+            setAuditResult(data);
+        } catch (err: any) {
+            setCheckError(err.message || "Не удалось завершить проверку. Попробуйте другой адрес.");
+        } finally {
+            setIsChecking(false);
+        }
+    };
+
+    const handleTelegramShare = () => {
+        if (!auditResult) return;
+        const text = `🚨 *Аудит Рисков (RESURSTRANS)*: ${auditResult.domain}\n\n` +
+            `🔴 *Критично*: ${auditResult.red.length}\n` +
+            `🟡 *Риски*: ${auditResult.yellow.length}\n` +
+            `🟢 *В норме*: ${auditResult.green.length}\n\n` +
+            `Подробный аудит: https://resurstrans.ru/legal-audit`;
+
+        const url = `https://t.me/share/url?url=${encodeURIComponent(text)}`;
+        window.open(url, "_blank");
+    };
 
     const toggle = (id: string) => {
         setChecked((prev) => {
@@ -703,6 +759,159 @@ export default function LegalAuditPage() {
                                 </div>
                             </div>
                         </div>
+                    </div>
+                </section>
+
+                {/* ── Block 7: AI Legal Audit ───────────────────────────────────── */}
+                <section className="mb-20 scroll-mt-24" id="ai-check">
+                    <div className="mb-8">
+                        <div className="text-xs font-bold tracking-widest uppercase text-blue-400 mb-3 flex items-center gap-2">
+                            <Bot className="w-4 h-4" />
+                            Блок 7 — Бета-тест
+                        </div>
+                        <h2 className="text-2xl md:text-3xl font-black text-white mb-3">
+                            Нейросеть IT-Юрист РФ
+                        </h2>
+                        <p className="text-slate-400 max-w-2xl">
+                            Вставьте ссылку на ваш сайт, и наш AI-юрист просканирует его на базовые соответствия 152-ФЗ, 242-ФЗ, 168-ФЗ, 149-ФЗ и 38-ФЗ.
+                        </p>
+                    </div>
+
+                    <div className="bg-slate-900/40 border border-slate-800 rounded-3xl overflow-hidden p-6 md:p-8">
+                        <form onSubmit={handleAuditCheck} className="flex flex-col md:flex-row gap-4 mb-8">
+                            <div className="relative flex-1">
+                                <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                                    <Globe className="h-5 w-5 text-slate-500" />
+                                </div>
+                                <input
+                                    type="text"
+                                    value={auditUrl}
+                                    onChange={(e) => setAuditUrl(e.target.value)}
+                                    placeholder="Например: resurstrans.ru"
+                                    required
+                                    className="w-full pl-12 pr-4 py-4 bg-slate-950 border border-slate-700/50 rounded-2xl text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-all"
+                                />
+                            </div>
+                            <button
+                                type="submit"
+                                disabled={isChecking || !auditUrl.trim()}
+                                className="bg-blue-600 hover:bg-blue-500 disabled:bg-slate-800 disabled:text-slate-500 text-white font-bold py-4 px-8 rounded-2xl transition-all shadow-lg hover:shadow-blue-500/20 disabled:shadow-none min-w-[200px] flex items-center justify-center gap-2"
+                            >
+                                {isChecking ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        Анализ...
+                                    </>
+                                ) : (
+                                    <>Сканировать</>
+                                )}
+                            </button>
+                        </form>
+
+                        {/* Error State */}
+                        {checkError && (
+                            <div className="mb-8 p-4 bg-red-950/40 border border-red-900/50 rounded-xl flex items-start gap-3 text-red-400">
+                                <XCircle className="w-5 h-5 shrink-0 mt-0.5" />
+                                <span className="text-sm font-medium">{checkError}</span>
+                            </div>
+                        )}
+
+                        {/* Results UI */}
+                        <AnimatePresence>
+                            {auditResult && !isChecking && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="space-y-6"
+                                >
+                                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 pb-6 border-b border-white/5">
+                                        <div className="flex items-center gap-3">
+                                            <div className="w-10 h-10 bg-blue-900/30 rounded-full flex items-center justify-center border border-blue-900/50">
+                                                <ShieldCheck className="w-5 h-5 text-blue-400" />
+                                            </div>
+                                            <div>
+                                                <div className="text-xs text-slate-500 font-bold uppercase tracking-widest">Аудит домена</div>
+                                                <div className="text-white font-mono font-medium">{auditResult.domain}</div>
+                                            </div>
+                                        </div>
+                                        <button
+                                            onClick={handleTelegramShare}
+                                            className="flex items-center gap-2 px-4 py-2 bg-[#2AABEE]/10 hover:bg-[#2AABEE]/20 border border-[#2AABEE]/30 text-[#2AABEE] text-xs font-bold uppercase tracking-widest rounded-xl transition-all"
+                                        >
+                                            <MessageCircle className="w-4 h-4" />
+                                            Отправить в TG
+                                        </button>
+                                    </div>
+
+                                    <div className="grid md:grid-cols-3 gap-6">
+                                        {/* Red */}
+                                        <div className="space-y-3">
+                                            <div className="flex items-center gap-2 text-red-400 font-bold bg-red-950/30 border border-red-900/50 p-3 rounded-xl">
+                                                <XCircle className="w-5 h-5" />
+                                                Критичные нарушения
+                                            </div>
+                                            {auditResult.red.length === 0 ? (
+                                                <div className="text-sm text-slate-500 italic p-4 bg-slate-900/50 rounded-xl">Не обнаружено</div>
+                                            ) : (
+                                                <ul className="space-y-2">
+                                                    {auditResult.red.map((item, idx) => (
+                                                        <li key={idx} className="bg-slate-900/60 border border-slate-800 p-3 rounded-lg flex items-start gap-3">
+                                                            <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-2 shrink-0 shadow-[0_0_10px_rgba(239,68,68,0.8)]" />
+                                                            <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </div>
+
+                                        {/* Yellow */}
+                                        <div className="space-y-3">
+                                            <div className="flex items-center gap-2 text-yellow-500 font-bold bg-yellow-950/30 border border-yellow-900/50 p-3 rounded-xl">
+                                                <AlertTriangle className="w-5 h-5" />
+                                                Риски и предупреждения
+                                            </div>
+                                            {auditResult.yellow.length === 0 ? (
+                                                <div className="text-sm text-slate-500 italic p-4 bg-slate-900/50 rounded-xl">Не обнаружено</div>
+                                            ) : (
+                                                <ul className="space-y-2">
+                                                    {auditResult.yellow.map((item, idx) => (
+                                                        <li key={idx} className="bg-slate-900/60 border border-slate-800 p-3 rounded-lg flex items-start gap-3">
+                                                            <div className="w-1.5 h-1.5 rounded-full bg-yellow-500 mt-2 shrink-0 shadow-[0_0_10px_rgba(234,179,8,0.8)]" />
+                                                            <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </div>
+
+                                        {/* Green */}
+                                        <div className="space-y-3">
+                                            <div className="flex items-center gap-2 text-emerald-400 font-bold bg-emerald-950/30 border border-emerald-900/50 p-3 rounded-xl">
+                                                <CheckCircle2 className="w-5 h-5" />
+                                                Соответствие норме
+                                            </div>
+                                            {auditResult.green.length === 0 ? (
+                                                <div className="text-sm text-slate-500 italic p-4 bg-slate-900/50 rounded-xl">Ждем улучшений</div>
+                                            ) : (
+                                                <ul className="space-y-2">
+                                                    {auditResult.green.map((item, idx) => (
+                                                        <li key={idx} className="bg-slate-900/60 border border-slate-800 p-3 rounded-lg flex items-start gap-3">
+                                                            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-2 shrink-0 shadow-[0_0_10px_rgba(16,185,129,0.8)]" />
+                                                            <span className="text-sm text-slate-300 leading-relaxed">{item}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            )}
+                                        </div>
+                                    </div>
+                                    <div className="mt-4 p-4 bg-slate-950 border border-slate-800 rounded-xl">
+                                        <p className="text-xs text-slate-500 leading-relaxed italic text-center">
+                                            Это автоматическая AI-проверка. Данные могут быть неточными или неполными. Не является 100% юридическим заключением.
+                                        </p>
+                                    </div>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
                     </div>
                 </section>
 
