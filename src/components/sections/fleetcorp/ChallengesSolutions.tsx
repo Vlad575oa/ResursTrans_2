@@ -29,7 +29,7 @@ const solutions = [
 
 export default function ChallengesSolutions() {
   return (
-    <section className="w-full bg-surface-dark border-t border-border-dark py-20 px-6 lg:px-10 relative overflow-hidden">
+    <section className="w-full bg-white border-t border-slate-200 py-20 px-6 lg:px-10 relative overflow-hidden">
       {/* Background decorative element */}
       <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/3" />
 
@@ -43,28 +43,28 @@ export default function ChallengesSolutions() {
                 Challenges
               </span>
             </div>
-            <h2 className="text-white text-3xl md:text-5xl font-bold leading-tight tracking-tight">
+            <h2 className="text-slate-900 text-3xl md:text-5xl font-bold leading-tight tracking-tight">
               NAVIGATING <br /> COMPLEXITY
             </h2>
-            <p className="text-slate-400 text-lg leading-relaxed max-w-lg">
+            <p className="text-slate-600 text-lg leading-relaxed max-w-lg">
               Managing enterprise fleets without a unified system leads to bleeding
               costs and operational friction.
             </p>
           </div>
 
-          <div className="grid gap-6">
+          <div className="flex flex-col gap-6">
             {challenges.map((challenge) => (
-              <div key={challenge.title} className="flex gap-5 group">
-                <div className="shrink-0 size-12 rounded-lg bg-[#282e39]/50 flex items-center justify-center text-red-400 border border-red-500/20 group-hover:border-red-500/50 transition-colors">
+              <div key={challenge.title} className="flex gap-5 group items-start">
+                <div className="shrink-0 size-12 rounded-lg bg-red-50 flex items-center justify-center text-red-500 border border-red-200 group-hover:border-red-400 transition-colors">
                   <span className="material-symbols-outlined">
                     {challenge.icon}
                   </span>
                 </div>
                 <div>
-                  <h4 className="text-white text-lg font-bold mb-1 group-hover:text-red-400 transition-colors">
+                  <h4 className="text-slate-900 text-lg font-bold mb-1 group-hover:text-red-500 transition-colors">
                     {challenge.title}
                   </h4>
-                  <p className="text-slate-400 text-sm">
+                  <p className="text-slate-600 text-sm">
                     {challenge.description}
                   </p>
                 </div>
@@ -75,7 +75,7 @@ export default function ChallengesSolutions() {
 
         {/* Right Column: Solutions */}
         <div className="relative">
-          <div className="glass-panel-solutions rounded-2xl p-8 md:p-10 flex flex-col gap-8 relative overflow-hidden group hover:border-primary/50 transition-colors duration-500">
+          <div className="bg-slate-50 border border-slate-200 rounded-2xl p-8 md:p-10 flex flex-col gap-8 relative overflow-hidden group hover:border-primary/50 transition-colors duration-500 shadow-sm hover:shadow-md">
             {/* Decorative glow */}
             <div className="absolute top-0 right-0 w-64 h-64 bg-primary/20 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2" />
 
@@ -89,10 +89,10 @@ export default function ChallengesSolutions() {
 
               {/* Title & Description */}
               <div>
-                <h3 className="text-white text-2xl md:text-3xl font-bold mb-3 tracking-tight">
+                <h3 className="text-slate-900 text-2xl md:text-3xl font-bold mb-3 tracking-tight">
                   Full-Cycle Management
                 </h3>
-                <p className="text-slate-300 text-base leading-relaxed">
+                <p className="text-slate-600 text-base leading-relaxed">
                   Our comprehensive ecosystem transforms fleet operations from a cost
                   center into a strategic asset. We unify acquisition, maintenance,
                   staffing, and disposal into a single, transparent dashboard.
@@ -100,13 +100,13 @@ export default function ChallengesSolutions() {
               </div>
 
               {/* Solutions List */}
-              <div className="flex flex-col gap-3 border-t border-white/10 pt-6">
+              <div className="flex flex-col gap-3 border-t border-slate-200 pt-6">
                 {solutions.map((solution) => (
                   <div key={solution} className="flex items-center gap-3">
                     <span className="material-symbols-outlined text-primary text-xl">
                       check_circle
                     </span>
-                    <span className="text-slate-200 text-sm font-medium">
+                    <span className="text-slate-700 text-sm font-medium">
                       {solution}
                     </span>
                   </div>
@@ -124,7 +124,7 @@ export default function ChallengesSolutions() {
           </div>
 
           {/* Decorative background card */}
-          <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-2xl border border-border-dark bg-[#0d1117]" />
+          <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full rounded-2xl border border-slate-200 bg-slate-100" />
         </div>
       </div>
     </section>

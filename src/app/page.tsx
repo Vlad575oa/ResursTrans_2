@@ -42,6 +42,18 @@ const CTASection = dynamic(
   { loading: () => <div className="h-[300px] bg-background-dark" /> }
 );
 
+const CertificationsLight = dynamic(
+  () => import("@/components/sections/services/CertificationsLight"),
+  { loading: () => <div className="h-[200px] bg-slate-900" /> }
+);
+
+const TimelineLight = dynamic(
+  () => import("@/components/sections/services/TimelineLight"),
+  { loading: () => <div className="h-[500px] bg-slate-900" /> }
+);
+
+
+
 const Footer = dynamic(
   () => import("@/components/sections/fleetcorp/Footer"),
   { loading: () => <div className="h-[100px] bg-[#05080f]" /> }
@@ -59,6 +71,27 @@ export default function Home() {
       <ManagementModel />
       <NumbersScale />
       <CTASection />
+
+      {/* Merged "Light Trust" Blocks from Site 3 - Adapted for Site 1 */}
+      <section className="bg-slate-900 py-16 md:py-24 border-t border-white/5">
+        <div className="max-w-7xl mx-auto px-4 md:px-10">
+          <div className="mb-16">
+            <h2 className="text-3xl md:text-5xl font-black text-white tracking-tighter mb-4">
+              Доверие и Экспертиза
+            </h2>
+            <p className="text-slate-400 max-w-2xl">
+              Наши достижения, сертификации и история развития в едином блоке прозрачности.
+            </p>
+          </div>
+          <CertificationsLight />
+          <div className="mt-16">
+            <TimelineLight />
+          </div>
+        </div>
+      </section>
+
+
+
       <Footer />
     </div>
   );

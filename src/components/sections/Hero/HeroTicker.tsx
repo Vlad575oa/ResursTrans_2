@@ -2,28 +2,25 @@
 
 import { useRef } from "react";
 import { motion } from "framer-motion";
+import { Fuel, Train, ShoppingBag, Building2, Wheat, ShoppingCart, Droplet, Mountain, Banknote, Gem, Search, Phone } from "lucide-react";
 
 const COMPANIES = [
-    "Лукойл",
-    "Газпром Нефть",
-    "РЖД",
-    "Магнит",
-    "Сбербанк",
-    "X5 Retail Group",
-    "Роснефть",
-    "Норильский никель",
-    "ВТБ",
-    "Северсталь",
-    "Яндекс",
-    "МТС",
+    { name: "Лукойл", icon: Fuel },
+    { name: "Газпром Нефть", icon: Droplet },
+    { name: "РЖД", icon: Train },
+    { name: "Магнит", icon: ShoppingBag },
+    { name: "Сбербанк", icon: Building2 },
+    { name: "X5 Retail Group", icon: ShoppingCart },
+    { name: "Роснефть", icon: Wheat },
+    { name: "Норильский никель", icon: Mountain },
+    { name: "ВТБ", icon: Banknote },
+    { name: "Северсталь", icon: Gem },
+    { name: "Яндекс", icon: Search },
+    { name: "МТС", icon: Phone },
 ];
 
 // Duplicate list for seamless looping
 const TICKER_ITEMS = [...COMPANIES, ...COMPANIES];
-
-const SEPARATOR = (
-    <span className="inline-block w-1.5 h-1.5 rounded-full bg-primary mx-6 align-middle opacity-60" />
-);
 
 export const HeroTicker = () => {
     const trackRef = useRef<HTMLDivElement>(null);
@@ -47,12 +44,12 @@ export const HeroTicker = () => {
                         repeat: Infinity,
                     }}
                 >
-                    {TICKER_ITEMS.map((name, i) => (
-                        <span key={i} className="inline-flex items-center">
-                            <span className="text-base font-semibold text-slate-600 hover:text-primary transition-colors cursor-default">
-                                {name}
+                    {TICKER_ITEMS.map((company, i) => (
+                        <span key={i} className="inline-flex items-center gap-3 mx-6">
+                            <company.icon className="w-5 h-5 text-slate-400" strokeWidth={1.5} />
+                            <span className="text-base font-semibold text-slate-300 hover:text-white transition-colors cursor-default">
+                                {company.name}
                             </span>
-                            {SEPARATOR}
                         </span>
                     ))}
                 </motion.div>

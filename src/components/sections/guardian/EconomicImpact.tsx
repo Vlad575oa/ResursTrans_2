@@ -1,10 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function EconomicImpact() {
   const [mileage, setMileage] = useState(145000);
   const [fuelCost, setFuelCost] = useState(1.85);
+  const [isSimulating, setIsSimulating] = useState(false);
+  const [efficiency, setEfficiency] = useState(24.8);
+  const [totalMileage, setTotalMileage] = useState(1240592);
+  const [fuelSaved, setFuelSaved] = useState(42890);
+  const [co2Saved, setCo2Saved] = useState(108.5);
+  const [messages, setMessages] = useState([
+    { time: "10:42:01", content: "System initialized. Monitoring inputs.", type: "log" },
+    { time: "10:42:05", content: `Mileage set to ${mileage.toLocaleString()} km.`, type: "log" },
+  ]);
+
+  const estimatedLoss = (mileage / 100) * 8.5 * fuelCost; // Simplified loss formula
+
+  const handleRunSimulation = () => {
+    if (isSimulating) return;
+    setIsSimulating(true);
+
+    const newMsg = {
+      time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+      content: "SIMULATION_START: Analyzing fleet routes...",
+      type: "log"
+    };
+    setMessages(prev => [...prev, newMsg]);
+
+    // Simulate counting and updates
+    setTimeout(() => {
+      setEfficiency(prev => prev + 4.2);
+      setTotalMileage(prev => prev + 1205);
+      setFuelSaved(prev => prev + 342);
+      setCo2Saved(prev => prev + 1.2);
+
+      setMessages(prev => [...prev, {
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+        content: "INSIGHT: Optimized throttle response mapping applied to Unit_04.",
+        type: "insight"
+      }]);
+    }, 1500);
+
+    setTimeout(() => {
+      setIsSimulating(false);
+      setMessages(prev => [...prev, {
+        time: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' }),
+        content: "SIMULATION_COMPLETE: ROI analysis projected at 18.5%.",
+        type: "log"
+      }]);
+    }, 4000);
+  };
 
   return (
     <section className="relative z-10 border-t border-[#283937] bg-[#102220]">
@@ -63,9 +110,16 @@ export default function EconomicImpact() {
               <span className="material-symbols-outlined !text-lg">download</span>
               EXPORT_REPORT
             </button>
-            <button className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-primary text-[#102220] text-sm font-bold hover:brightness-110 transition-all shadow-glow">
-              <span className="material-symbols-outlined !text-lg">play_arrow</span>
-              RUN_SIMULATION
+            <button
+              onClick={handleRunSimulation}
+              disabled={isSimulating}
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all shadow-glow ${isSimulating ? 'bg-primary/50 text-[#102220]/50 cursor-not-allowed' : 'bg-primary text-[#102220] hover:brightness-110'
+                }`}
+            >
+              <span className={`material-symbols-outlined !text-lg ${isSimulating ? 'animate-spin' : ''}`}>
+                {isSimulating ? 'sync' : 'play_arrow'}
+              </span>
+              {isSimulating ? 'SIMULATING...' : 'RUN_SIMULATION'}
             </button>
           </div>
         </section>
@@ -89,10 +143,20 @@ export default function EconomicImpact() {
               <div className="relative flex-1 p-6 flex items-center justify-center bg-[#0d1615]">
                 {/* Background topographic lines */}
                 <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 19px, #13ecda 20px), repeating-linear-gradient(90deg, transparent, transparent 19px, #13ecda 20px)", backgroundSize: "20px 20px" }}></div>
-                
+
                 {/* ASCII Truck Representation */}
-                <div className="ascii-container text-[8px] md:text-[10px] lg:text-xs text-primary leading-none opacity-80 select-none font-mono">
-{`                          _______________________________________________________
+                <motion.div
+                  animate={isSimulating ? { x: [0, -1, 1, -1, 0] } : {}}
+                  transition={{ repeat: Infinity, duration: 0.1 }}
+                  className="ascii-container text-[8px] md:text-[10px] lg:text-xs text-primary leading-none opacity-80 select-none font-mono relative"
+                >
+                  {/* Scanning line */}
+                  <motion.div
+                    animate={{ top: ["-10%", "110%"] }}
+                    transition={{ repeat: Infinity, duration: 3, ease: "linear" }}
+                    className="absolute left-0 right-0 h-4 bg-primary/10 border-y border-primary/20 pointer-events-none z-10"
+                  />
+                  {`                          _______________________________________________________
                          |                                                       |
                          |   [FLEET_UNIT_04]    MANAGED ASSET                    |
                          |   _________________________________________________   |
@@ -105,7 +169,7 @@ export default function EconomicImpact() {
                           \\_______________________________________________________/
                              ||         ||         ||         ||         ||
                            ==++=========++=========++=========++=========++==`}
-                </div>
+                </motion.div>
 
                 {/* Data Overlays */}
                 <div className="absolute top-10 left-10 p-3 bg-[#162b29]/90 border border-[#283937] rounded-lg shadow-lg">
@@ -118,9 +182,14 @@ export default function EconomicImpact() {
                 </div>
                 <div className="absolute bottom-10 right-10 p-3 bg-[#162b29]/90 border border-[#283937] rounded-lg shadow-lg text-right">
                   <p className="text-[10px] text-slate-400 font-mono mb-1">EFFICIENCY_DELTA</p>
-                  <p className="text-2xl text-primary font-bold">+24.8%</p>
+                  <p className="text-2xl text-primary font-bold">{efficiency.toFixed(1)}%</p>
                   <div className="w-full h-1 bg-[#283937] rounded-full mt-2 overflow-hidden">
-                    <div className="h-full bg-primary w-[75%]"></div>
+                    <motion.div
+                      initial={{ width: "0%" }}
+                      animate={{ width: `${(efficiency / 40) * 100}%` }}
+                      transition={{ duration: 1 }}
+                      className="h-full bg-primary"
+                    ></motion.div>
                   </div>
                 </div>
               </div>
@@ -129,15 +198,15 @@ export default function EconomicImpact() {
               <div className="grid grid-cols-3 border-t border-[#283937] divide-x divide-[#283937] bg-[#162b29]/80">
                 <div className="p-4 flex flex-col gap-1">
                   <span className="text-[10px] text-slate-500 font-mono">TOTAL_MILEAGE</span>
-                  <span className="text-white font-mono text-lg">1,240,592 km</span>
+                  <span className="text-white font-mono text-lg">{totalMileage.toLocaleString()} km</span>
                 </div>
                 <div className="p-4 flex flex-col gap-1">
                   <span className="text-[10px] text-slate-500 font-mono">FUEL_SAVED</span>
-                  <span className="text-primary font-mono text-lg">42,890 L</span>
+                  <span className="text-primary font-mono text-lg">{fuelSaved.toLocaleString()} L</span>
                 </div>
                 <div className="p-4 flex flex-col gap-1">
                   <span className="text-[10px] text-slate-500 font-mono">CO2_REDUCTION</span>
-                  <span className="text-white font-mono text-lg">108.5 Tons</span>
+                  <span className="text-white font-mono text-lg">{co2Saved.toFixed(1)} Tons</span>
                 </div>
               </div>
             </div>
@@ -192,7 +261,14 @@ export default function EconomicImpact() {
 
               <div className="mt-2 pt-4 border-t border-[#283937] flex justify-between items-center">
                 <span className="text-slate-400 text-sm">ESTIMATED LOSS</span>
-                <span className="text-red-400 font-mono text-xl font-bold">-$12,450 / mo</span>
+                <motion.span
+                  key={estimatedLoss}
+                  initial={{ opacity: 0.5, y: -5 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="text-red-400 font-mono text-xl font-bold"
+                >
+                  -${estimatedLoss.toLocaleString(undefined, { maximumFractionDigits: 0 })} / mo
+                </motion.span>
               </div>
             </div>
 
@@ -209,35 +285,34 @@ export default function EconomicImpact() {
                 <span className="material-symbols-outlined text-slate-500 !text-sm">terminal</span>
               </div>
               <div className="flex-1 p-4 font-mono text-sm overflow-y-auto flex flex-col gap-4">
-                <div className="flex gap-3">
-                  <span className="text-slate-500 shrink-0">10:42:01</span>
-                  <div className="text-slate-300">
-                    <span className="text-primary">&gt;</span> System initialized. Monitoring inputs.
-                  </div>
-                </div>
-                <div className="flex gap-3">
-                  <span className="text-slate-500 shrink-0">10:42:05</span>
-                  <div className="text-slate-300">
-                    <span className="text-primary">&gt;</span> Mileage set to {mileage.toLocaleString()} km.
-                  </div>
-                </div>
-                <div className="flex gap-3 bg-primary/5 p-2 -mx-2 rounded border-l-2 border-primary">
-                  <span className="text-slate-500 shrink-0">10:42:06</span>
-                  <div className="text-white">
-                    <span className="text-primary font-bold">INSIGHT:</span> At this mileage, we typically find <span className="text-primary border-b border-dashed border-primary">12% hidden losses</span> in fuel injection systems due to micro-calibrations drifting.
-                  </div>
-                </div>
-                <div className="flex gap-3 opacity-60">
-                  <span className="text-slate-500 shrink-0">10:42:08</span>
-                  <div className="text-slate-300">
-                    <span className="text-primary">&gt;</span> Calculating projected remediation ROI... <span className="animate-pulse">_</span>
-                  </div>
-                </div>
+                <AnimatePresence mode="popLayout">
+                  {messages.map((msg, idx) => (
+                    <motion.div
+                      key={idx}
+                      initial={{ opacity: 0, x: -10 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className={`flex gap-3 ${msg.type === 'insight' ? 'bg-primary/5 p-2 -mx-2 rounded border-l-2 border-primary' : ''}`}
+                    >
+                      <span className="text-slate-500 shrink-0">{msg.time}</span>
+                      <div className={msg.type === 'insight' ? 'text-white' : 'text-slate-300'}>
+                        {msg.type === 'insight' ? (
+                          <span className="text-primary font-bold">INSIGHT:</span>
+                        ) : (
+                          <span className="text-primary">&gt;</span>
+                        )}
+                        {" "}{msg.content}
+                        {idx === messages.length - 1 && isSimulating && (
+                          <span className="animate-pulse">_</span>
+                        )}
+                      </div>
+                    </motion.div>
+                  ))}
+                </AnimatePresence>
               </div>
               <div className="p-3 border-t border-[#283937] bg-[#162220]">
                 <div className="flex items-center gap-2">
                   <span className="text-primary">&gt;</span>
-                  <input className="bg-transparent border-none text-white text-sm w-full focus:ring-0 placeholder:text-slate-600 font-mono" placeholder="Ask about efficiency..." type="text"/>
+                  <input className="bg-transparent border-none text-white text-sm w-full focus:ring-0 placeholder:text-slate-600 font-mono" placeholder="Ask about efficiency..." type="text" />
                 </div>
               </div>
             </div>
@@ -251,18 +326,18 @@ export default function EconomicImpact() {
             {/* Corner accents */}
             <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-[#d4af37] rounded-tl-lg z-20"></div>
             <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-[#d4af37] rounded-br-lg z-20"></div>
-            
+
             <div className="bg-[#1a1810] p-6 md:w-1/3 flex flex-col items-center justify-center border-b md:border-b-0 md:border-r border-[#3a3520] relative">
               <div className="absolute inset-0 bg-gradient-to-br from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-20 transition-opacity duration-700 pointer-events-none"></div>
               <div className="bg-white p-2 rounded mb-4">
-                <img alt="DPP QR Code" className="w-32 h-32 opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcQOT_8hFHqRjdnrpYc1URW-eZP8jAtY_PF0t8aULnupwB_fxAXVK9D7TN9yERBNVbvG7yhiBRxRyMiGEIqkK1T0UJz1sithCYxNix8xVcbtwQR3d3sZ8mHuC0e7JtUlqakUq5x2UMhfLi-HFOKVa4yj245VpAF_DpS-EL_UwwcMsoYQN03_LC7WAPMWOjJcesY6n6SfTZv6wlYP2eoZ6_Bf1wzHBqj7UwXEVmpyNkp-FhkxNne2pODGjWUQQ0kMlUp4V5lyrip41P"/>
+                <img alt="DPP QR Code" className="w-32 h-32 opacity-90" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcQOT_8hFHqRjdnrpYc1URW-eZP8jAtY_PF0t8aULnupwB_fxAXVK9D7TN9yERBNVbvG7yhiBRxRyMiGEIqkK1T0UJz1sithCYxNix8xVcbtwQR3d3sZ8mHuC0e7JtUlqakUq5x2UMhfLi-HFOKVa4yj245VpAF_DpS-EL_UwwcMsoYQN03_LC7WAPMWOjJcesY6n6SfTZv6wlYP2eoZ6_Bf1wzHBqj7UwXEVmpyNkp-FhkxNne2pODGjWUQQ0kMlUp4V5lyrip41P" />
               </div>
               <span className="text-[10px] text-[#d4af37] font-mono tracking-widest text-center">SCAN FOR PROOF</span>
             </div>
 
             <div className="p-6 md:w-2/3 flex flex-col justify-between relative">
               <div className="absolute inset-0 opacity-5 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]"></div>
-              
+
               <div className="flex justify-between items-start mb-6">
                 <div>
                   <div className="flex items-center gap-2 mb-1">

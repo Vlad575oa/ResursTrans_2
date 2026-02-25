@@ -1,8 +1,31 @@
+"use client";
+
 import Image from "next/image";
+import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
     <section className="flex-grow relative flex flex-col justify-center min-h-screen pt-20">
+      {/* Navigation Tip */}
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1 }}
+        className="absolute top-[60px] md:top-[80px] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-none"
+      >
+        <motion.div
+          animate={{ y: [0, -5, 0], opacity: [0.3, 1, 0.3] }}
+          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+          className="text-primary flex flex-col items-center"
+        >
+          <span className="material-symbols-outlined !text-3xl">arrow_upward</span>
+        </motion.div>
+        <div className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
+          <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-white/70 whitespace-nowrap">
+            Посмотреть цветовые решения и варианты блоков
+          </p>
+        </div>
+      </motion.div>
       {/* Background Image - ATF с приоритетом */}
       <div
         className="absolute inset-0 z-0 w-full h-full bg-cover bg-center bg-no-repeat"
@@ -29,7 +52,7 @@ export default function Hero() {
             </div>
 
             {/* H1 - Critical ATF Content */}
-            <h1 className="text-white text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
+            <h1 className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight">
               Управление <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
                 корпоративным
@@ -48,17 +71,17 @@ export default function Hero() {
             </div>
 
             {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mt-4">
-              <button className="relative overflow-hidden rounded-lg bg-primary px-8 py-4 text-white text-base font-bold shadow-[0_0_20px_rgba(37,106,244,0.4)] hover:shadow-[0_0_30px_rgba(37,106,244,0.6)] hover:bg-blue-600 transition-all duration-300 group">
+            <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
+              <button className="w-full sm:w-auto relative overflow-hidden rounded-lg bg-primary px-8 py-4 text-white text-base font-bold shadow-[0_0_20px_rgba(37,106,244,0.4)] hover:shadow-[0_0_30px_rgba(37,106,244,0.6)] hover:bg-blue-600 transition-all duration-300 group">
                 <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                <span className="flex items-center gap-2">
+                <span className="flex items-center justify-center gap-2">
                   Получить коммерческое предложение
                   <span className="material-symbols-outlined text-xl">
                     arrow_forward
                   </span>
                 </span>
               </button>
-              <button className="flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white text-base font-bold hover:bg-white/10 hover:border-white/40 transition-all duration-300">
+              <button className="w-full sm:w-auto flex items-center justify-center gap-2 rounded-lg border border-white/20 bg-white/5 backdrop-blur-sm px-8 py-4 text-white text-base font-bold hover:bg-white/10 hover:border-white/40 transition-all duration-300">
                 <span className="material-symbols-outlined text-xl text-primary">
                   analytics
                 </span>

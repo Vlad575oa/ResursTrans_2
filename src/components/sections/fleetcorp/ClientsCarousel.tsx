@@ -16,22 +16,24 @@ export default function ClientsCarousel() {
   const allClients = [...clients, ...clients];
 
   return (
-    <section className="w-full border-b border-[#1e293b] bg-background-dark py-10 overflow-hidden">
+    <section className="w-full border-b border-slate-200 bg-slate-50 py-10 overflow-hidden">
       <div className="mb-6 px-6 lg:px-10 text-center">
-        <p className="text-sm font-semibold tracking-widest text-slate-500 uppercase">
+        <p className="text-sm font-semibold tracking-widest text-slate-400 uppercase">
           Trusted By Industry Leaders
         </p>
       </div>
       <div className="relative w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
         <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
           {allClients.map((client, index) => (
-            <li key={`${client.name}-${index}`} aria-hidden={index >= clients.length} className="flex flex-col items-center gap-2">
-              <img
-                alt={client.name}
-                className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                src={client.src}
-              />
-              <span className="text-xs font-medium text-slate-500 uppercase tracking-wider">{client.name}</span>
+            <li key={`${client.name}-${index}`} aria-hidden={index >= clients.length} className="flex flex-col items-center gap-3 group px-4">
+              <div className="w-14 h-14 rounded-xl bg-white flex items-center justify-center border border-slate-200 group-hover:border-primary/50 shadow-sm group-hover:shadow-md transition-all duration-500">
+                <span className="material-symbols-outlined text-[32px] text-slate-400 group-hover:text-primary transition-colors duration-500">
+                  {client.icon}
+                </span>
+              </div>
+              <span className="text-[10px] font-bold text-slate-500 group-hover:text-slate-900 uppercase tracking-[0.2em] transition-colors duration-500">
+                {client.name}
+              </span>
             </li>
           ))}
         </ul>

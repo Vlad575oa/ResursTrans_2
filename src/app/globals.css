@@ -340,6 +340,7 @@ details[open] summary~* {
   from {
     transform: translateX(0);
   }
+
   to {
     transform: translateX(-50%);
   }
@@ -393,18 +394,18 @@ details[open] summary~* {
 
 .btn-liquid {
   background: linear-gradient(135deg, #13ecda 0%, #0db8aa 100%);
-  box-shadow: 
-    inset 0 2px 4px rgba(255,255,255,0.4),
-    inset 0 -2px 4px rgba(0,0,0,0.2),
+  box-shadow:
+    inset 0 2px 4px rgba(255, 255, 255, 0.4),
+    inset 0 -2px 4px rgba(0, 0, 0, 0.2),
     0 8px 16px rgba(19, 236, 218, 0.3);
   transition: all 0.3s ease;
 }
 
 .btn-liquid:hover {
   transform: translateY(-2px);
-  box-shadow: 
-    inset 0 2px 6px rgba(255,255,255,0.6),
-    inset 0 -2px 6px rgba(0,0,0,0.3),
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.6),
+    inset 0 -2px 6px rgba(0, 0, 0, 0.3),
     0 12px 24px rgba(19, 236, 218, 0.5);
 }
 
@@ -416,13 +417,11 @@ details[open] summary~* {
 }
 
 .scanlines {
-  background: linear-gradient(
-    to bottom,
-    rgba(255,255,255,0),
-    rgba(255,255,255,0) 50%,
-    rgba(0,0,0,0.2) 50%,
-    rgba(0,0,0,0.2)
-  );
+  background: linear-gradient(to bottom,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0) 50%,
+      rgba(0, 0, 0, 0.2) 50%,
+      rgba(0, 0, 0, 0.2));
   background-size: 100% 4px;
   pointer-events: none;
 }
@@ -437,21 +436,38 @@ details[open] summary~* {
 }
 
 @keyframes float {
-  0% { transform: translateY(0px) rotateX(5deg); }
-  50% { transform: translateY(-15px) rotateX(2deg); }
-  100% { transform: translateY(0px) rotateX(5deg); }
+  0% {
+    transform: translateY(0px) rotateX(5deg);
+  }
+
+  50% {
+    transform: translateY(-15px) rotateX(2deg);
+  }
+
+  100% {
+    transform: translateY(0px) rotateX(5deg);
+  }
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(0.8); opacity: 0.5; }
-  100% { transform: scale(2.4); opacity: 0; }
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
 }
 
 .hotspot::before {
   content: '';
   position: absolute;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
   background-color: #13ecda;
   border-radius: 50%;
   z-index: -1;
@@ -464,7 +480,7 @@ details[open] summary~* {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  text-shadow: 1px 1px 0px rgba(0,0,0,0.5);
+  text-shadow: 1px 1px 0px rgba(0, 0, 0, 0.5);
   font-weight: 800;
   letter-spacing: 0.05em;
 }
@@ -486,4 +502,29 @@ details[open] summary~* {
 
 .grid-bg {
   background-size: 40px 40px;
+}
+
+/* Custom Scrollbar for Fleet Calculator */
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(37, 106, 244, 0.4) rgba(255, 255, 255, 0.02);
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 4px;
+  margin-inline: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(37, 106, 244, 0.4);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 106, 244, 0.6);
 }

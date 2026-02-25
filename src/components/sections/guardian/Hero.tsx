@@ -7,7 +7,7 @@ export default function Hero() {
           {/* Tech Decoration Line */}
           <div className="absolute -left-6 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-primary/30 to-transparent hidden lg:block"></div>
           <div className="absolute -left-[27px] top-[10%] w-[7px] h-[7px] bg-primary rounded-full hidden lg:block shadow-[0_0_10px_rgba(19,236,218,0.8)]"></div>
-          
+
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 w-fit">
             <span className="material-symbols-outlined text-primary text-[14px]">radar</span>
@@ -15,8 +15,8 @@ export default function Hero() {
           </div>
 
           {/* H1 */}
-          <h1 className="text-5xl md:text-7xl xl:text-8xl font-black text-white leading-[0.9] tracking-tighter mix-blend-lighten">
-            UNCOMPROMISED <br/>
+          <h1 className="text-4xl sm:text-5xl md:text-7xl xl:text-8xl font-black text-white leading-[0.9] tracking-tighter mix-blend-lighten">
+            UNCOMPROMISED <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">LOGISTICS.</span>
           </h1>
 
@@ -26,12 +26,12 @@ export default function Hero() {
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
-            <button className="btn-liquid h-14 px-10 rounded-full text-charcoal font-bold tracking-wider flex items-center justify-center gap-2 group">
+          <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
+            <button className="w-full sm:w-auto btn-liquid h-14 px-10 rounded-full text-charcoal font-bold tracking-wider flex items-center justify-center gap-2 group">
               <span>INITIATE TRANSPORT</span>
               <span className="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
             </button>
-            <button className="h-14 px-8 rounded-full border border-white/10 bg-white/5 text-white font-bold tracking-wider hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
+            <button className="w-full sm:w-auto h-14 px-8 rounded-full border border-white/10 bg-white/5 text-white font-bold tracking-wider hover:bg-white/10 transition-all flex items-center justify-center gap-2 backdrop-blur-sm">
               <span className="material-symbols-outlined text-primary">my_location</span>
               <span>TRACK SHIPMENT</span>
             </button>
@@ -69,7 +69,7 @@ export default function Hero() {
               <div className="absolute inset-0 scanlines opacity-30 pointer-events-none"></div>
               {/* Teal Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-40 mix-blend-overlay"></div>
-              
+
               {/* HUD Elements */}
               <div className="absolute top-4 left-4 p-2 bg-black/60 backdrop-blur-md rounded border border-primary/30 flex items-center gap-3">
                 <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
@@ -102,7 +102,7 @@ export default function Hero() {
               <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/50 rounded-br-lg"></div>
             </div>
           </div>
-          
+
           {/* Back Decoration */}
           <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full border border-dashed border-white/10 rounded-2xl"></div>
         </div>

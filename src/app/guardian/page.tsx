@@ -1,4 +1,6 @@
 import Link from "next/link";
+import Image from "next/image";
+import Header from "@/components/sections/guardian/Header";
 import EconomicImpact from "@/components/sections/guardian/EconomicImpact";
 
 const losses = [
@@ -64,48 +66,9 @@ export default function GuardianPage() {
       {/* Decorative Grid Background */}
       <div className="absolute inset-0 z-0 bg-grid-pattern bg-[length:40px_40px] opacity-10 pointer-events-none"></div>
       <div className="absolute inset-0 z-0 bg-gradient-to-b from-transparent via-[#111817]/80 to-[#111817] pointer-events-none"></div>
-      
+
       {/* Top Navigation */}
-      <header className="relative z-50 flex items-center justify-between px-6 py-6 md:px-12 w-full max-w-[1440px] mx-auto">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 text-primary flex items-center justify-center border border-primary/30 rounded-full bg-primary/10">
-            <span className="material-symbols-outlined text-[20px]">shield</span>
-          </div>
-          <div className="flex flex-col">
-            <h2 className="text-white text-base font-bold tracking-[0.2em] leading-none">GUARDIAN</h2>
-            <span className="text-primary/60 text-[10px] font-mono tracking-widest leading-none mt-1">TRANSPORT // 2026</span>
-          </div>
-        </div>
-        
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-1 p-1 rounded-full glass-panel">
-          <Link className="px-5 py-2 text-xs font-bold tracking-wider text-white hover:text-primary transition-colors" href="/">
-            FLEET
-          </Link>
-          <Link className="px-5 py-2 text-xs font-bold tracking-wider text-white hover:text-primary transition-colors" href="#logistics">
-            LOGISTICS
-          </Link>
-          <Link className="px-5 py-2 text-xs font-bold tracking-wider text-white hover:text-primary transition-colors" href="#security">
-            SECURITY
-          </Link>
-          <Link className="px-5 py-2 text-xs font-bold tracking-wider text-white hover:text-primary transition-colors" href="#ops">
-            OPS
-          </Link>
-        </nav>
-        
-        <div className="flex items-center gap-4">
-          <div className="hidden md:flex items-center gap-2 text-[10px] font-mono text-primary/80">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-            SYS.ONLINE
-          </div>
-          <button className="hidden md:flex items-center justify-center rounded-full h-10 px-6 border border-white/10 bg-white/5 text-white text-xs font-bold tracking-wider hover:bg-white/10 transition-all">
-            LOGIN
-          </button>
-          <button className="md:hidden flex items-center justify-center w-10 h-10 rounded-full border border-white/10 bg-white/5 text-white" aria-label="Menu">
-            <span className="material-symbols-outlined">menu</span>
-          </button>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Hero Section */}
       <main className="relative z-10 flex flex-col justify-center flex-grow px-6 md:px-12 w-full max-w-[1440px] mx-auto py-12">
@@ -115,7 +78,7 @@ export default function GuardianPage() {
             {/* Tech Decoration Line */}
             <div className="absolute -left-6 top-0 bottom-0 w-[1px] bg-gradient-to-b from-transparent via-primary/30 to-transparent hidden lg:block"></div>
             <div className="absolute -left-[27px] top-[10%] w-[7px] h-[7px] bg-primary rounded-full hidden lg:block shadow-[0_0_10px_rgba(19,236,218,0.8)]"></div>
-            
+
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/20 bg-primary/5 w-fit">
               <span className="material-symbols-outlined text-primary text-[14px]">radar</span>
@@ -124,7 +87,7 @@ export default function GuardianPage() {
 
             {/* H1 */}
             <h1 className="text-5xl md:text-7xl xl:text-8xl font-black text-white leading-[0.9] tracking-tighter mix-blend-lighten">
-              UNCOMPROMISED <br/>
+              UNCOMPROMISED <br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-400 to-gray-600">LOGISTICS.</span>
             </h1>
 
@@ -168,16 +131,19 @@ export default function GuardianPage() {
             <div className="relative rounded-2xl overflow-hidden border border-white/10 bg-[#111817] shadow-2xl group">
               {/* Image with Overlay */}
               <div className="relative aspect-[4/5] md:aspect-video lg:aspect-[3/4]">
-                <img
+                <Image
                   alt="High-tech fleet of autonomous trucks moving on a highway at night with long exposure lights"
                   className="w-full h-full object-cover opacity-60 grayscale mix-blend-luminosity"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuBEebJD4kQacPyup3oqNgfhJdZLoA08NMIIwOe7Vm_lyM49cn0kzohsE43EfSzQWL1lxrKcBRHM8DEOu_k1X0kK3xvNAm7FFtoW7Yd32F929h4LrmiuO4zVjPokBRuK62oB5Jfq93hIE848HdcIAnCHJQ-O2YwioTSq3o9ccaw7cRC_jjaWEbOthYQOXaL517yQadSDBo0C1V81o7GDBznhpX2wI-gsXKfbpcJm0BrpGqUk4zXzKjDXE78WaN8FCTJK0WZOiv8VXAkc"
+                  width={800}
+                  height={1000}
+                  priority
                 />
                 {/* Scanlines Overlay */}
                 <div className="absolute inset-0 scanlines opacity-30 pointer-events-none"></div>
                 {/* Teal Gradient Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-primary/20 via-transparent to-transparent opacity-40 mix-blend-overlay"></div>
-                
+
                 {/* HUD Elements */}
                 <div className="absolute top-4 left-4 p-2 bg-black/60 backdrop-blur-md rounded border border-primary/30 flex items-center gap-3">
                   <div className="w-2 h-2 bg-red-500 rounded-full animate-pulse"></div>
@@ -210,7 +176,7 @@ export default function GuardianPage() {
                 <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-primary/50 rounded-br-lg"></div>
               </div>
             </div>
-            
+
             {/* Back Decoration */}
             <div className="absolute -z-10 -bottom-6 -right-6 w-full h-full border border-dashed border-white/10 rounded-2xl"></div>
           </div>
@@ -226,7 +192,7 @@ export default function GuardianPage() {
               SYSTEM CAPABILITIES
             </h3>
             <div className="flex gap-2 text-primary/60 font-mono text-xs">
-              <span>// SCROLL_DOWN</span>
+              <span>{"// SCROLL_DOWN"}</span>
               <span className="material-symbols-outlined text-[14px]">arrow_downward</span>
             </div>
           </div>
@@ -302,7 +268,7 @@ export default function GuardianPage() {
           <div className="flex items-center gap-4">
             <div className="hidden md:flex items-center bg-[#1c2624] rounded-full px-4 py-2 border border-[#2C3A37] w-64 focus-within:border-primary/50 transition-colors">
               <span className="material-symbols-outlined text-slate-400 text-[20px]">search</span>
-              <input className="bg-transparent border-none text-sm text-white focus:ring-0 w-full placeholder:text-slate-500 font-mono" placeholder="Search Unit ID..." type="text"/>
+              <input className="bg-transparent border-none text-sm text-white focus:ring-0 w-full placeholder:text-slate-500 font-mono" placeholder="Search Unit ID..." type="text" />
             </div>
             <button className="flex items-center justify-center size-10 rounded-full bg-[#1c2624] text-white hover:bg-primary hover:text-[#101413] transition-colors border border-[#2C3A37] relative">
               <span className="absolute top-2 right-2 size-2 bg-red-500 rounded-full border-2 border-[#1c2624]"></span>
@@ -328,7 +294,7 @@ export default function GuardianPage() {
                   <span className="material-symbols-outlined">tune</span>
                 </button>
               </div>
-              
+
               {/* Stats Strip */}
               <div className="flex gap-3 mb-6 overflow-x-auto pb-2 scrollbar-hide">
                 {stats.map((stat) => (
@@ -345,11 +311,10 @@ export default function GuardianPage() {
               {losses.map((loss) => (
                 <div
                   key={loss.id}
-                  className={`group transition-all rounded-[2rem] p-5 border relative ${
-                    loss.resolved
-                      ? "opacity-60 hover:opacity-100 border-dashed border-[#2C3A37]"
-                      : "bg-[#2C3A37]/40 hover:bg-[#2C3A37]/60 border-[#2C3A37]/50 hover:border-primary/30"
-                  }`}
+                  className={`group transition-all rounded-[2rem] p-5 border relative ${loss.resolved
+                    ? "opacity-60 hover:opacity-100 border-dashed border-[#2C3A37]"
+                    : "bg-[#2C3A37]/40 hover:bg-[#2C3A37]/60 border-[#2C3A37]/50 hover:border-primary/30"
+                    }`}
                 >
                   {!loss.resolved && (
                     <div className="absolute top-5 right-5 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -361,7 +326,7 @@ export default function GuardianPage() {
                       </button>
                     </div>
                   )}
-                  
+
                   <div className="flex gap-4">
                     <div className={`size-12 rounded-full ${loss.iconBg} ${loss.iconColor} flex items-center justify-center flex-shrink-0`}>
                       <span className="material-symbols-outlined">{loss.icon}</span>
@@ -426,98 +391,172 @@ export default function GuardianPage() {
               </div>
             </div>
 
-            {/* 3D Visualization Area */}
-            <div className="flex-1 relative flex items-center justify-center wireframe-container z-0">
-              <div className="relative w-[600px] aspect-[16/9] wireframe-truck transition-transform duration-500 ease-out group/truck">
-                <img
-                  alt="Truck Wireframe"
-                  className="w-full h-full object-contain opacity-90 drop-shadow-[0_0_30px_rgba(19,236,218,0.3)]"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZcTSic_auUrD37fJ8nDah9Su6ZdJva2y3vCjy1vbmjVrrMDhU3lS1W-ljW-wPt1Qk3WbSAdzr421pVp5QDFndJNV2mS6Q5LsUuqGfwUYzzJLoXxF1zxFaROXnKzv-cYH2ODz0uJru7cqJ2voLhgW1EnqVXP9wSESsLJ-DVzJB-dYMOEqj0dBwlLinQJCmdQbJiFJoBBmWaKv-sa45xP7YG1li5F6t1sWDFOyiXuN5rVSNvtjrne3Tztgsi7VBrS_Aq-Mo9k9rOhJq"
-                  style={{ filter: "grayscale(100%) brightness(0.6) sepia(1) hue-rotate(130deg) saturate(3)" }}
-                />
-                
-                {/* Hotspot 1: Cabin */}
-                <div className="absolute top-[30%] left-[65%] group/hotspot">
-                  <div className="relative cursor-pointer size-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
-                    <div className="size-1.5 bg-primary rounded-full"></div>
-                  </div>
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto">
-                    <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
-                      <span className="material-symbols-outlined text-primary text-sm">airline_seat_recline_extra</span>
-                      <span className="text-white font-bold text-sm">CABIN STATUS</span>
+            <div className="flex-1 flex flex-col xl:flex-row relative z-10 overflow-hidden">
+              {/* 3D Visualization Area - Increased Size */}
+              <div className="flex-1 relative flex items-center justify-center wireframe-container z-0 order-2 xl:order-1">
+                <div className="relative w-full max-w-[900px] aspect-[16/9] wireframe-truck transition-transform duration-500 ease-out group/truck">
+                  <Image
+                    alt="Truck Wireframe"
+                    className="w-full h-full object-contain opacity-100 drop-shadow-[0_0_50px_rgba(19,236,218,0.4)]"
+                    src="/images/guardian/truck_sensors.png"
+                    width={1200}
+                    height={675}
+                    priority
+                  />
+
+                  {/* Hotspot 1: Cabin */}
+                  <div className="absolute top-[25%] left-[45%] group/hotspot">
+                    <div className="relative cursor-pointer size-8 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
+                      <div className="size-2 bg-primary rounded-full animate-ping absolute"></div>
+                      <div className="size-2 bg-primary rounded-full relative z-10"></div>
                     </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center text-xs font-mono">
-                        <span className="text-slate-400">Driver Fatigue</span>
-                        <span className="text-green-400">Normal</span>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto z-50">
+                      <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
+                        <span className="material-symbols-outlined text-primary text-sm">airline_seat_recline_extra</span>
+                        <span className="text-white font-bold text-sm">CABIN STATUS</span>
                       </div>
-                      <div className="w-full bg-white/10 rounded-full h-1">
-                        <div className="bg-green-400 w-[20%] h-full rounded-full"></div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center text-xs font-mono">
+                          <span className="text-slate-400">Driver Fatigue</span>
+                          <span className="text-green-400">Normal</span>
+                        </div>
+                        <div className="w-full bg-white/10 rounded-full h-1">
+                          <div className="bg-green-400 w-[20%] h-full rounded-full"></div>
+                        </div>
+                        <div className="flex justify-between items-center text-xs font-mono pt-1">
+                          <span className="text-slate-400">Temp</span>
+                          <span className="text-white">21°C</span>
+                        </div>
                       </div>
-                      <div className="flex justify-between items-center text-xs font-mono pt-1">
-                        <span className="text-slate-400">Temp</span>
-                        <span className="text-white">21°C</span>
+                    </div>
+                  </div>
+
+                  {/* Hotspot 2: Engine */}
+                  <div className="absolute top-[55%] left-[30%] group/hotspot">
+                    <div className="relative cursor-pointer size-8 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
+                      <div className="size-2 bg-primary rounded-full animate-ping absolute"></div>
+                      <div className="size-2 bg-primary rounded-full relative z-10"></div>
+                    </div>
+                    <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 -translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto z-50">
+                      <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
+                        <span className="material-symbols-outlined text-primary text-sm">settings</span>
+                        <span className="text-white font-bold text-sm">ENGINE TELEMETRY</span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center text-xs font-mono">
+                          <span className="text-slate-400">Oil Pressure</span>
+                          <span className="text-green-400">Optimal</span>
+                        </div>
+                        <div className="flex justify-between items-center text-xs font-mono">
+                          <span className="text-slate-400">RPM</span>
+                          <span className="text-yellow-400">1250 (Cruise)</span>
+                        </div>
+                        <div className="flex justify-between items-center text-xs font-mono pt-1">
+                          <span className="text-slate-400">Vibration</span>
+                          <span className="text-white">0.04mm/s</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Hotspot 3: Fuel Tank */}
+                  <div className="absolute top-[65%] left-[55%] group/hotspot">
+                    <div className="relative cursor-pointer size-8 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
+                      <div className="size-2 bg-primary rounded-full animate-ping absolute"></div>
+                      <div className="size-2 bg-primary rounded-full relative z-10"></div>
+                    </div>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto z-50">
+                      <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
+                        <span className="material-symbols-outlined text-red-400 text-sm">local_gas_station</span>
+                        <span className="text-white font-bold text-sm">FUEL LEVELS</span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center text-xs font-mono">
+                          <span className="text-slate-400">Capacity</span>
+                          <span className="text-red-400">64% (Dropping)</span>
+                        </div>
+                        <div className="w-full bg-white/10 rounded-full h-1 overflow-hidden">
+                          <div className="bg-gradient-to-r from-red-500 to-yellow-500 w-[64%] h-full rounded-full"></div>
+                        </div>
+                        <div className="flex justify-between items-center text-xs font-mono pt-1">
+                          <span className="text-slate-400">Est. Range</span>
+                          <span className="text-white">450 km</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Hotspot 4: Tires */}
+                  <div className="absolute bottom-[10%] left-[80%] group/hotspot">
+                    <div className="relative cursor-pointer size-8 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
+                      <div className="size-2 bg-primary rounded-full animate-ping absolute"></div>
+                      <div className="size-2 bg-primary rounded-full relative z-10"></div>
+                    </div>
+                    <div className="absolute bottom-full right-0 mb-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto z-50">
+                      <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
+                        <span className="material-symbols-outlined text-primary text-sm">tire_repair</span>
+                        <span className="text-white font-bold text-sm">TYRE SYSTEMS</span>
+                      </div>
+                      <div className="space-y-2">
+                        <div className="flex justify-between items-center text-xs font-mono font-bold">
+                          <span className="text-slate-400">Pressure</span>
+                          <span className="text-primary">115 PSI</span>
+                        </div>
+                        <div className="flex justify-between items-center text-xs font-mono font-bold">
+                          <span className="text-slate-400">Tread Wear</span>
+                          <span className="text-white text-right">82%</span>
+                        </div>
+                        <div className="flex justify-between items-center text-xs font-mono font-bold">
+                          <span className="text-slate-400">Temp</span>
+                          <span className="text-yellow-400 text-right">54°C</span>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
 
-                {/* Hotspot 2: Engine */}
-                <div className="absolute top-[60%] left-[70%] group/hotspot">
-                  <div className="relative cursor-pointer size-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
-                    <div className="size-1.5 bg-primary rounded-full"></div>
-                  </div>
-                  <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 -translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto z-20">
-                    <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
-                      <span className="material-symbols-outlined text-primary text-sm">settings</span>
-                      <span className="text-white font-bold text-sm">ENGINE TELEMETRY</span>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center text-xs font-mono">
-                        <span className="text-slate-400">Oil Pressure</span>
-                        <span className="text-green-400">Optimal</span>
-                      </div>
-                      <div className="flex justify-between items-center text-xs font-mono">
-                        <span className="text-slate-400">RPM</span>
-                        <span className="text-yellow-400">0 (Idle)</span>
-                      </div>
-                      <div className="flex justify-between items-center text-xs font-mono pt-1">
-                        <span className="text-slate-400">Vibration</span>
-                        <span className="text-white">0.04mm/s</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                {/* Hotspot 3: Fuel Tank */}
-                <div className="absolute top-[65%] left-[40%] group/hotspot">
-                  <div className="relative cursor-pointer size-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center transition-all hover:bg-primary hover:text-[#101413]">
-                    <div className="size-1.5 bg-primary rounded-full"></div>
-                  </div>
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-4 w-64 glass-panel rounded-2xl p-4 opacity-0 group-hover/hotspot:opacity-100 translate-y-2 group-hover/hotspot:translate-y-0 transition-all duration-300 pointer-events-none group-hover/hotspot:pointer-events-auto">
-                    <div className="flex items-center gap-2 mb-2 border-b border-white/10 pb-2">
-                      <span className="material-symbols-outlined text-red-400 text-sm">local_gas_station</span>
-                      <span className="text-white font-bold text-sm">FUEL LEVELS</span>
-                    </div>
-                    <div className="space-y-2">
-                      <div className="flex justify-between items-center text-xs font-mono">
-                        <span className="text-slate-400">Capacity</span>
-                        <span className="text-red-400">64% (Dropping)</span>
-                      </div>
-                      <div className="w-full bg-white/10 rounded-full h-1 overflow-hidden">
-                        <div className="bg-gradient-to-r from-red-500 to-yellow-500 w-[64%] h-full rounded-full"></div>
-                      </div>
-                      <div className="flex justify-between items-center text-xs font-mono pt-1">
-                        <span className="text-slate-400">Est. Range</span>
-                        <span className="text-white">450 km</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+                {/* Floor Reflection Glow */}
+                <div className="absolute bottom-[10%] w-[700px] h-[150px] bg-primary/20 blur-[80px] rounded-[100%] pointer-events-none transform scale-y-50"></div>
               </div>
 
-              {/* Floor Reflection Glow */}
-              <div className="absolute bottom-[10%] w-[500px] h-[100px] bg-primary/10 blur-[60px] rounded-[100%] pointer-events-none transform scale-y-50"></div>
+              {/* Telemetry Table Panel */}
+              <div className="w-full xl:w-[400px] order-1 xl:order-2 p-6 xl:border-l border-white/5 bg-black/20 backdrop-blur-sm self-start">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="text-white font-bold tracking-wider text-sm flex items-center gap-2">
+                    <span className="material-symbols-outlined text-primary text-base">format_list_bulleted</span>
+                    SENSOR ARRAY _04
+                  </h3>
+                  <span className="text-[10px] font-mono text-primary/60">LIVE_DATA_STREAM</span>
+                </div>
+
+                <div className="space-y-3 overflow-y-auto max-h-[400px] pr-2 custom-scrollbar">
+                  {[
+                    { name: "ENGINE_LOAD", val: "42%", status: "OPTIMAL", color: "text-green-400" },
+                    { name: "FUEL_FLOW_RATE", val: "12.4 L/H", status: "NORMAL", color: "text-primary" },
+                    { name: "TYRE_PRESSURE_FL", val: "115 PSI", status: "OPTIMAL", color: "text-green-400" },
+                    { name: "TYRE_PRESSURE_FR", val: "112 PSI", status: "WARN", color: "text-yellow-400" },
+                    { name: "CARGO_TEMP", val: "-18.2 °C", status: "COLD_CHAIN", color: "text-blue-400" },
+                    { name: "BRAKE_WEAR_R1", val: "64%", status: "NOMINAL", color: "text-white" },
+                    { name: "CHASSIS_VIBRATION", val: "0.02 G", status: "OPTIMAL", color: "text-green-400" },
+                    { name: "ADBLUE_LEVEL", val: "92%", status: "NOMINAL", color: "text-white" },
+                  ].map((sensor, idx) => (
+                    <div key={idx} className="flex flex-col gap-1 p-3 rounded-lg bg-white/5 border border-white/5 hover:bg-white/10 transition-colors">
+                      <div className="flex justify-between items-center">
+                        <span className="text-[10px] font-mono text-slate-500">{sensor.name}</span>
+                        <span className={`text-[10px] font-mono font-black ${sensor.color}`}>{sensor.status}</span>
+                      </div>
+                      <div className="flex justify-between items-center">
+                        <span className="text-base font-mono font-bold text-white">{sensor.val}</span>
+                        <div className="w-16 h-4 flex items-end gap-[1px]">
+                          {[20, 40, 30, 60, 45, 70, 50].map((h, i) => (
+                            <div key={i} className={`flex-1 ${sensor.color} bg-current opacity-40`} style={{ height: `${h}%` }}></div>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
 
             {/* Bottom Controls */}

@@ -54,7 +54,7 @@ export default function ManagementModel() {
         </div>
 
         {/* H1 */}
-        <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-6xl font-extrabold tracking-tight mb-4 md:mb-6 leading-tight">
           End-to-End{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">
             Fleet Optimization
@@ -70,7 +70,7 @@ export default function ManagementModel() {
       </div>
 
       {/* Service Grid */}
-      <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="max-w-[1200px] mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {services.map((service) => (
           <div
             key={service.title}
