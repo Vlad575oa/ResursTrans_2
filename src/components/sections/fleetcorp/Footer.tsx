@@ -27,30 +27,30 @@ export default function Footer() {
 
           {/* Links 1 */}
           <div>
-            <h3 className="text-white font-bold mb-6">Company</h3>
+            <h3 className="text-white font-bold mb-6">Компания</h3>
             <ul className="space-y-4 text-sm text-slate-400">
-              <li><a className="hover:text-primary transition-colors" href="#">About Us</a></li>
-              <li><a className="hover:text-primary transition-colors" href="#">Careers</a></li>
-              <li><a className="hover:text-primary transition-colors" href="#">Press</a></li>
-              <li><a className="hover:text-primary transition-colors" href="#">Partners</a></li>
+              <li><a className="hover:text-primary transition-colors" href="/about">О нас</a></li>
+              <li><a className="hover:text-primary transition-colors" href="/news">Новости</a></li>
+              <li><a className="hover:text-primary transition-colors" href="/contacts">Контакты</a></li>
+              <li><a className="hover:text-primary transition-colors" href="/services">Услуги</a></li>
             </ul>
           </div>
 
           {/* Links 2 */}
           <div>
-            <h3 className="text-white font-bold mb-6">Resources</h3>
+            <h3 className="text-white font-bold mb-6">Ресурсы</h3>
             <ul className="space-y-4 text-sm text-slate-400">
-              <li><a className="hover:text-primary transition-colors" href="#">Documentation</a></li>
-              <li><a className="hover:text-primary transition-colors" href="#">API Reference</a></li>
-              <li><a className="hover:text-primary transition-colors" href="#">Case Studies</a></li>
-              <li><a className="hover:text-primary transition-colors" href="#">Help Center</a></li>
+              <li><a className="hover:text-primary transition-colors" href="/cases">Кейсы</a></li>
+              <li><a className="hover:text-primary transition-colors" href="/technology">Технологии</a></li>
+              <li><a className="hover:text-primary transition-colors" href="/solutions">Решения</a></li>
+              <li><a className="hover:text-primary transition-colors" href="/messages">Сообщения</a></li>
             </ul>
           </div>
 
           {/* Map / Presence */}
           <div className="relative h-48 rounded-lg overflow-hidden bg-[#161b22] border border-[#282e39] group">
             <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
-              <span className="bg-black/50 backdrop-blur-sm px-3 py-1 rounded text-xs text-white font-bold border border-white/10">Global Presence</span>
+              <span className="bg-black/50 backdrop-blur-sm px-3 py-1 rounded text-xs text-white font-bold border border-white/10">Глобальное присутствие</span>
             </div>
             <img
               alt="Global Presence Map"
@@ -61,11 +61,11 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-[#282e39] pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <p>© 2024 FleetCorp Management. All rights reserved.</p>
+          <p>© 2026 FleetCorp Management. Все права защищены.</p>
           <div className="flex gap-6">
-            <a className="hover:text-white transition-colors" href="#">Privacy Policy</a>
-            <a className="hover:text-white transition-colors" href="#">Terms of Service</a>
-            <a className="hover:text-white transition-colors" href="#">Cookies</a>
+            <a className="hover:text-white transition-colors" href="/privacy">Политика конфиденциальности</a>
+            <a className="hover:text-white transition-colors" href="/terms">Условия использования</a>
+            <a className="hover:text-white transition-colors" href="/cookies">Cookie</a>
           </div>
         </div>
       </div>

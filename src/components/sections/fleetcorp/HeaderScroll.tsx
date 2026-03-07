@@ -12,7 +12,7 @@ export default function HeaderScroll() {
   const navLinks = [
     { href: "/", label: "Главная" },
     { href: "/cases", label: "Кейсы" },
-    { href: "/technology", label: "Услуги" },
+    { href: "/services", label: "Услуги" },
     { href: "/about", label: "О нас" },
     { href: "/news", label: "Новости" },
     { href: "/contacts", label: "Контакты" },
