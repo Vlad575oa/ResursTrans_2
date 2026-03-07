@@ -1,45 +1,45 @@
 import Link from "next/link";
 
-const services = [
-    {
-        slug: "strategic-outsourcing",
-        title: "Strategic Outsourcing",
-        desc: "Full operational takeover with guaranteed SLA adherence. We become your dedicated fleet department.",
-        icon: "business_center",
-    },
-    {
-        slug: "fleet-management",
-        title: "Fleet Management",
-        desc: "Lifecycle tracking from acquisition to remarketing. Complete asset visibility and control.",
-        icon: "directions_car",
-    },
-    {
-        slug: "predictive-maintenance",
-        title: "Predictive Maintenance",
-        desc: "AI-driven scheduling and repair logistics to minimize downtime and extend vehicle lifespan.",
-        icon: "build_circle",
-    },
-    {
-        slug: "driver-management",
-        title: "Driver Management",
-        desc: "Safety training, compliance handling, and payroll integration. Keeping your team safe and compliant.",
-        icon: "sports_motorsports",
-    },
-    {
-        slug: "digital-monitoring",
-        title: "Digital Monitoring",
-        desc: "Real-time telematics and EV performance analytics. Data-driven insights for smarter decisions.",
-        icon: "monitoring",
-    },
-    {
-        slug: "cost-optimization",
-        title: "Cost Optimization",
-        desc: "Fuel reduction strategies and Total Cost of Ownership (TCO) analysis to maximize ROI.",
-        icon: "account_balance_wallet",
-    },
-];
+export default function ServiceGrid({ locale }: { locale: string }) {
+    const services = [
+        {
+            slug: "strategic-outsourcing",
+            title: locale === 'en' ? "Strategic Outsourcing" : "Стратегический Аутсорсинг",
+            desc: locale === 'en' ? "Full operational takeover with guaranteed SLA adherence. We become your dedicated fleet department." : "Полное операционное управление с гарантированным соблюдением SLA. Мы становимся вашим автотранспортным подразделением.",
+            icon: "business_center",
+        },
+        {
+            slug: "fleet-management",
+            title: locale === 'en' ? "Fleet Management" : "Управление Автопарком",
+            desc: locale === 'en' ? "Lifecycle tracking from acquisition to remarketing. Complete asset visibility and control." : "Отслеживание жизненного цикла от приобретения до реализации. Полный контроль активов.",
+            icon: "directions_car",
+        },
+        {
+            slug: "predictive-maintenance",
+            title: locale === 'en' ? "Predictive Maintenance" : "Предиктивное Обслуживание",
+            desc: locale === 'en' ? "AI-driven scheduling and repair logistics to minimize downtime and extend vehicle lifespan." : "ИИ-планирование и логистика ремонта для минимизации простоев и продления срока службы.",
+            icon: "build_circle",
+        },
+        {
+            slug: "driver-management",
+            title: locale === 'en' ? "Driver Management" : "Управление Водителями",
+            desc: locale === 'en' ? "Safety training, compliance handling, and payroll integration. Keeping your team safe and compliant." : "Обучение безопасности, контроль комплаенса и интеграция расчета зарплаты.",
+            icon: "sports_motorsports",
+        },
+        {
+            slug: "digital-monitoring",
+            title: locale === 'en' ? "Digital Monitoring" : "Цифровой Мониторинг",
+            desc: locale === 'en' ? "Real-time telematics and EV performance analytics. Data-driven insights for smarter decisions." : "Телематика в реальном времени и аналитика производительности. Данные для принятия решений.",
+            icon: "monitoring",
+        },
+        {
+            slug: "cost-optimization",
+            title: locale === 'en' ? "Cost Optimization" : "Оптимизация Затрат",
+            desc: locale === 'en' ? "Fuel reduction strategies and Total Cost of Ownership (TCO) analysis to maximize ROI." : "Стратегии снижения расхода топлива и анализ стоимости владения (TCO).",
+            icon: "account_balance_wallet",
+        },
+    ];
 
-export default function ServiceGrid() {
     return (
         <section className="relative pt-20 pb-16 px-6 overflow-hidden bg-background-dark text-slate-100">
             {/* Background Decoration */}
@@ -51,13 +51,15 @@ export default function ServiceGrid() {
             <div className="max-w-[1200px] mx-auto relative z-10 text-center mb-16">
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold uppercase tracking-wider mb-6">
                     <span className="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
-                    Premium Enterprise Solutions
+                    {locale === 'en' ? 'Premium Enterprise Solutions' : 'Премиальные решения'}
                 </div>
                 <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight text-white">
-                    End-to-End <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">Fleet Optimization</span>
+                    {locale === 'en' ? 'End-to-End ' : 'Комплексная '}<span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">{locale === 'en' ? 'Fleet Optimization' : 'Оптимизация автопарка'}</span>
                 </h2>
                 <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto font-light leading-relaxed">
-                    Comprehensive outsourcing and management services designed for enterprise scale. We handle the complexity of global logistics so you can focus on core business operations.
+                    {locale === 'en'
+                        ? 'Comprehensive outsourcing and management services designed for enterprise scale. We handle the complexity of global logistics so you can focus on core business operations.'
+                        : 'Комплексный аутсорсинг и услуги управления транспортной функцией. Мы берем на себя сложную логистику, чтобы вы могли сосредоточиться на бизнесе.'}
                 </p>
             </div>
 
@@ -73,8 +75,8 @@ export default function ServiceGrid() {
                         </div>
                         <h3 className="text-xl font-bold mb-3 text-slate-100 group-hover:text-primary transition-colors">{s.title}</h3>
                         <p className="text-slate-400 text-sm leading-relaxed mb-6">{s.desc}</p>
-                        <Link className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-primary transition-colors gap-1 group/link" href={`/services/${s.slug}`}>
-                            Learn more <span className="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
+                        <Link className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-primary transition-colors gap-1 group/link" href={`/${locale}/services/${s.slug}`}>
+                            {locale === 'en' ? 'Learn more' : 'Узнать больше'} <span className="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
                         </Link>
                     </div>
                 ))}

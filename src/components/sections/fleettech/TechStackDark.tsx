@@ -2,29 +2,29 @@
 
 import { motion } from "framer-motion";
 
-export default function TechStackDark() {
+export default function TechStackDark({ locale }: { locale: string }) {
     const techs = [
         {
-            title: "GPS Мониторинг",
-            desc: "Точность до 1 метра в реальном времени. Интеллектуальное геофехтование и история маршрутов.",
+            title: locale === 'en' ? "GPS Monitoring" : "GPS Мониторинг",
+            desc: locale === 'en' ? "Accuracy up to 1 meter in real time. Intelligent geofencing and route history." : "Точность до 1 метра в реальном времени. Интеллектуальное геофехтование и история маршрутов.",
             icon: "location_on",
             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX1fLUueR8AUAmJP2mwj2QsbDid24qvsqIz-_25yRFy47XwwNyTGlgiKZTqJQyOAngU5yFI85dr_yq0rgKEo3PmXP2-u7Qp2ep7eonl5Aygg0jHznoGGT91_2k6sJVtfJn5DkNad6ecDDGSFDCqcoHcY3fXSu6dBzAPRIpE_67qBQM2lyRCZ49pfoz8FoxUI2Qe3SNKW9VvyzrwxaxUezpr1ZuaU27KUO37DDoejwdVTTiA-bGfuAYGJaSnWPC2jmtflod0dZuIP2o",
         },
         {
-            title: "Аналитика Топлива",
-            desc: "Контроль расхода, детекция сливов и мониторинг заправок с помощью AI-алгоритмов.",
+            title: locale === 'en' ? "Fuel Analytics" : "Аналитика Топлива",
+            desc: locale === 'en' ? "Consumption control, siphoning detection, and fueling monitoring via AI algorithms." : "Контроль расхода, детекция сливов и мониторинг заправок с помощью AI-алгоритмов.",
             icon: "local_gas_station",
             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuBBp6AyXQUbBHHAvp0vYq8KlUBSJnicSXPHwvWRE6n2c1n_AKJ-vFszvxXbFExY49h0nmnrKJpw4ivo78sOsbkp9ddMmw65LMdqOGzVP0fgWn7AALVg18HQMEEi_x04tKFCHjhw3KrJYDhzHGxA9lbA1MZ4jmpSQtQvWqKqjY0qheSCfXJ052dAAd7X2yp3GsfOpL3uEqHYsm7nz330XhMpuUn2woSB3L_pE5jTjo9coNLi8PzR8Nc_QRWpqb2hCA7VPEIDMrprgj4",
         },
         {
-            title: "BI Дашборды",
-            desc: "Агрегированные данные для стратегического планирования и контроля затрат в реальном времени.",
+            title: locale === 'en' ? "BI Dashboards" : "BI Дашборды",
+            desc: locale === 'en' ? "Aggregated data for strategic planning and cost control in real-time." : "Агрегированные данные для стратегического планирования и контроля затрат в реальном времени.",
             icon: "dashboard",
             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAJBK94MihqMW1wwl5gGFOEFRUYX789hlz5YTWsMV5vacSEN3rwXy5beuBGQ_5JmymV5SVu311nqqqKxPQIj4YV-kMmLGiTJn2JkkzOMS6YOtAgD-CaygFvvkPru2xtUghKbcWwSgAb-wjBVFMG3snB4YaPf2BqwGJHyf48sXZlHYY4FfbFgJxwrddv-uMET-1NqXjjyrqUDuRu9_1xa05AM2L5UlRECj5jVRs2CN0br_JHmsnoxgLQkt0G7sDhtxYcC5qbNDVSM6E",
         },
         {
-            title: "Driver KPI",
-            desc: "Автоматизированная система оценки безопасности, эффективности и дисциплины водителей.",
+            title: locale === 'en' ? "Driver KPI" : "Driver KPI",
+            desc: locale === 'en' ? "Automated system for evaluating driver safety, efficiency, and discipline." : "Автоматизированная система оценки безопасности, эффективности и дисциплины водителей.",
             icon: "badge",
             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuCJ9msAiXUgFzCvAhKAJkZPshoLks_kCFrslC_b6DQCsinCCRIISR-a0mPtDkAJrJteP5L4bc136EtPDGPNki9_Tg8kgXyZh2jIsyYNf5geeXgRhx9TWuXmyZmTmT3_hirMkKUyL-S8q--fvp4BA74p6M4gWvs0xbf6RrMxtfpxZzKvDZk97Gq_cbdYED3SumN5q_d9981WawPDgr5FYJNd-PuG8bvBox66WPT76YJhvt_wKOritWWCch6-69bhPUTSi8-wdOtizHc",
         },
@@ -50,7 +50,7 @@ export default function TechStackDark() {
                         whileInView={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase leading-tight tracking-tight mb-6"
                     >
-                        Технологический <span className="text-gradient">Стек</span>
+                        {locale === 'en' ? 'Technology ' : 'Технологический '}<span className="text-gradient">{locale === 'en' ? 'Stack' : 'Стек'}</span>
                     </motion.h2>
                     <motion.p
                         initial={{ opacity: 0, y: 20 }}
@@ -58,7 +58,9 @@ export default function TechStackDark() {
                         transition={{ delay: 0.1 }}
                         className="text-slate-400 text-lg md:text-xl max-w-2xl leading-relaxed"
                     >
-                        Мы объединяем передовые датчики, облачные вычисления и AI для создания единой экосистемы управления вашим автопарком.
+                        {locale === 'en'
+                            ? 'We unite cutting-edge sensors, cloud computing, and AI to create a unified ecosystem for your fleet management.'
+                            : 'Мы объединяем передовые датчики, облачные вычисления и AI для создания единой экосистемы управления вашим автопарком.'}
                     </motion.p>
                 </div>
 

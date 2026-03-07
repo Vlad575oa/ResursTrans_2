@@ -2,9 +2,12 @@
 
 import { motion } from "framer-motion";
 
+import Link from "next/link";
+
 export default function NewsGrid() {
     const news = [
         {
+            slug: "predictive-risk-analysis-2-0",
             date: "07 Мар 2026",
             title: "Запуск Предиктивной Системы Анализа Рисков 2.0",
             desc: "Новое обновление FleetTech позволяет предсказывать поломки узлов автомобиля с точностью до 92% за 500 км до возникновения неисправности.",
@@ -12,6 +15,7 @@ export default function NewsGrid() {
             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAJBK94MihqMW1wwl5gGFOEFRUYX789hlz5YTWsMV5vacSEN3rwXy5beuBGQ_5JmymV5SVu311nqqqKxPQIj4YV-kMmLGiTJn2JkkzOMS6YOtAgD-CaygFvvkPru2xtUghKbcWwSgAb-wjBVFMG3snB4YaPf2BqwGJHyf48sXZlHYY4FfbFgJxwrddv-uMET-1NqXjjyrqUDuRu9_1xa05AM2L5UlRECj5jVRs2CN0br_JHmsnoxgLQkt0G7sDhtxYcC5qbNDVSM6E",
         },
         {
+            slug: "expansion-central-asia",
             date: "01 Мар 2026",
             title: "FleetCorp расширяет присутствие в Центральной Азии",
             desc: "Открытие нового операционного хаба в Алматы позволит оптимизировать трансграничные перевозки и усилить контроль качества сервиса.",
@@ -19,6 +23,7 @@ export default function NewsGrid() {
             image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAX1fLUueR8AUAmJP2mwj2QsbDid24qvsqIz-_25yRFy47XwwNyTGlgiKZTqJQyOAngU5yFI85dr_yq0rgKEo3PmXP2-u7Qp2ep7eonl5Aygg0jHznoGGT91_2k6sJVtfJn5DkNad6ecDDGSFDCqcoHcY3fXSu6dBzAPRIpE_67qBQM2lyRCZ49pfoz8FoxUI2Qe3SNKW9VvyzrwxaxUezpr1ZuaU27KUO37DDoejwdVTTiA-bGfuAYGJaSnWPC2jmtflod0dZuIP2o",
         },
         {
+            slug: "zero-emission-2026",
             date: "25 Фев 2026",
             title: "Экологические стандарты 2026: Путь к Zero Emission",
             desc: "Как интеграция электрофлота в корпоративные перевозки влияет на экономическую эффективность и ESG-показатели бизнеса.",
@@ -39,7 +44,7 @@ export default function NewsGrid() {
                             transition={{ delay: idx * 0.1 }}
                             className="group bg-[#161b22]/70 backdrop-blur-md border border-[#282e39] rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-500 flex flex-col"
                         >
-                            <div className="relative h-60 w-full overflow-hidden">
+                            <Link href={`/news/${item.slug}`} className="relative h-60 w-full overflow-hidden block">
                                 <img
                                     src={item.image}
                                     alt={item.title}
@@ -48,7 +53,7 @@ export default function NewsGrid() {
                                 <div className="absolute top-4 left-4 bg-primary px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest">
                                     {item.tag}
                                 </div>
-                            </div>
+                            </Link>
                             <div className="p-8 flex-grow flex flex-col justify-between">
                                 <div>
                                     <span className="text-slate-500 text-xs font-mono mb-4 block">{item.date}</span>
@@ -59,10 +64,10 @@ export default function NewsGrid() {
                                         {item.desc}
                                     </p>
                                 </div>
-                                <button className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest hover:gap-4 transition-all w-fit">
+                                <Link href={`/news/${item.slug}`} className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest hover:gap-4 transition-all w-fit">
                                     Читать полностью
                                     <span className="material-symbols-outlined text-lg">arrow_right_alt</span>
-                                </button>
+                                </Link>
                             </div>
                         </motion.article>
                     ))}

@@ -29,19 +29,19 @@ export function Footer() {
                         <h4 className="text-slate-900 font-bold mb-6">Компания</h4>
                         <ul className="flex flex-col gap-3">
                             <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="/about">О нас</a></li>
-                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="/career">Карьера</a></li>
-                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Пресс-центр</a></li>
-                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Контакты</a></li>
+                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="/contacts">Контакты</a></li>
+                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="/news">Пресс-центр</a></li>
+                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="/cases">Кейсы</a></li>
                         </ul>
                     </div>
                     {/* Links Column 2 */}
                     <div>
                         <h4 className="text-slate-900 font-bold mb-6">Услуги</h4>
                         <ul className="flex flex-col gap-3">
-                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Корпоративное такси</a></li>
-                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Автобусные перевозки</a></li>
-                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="#">Логистика мероприятий</a></li>
-                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="#">VIP транспорт</a></li>
+                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="/services">Все услуги</a></li>
+                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="/solutions">Решения</a></li>
+                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="/technology">Технологии</a></li>
+                            <li><a className="text-slate-500 hover:text-primary text-sm transition-colors" href="/report">Отчётность</a></li>
                         </ul>
                     </div>
                     {/* Contact Column */}
@@ -69,9 +69,9 @@ export function Footer() {
                 <div className="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-slate-400 text-xs">© 2024 РесурсТранс. Все права защищены.</p>
                     <div className="flex gap-6">
-                        <a className="text-slate-400 hover:text-primary text-xs transition-colors" href="#">Политика конфиденциальности</a>
-                        <a className="text-slate-400 hover:text-primary text-xs transition-colors" href="#">Условия использования</a>
-                        <a className="text-slate-400 hover:text-primary text-xs transition-colors" href="#">Настройки Cookie</a>
+                        <a className="text-slate-400 hover:text-primary text-xs transition-colors" href="/privacy">Политика конфиденциальности</a>
+                        <a className="text-slate-400 hover:text-primary text-xs transition-colors" href="/terms">Условия использования</a>
+                        <a className="text-slate-400 hover:text-primary text-xs transition-colors" href="/cookies">Настройки Cookie</a>
                     </div>
                 </div>
             </div>

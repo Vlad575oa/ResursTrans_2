@@ -1,32 +1,37 @@
-export default function CaseStudies() {
+import Link from "next/link";
+
+export default function CaseStudies({ locale }: { locale: string }) {
   const cases = [
     {
-      category: "Логистика",
-      title: "Крупный ритейлер",
-      desc: "Оптимизация маршрутов доставки для парка из 500+ грузовых автомобилей по всей стране.",
+      slug: "retailer-logistics",
+      category: locale === 'en' ? "Logistics" : "Логистика",
+      title: locale === 'en' ? "Major Retailer" : "Крупный ритейлер",
+      desc: locale === 'en' ? "Delivery route optimization for a fleet of 500+ trucks nationwide." : "Оптимизация маршрутов доставки для парка из 500+ грузовых автомобилей по всей стране.",
       metric: "-27%",
-      metricLabel: "Расходы",
-      outcome: "Снижение затрат на ГСМ",
+      metricLabel: locale === 'en' ? "Expenses" : "Расходы",
+      outcome: locale === 'en' ? "Reduction in fuel costs" : "Снижение затрат на ГСМ",
       icon: "local_shipping",
       color: "orange",
     },
     {
-      category: "Строительство",
-      title: "СтройМехТранс",
-      desc: "Внедрение датчиков работы механизмов и контроль простоя спецтехники на объектах.",
+      slug: "construction-monitoring",
+      category: locale === 'en' ? "Construction" : "Строительство",
+      title: locale === 'en' ? "BuildMechTrans" : "СтройМехТранс",
+      desc: locale === 'en' ? "Implementation of machine sensors and idle time monitoring on construction sites." : "Внедрение датчиков работы механизмов и контроль простоя спецтехники на объектах.",
       metric: "-35%",
-      metricLabel: "Простои",
-      outcome: "Сокращение холостого хода",
+      metricLabel: locale === 'en' ? "Idle Time" : "Простои",
+      outcome: locale === 'en' ? "Reduction in engine idling" : "Сокращение холостого хода",
       icon: "construction",
       color: "blue",
     },
     {
-      category: "Дистрибьюция",
-      title: "FMCG Партнер",
-      desc: "Автоматизация планирования маршрутов и контроль своевременности доставки товара.",
+      slug: "fmcg-distribution",
+      category: locale === 'en' ? "Distribution" : "Дистрибьюция",
+      title: locale === 'en' ? "FMCG Partner" : "FMCG Партнер",
+      desc: locale === 'en' ? "Route planning automation and delivery timeline tracking." : "Автоматизация планирования маршрутов и контроль своевременности доставки товара.",
       metric: "100%",
-      metricLabel: "Соблюдение",
-      outcome: "Точность графика доставки",
+      metricLabel: locale === 'en' ? "Compliance" : "Соблюдение",
+      outcome: locale === 'en' ? "Delivery schedule accuracy" : "Точность графика доставки",
       icon: "inventory_2",
       color: "purple",
     },
@@ -44,18 +49,19 @@ export default function CaseStudies() {
               Реальные показатели эффективности наших клиентов после интеграции системы FleetTech.
             </p>
           </div>
-          <button className="group flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider hover:text-blue-400 transition-colors">
+          <Link href="/cases/detail" className="group flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider hover:text-blue-400 transition-colors">
             Смотреть все кейсы
             <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">
               arrow_right_alt
             </span>
-          </button>
+          </Link>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cases.map((item) => (
-            <div
+            <Link
               key={item.title}
+              href={`/cases/${item.slug}`}
               className="group relative bg-[#151a23] border border-[#282e39] rounded-xl p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 flex flex-col justify-between h-full"
             >
               <div>
@@ -90,7 +96,7 @@ export default function CaseStudies() {
                   {item.outcome}
                 </p>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
 

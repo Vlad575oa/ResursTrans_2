@@ -3,15 +3,15 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
-const STATS = [
-    { value: "18", label: "Лет лидерства", suffix: " " },
-    { value: "10", label: "Единиц техники", suffix: "k" },
-    { value: "13", label: "Профессионалов", suffix: "k" },
-    { value: "70", label: "Процессов в цифре", suffix: "%" },
-    { value: "15", label: "Филиалов по РФ", suffix: " " }
-];
+export const Scale = ({ locale }: { locale: string }) => {
+    const STATS = [
+        { value: "18", label: locale === 'en' ? "Years of Leadership" : "Лет лидерства", suffix: " " },
+        { value: "10", label: locale === 'en' ? "Equipment Units" : "Единиц техники", suffix: "k" },
+        { value: "13", label: locale === 'en' ? "Professionals" : "Профессионалов", suffix: "k" },
+        { value: "70", label: locale === 'en' ? "Digital Processes" : "Процессов в цифре", suffix: "%" },
+        { value: "15", label: locale === 'en' ? "Branches in RF" : "Филиалов по РФ", suffix: " " }
+    ];
 
-export const Scale = () => {
     const containerRef = useRef(null);
     const { scrollYProgress } = useScroll({
         target: containerRef,

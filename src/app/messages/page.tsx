@@ -34,7 +34,7 @@ export default function MessagesPage() {
                     </div>
                 </div>
             </main>
-            <Footer />
+            <Footer locale="ru" />
         </div>
     );
 }

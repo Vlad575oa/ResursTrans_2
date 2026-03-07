@@ -1,13 +1,26 @@
 import Link from "next/link";
 
-export default function NumbersScaleGlobal() {
-    const stats = [
-        { label: "15+ Years Experience", value: "15+" },
-        { label: "50+ Global Regions", value: "50+" },
-        { label: "10k+ Units Managed", value: "10k+" },
-        { label: "98% SLA Adherence", value: "98%" },
-        { label: "24/7 Global Support", value: "24/7" },
-    ];
+export default function NumbersScaleGlobal({ locale }: { locale: string }) {
+    const getStats = () => {
+        if (locale === 'en') {
+            return [
+                { label: "15+ Years Experience", value: "15+" },
+                { label: "50+ Global Regions", value: "50+" },
+                { label: "10k+ Units Managed", value: "10k+" },
+                { label: "98% SLA Adherence", value: "98%" },
+                { label: "24/7 Global Support", value: "24/7" },
+            ];
+        } else {
+            return [
+                { label: "15+ лет опыта", value: "15+" },
+                { label: "50+ регионов присутствия", value: "50+" },
+                { label: "10k+ единиц под управлением", value: "10k+" },
+                { label: "98% соблюдение SLA", value: "98%" },
+                { label: "24/7 поддержка", value: "24/7" },
+            ];
+        }
+    };
+    const stats = getStats();
 
     return (
         <section className="bg-[#0b0e14] py-24 px-6 border-t border-slate-900 relative">
@@ -16,13 +29,17 @@ export default function NumbersScaleGlobal() {
                 <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
                     <div className="max-w-xl">
                         <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-4">
-                            Global Scale. <br />
-                            <span className="text-slate-500">Unmatched Reliability.</span>
+                            {locale === 'en' ? 'Global Scale.' : 'Глобальный масштаб.'} <br />
+                            <span className="text-slate-500">{locale === 'en' ? 'Unmatched Reliability.' : 'Непревзойденная надежность.'}</span>
                         </h2>
-                        <p className="text-slate-400 text-lg">Our infrastructure is built for mission-critical operations across continents.</p>
+                        <p className="text-slate-400 text-lg">
+                            {locale === 'en'
+                                ? 'Our infrastructure is built for mission-critical operations across continents.'
+                                : 'Наша инфраструктура создана для критически важных операций на всех континентах.'}
+                        </p>
                     </div>
-                    <Link href="/report" className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg text-sm font-bold transition-all border border-slate-700 hover:border-primary flex items-center gap-2">
-                        <span>View 2026 Report</span>
+                    <Link href={`/${locale}/report`} className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg text-sm font-bold transition-all border border-slate-700 hover:border-primary flex items-center gap-2">
+                        <span>{locale === 'en' ? 'View 2026 Report' : 'Смотреть отчет 2026'}</span>
                         <span className="material-symbols-outlined text-sm">download</span>
                     </Link>
                 </div>

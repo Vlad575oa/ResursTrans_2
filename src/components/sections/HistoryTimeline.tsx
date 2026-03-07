@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import ru from "@/app/messages/ru.json";
+import en from "@/app/messages/en.json";
 
 interface HistoryItem {
     year: string;
@@ -12,10 +13,11 @@ interface HistoryItem {
     image: string;
 }
 
-export const HistoryTimeline = () => {
+export const HistoryTimeline = ({ locale }: { locale: string }) => {
     const containerRef = useRef<HTMLDivElement>(null);
     const { scrollYProgress } = useScroll({ target: containerRef });
-    const { timeline } = ru.AboutPage;
+    const dictionary = locale === 'en' ? en : ru;
+    const { timeline } = dictionary.AboutPage;
 
     const historyItems: HistoryItem[] = Object.entries(timeline).map(([year, info]) => {
         let ext = "webp";

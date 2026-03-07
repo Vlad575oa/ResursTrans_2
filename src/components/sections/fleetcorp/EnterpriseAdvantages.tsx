@@ -1,23 +1,23 @@
-export default function EnterpriseAdvantages() {
+export default function EnterpriseAdvantages({ locale }: { locale: string }) {
     const advantages = [
         {
-            title: "Transparency",
-            desc: "Full visibility into cost structures, vehicle status, and driver performance with real-time analytics dashboards.",
+            title: locale === 'en' ? "Transparency" : "Прозрачность",
+            desc: locale === 'en' ? "Full visibility into cost structures, vehicle status, and driver performance with real-time analytics dashboards." : "Полная видимость структуры затрат, состояния автомобилей и работы водителей в аналитических дашбордах.",
             icon: "visibility",
         },
         {
-            title: "Personal Manager",
-            desc: "A dedicated expert assigned to your account for 24/7 support, strategy planning, and rapid issue resolution.",
+            title: locale === 'en' ? "Personal Manager" : "Персональный менеджер",
+            desc: locale === 'en' ? "A dedicated expert assigned to your account for 24/7 support, strategy planning, and rapid issue resolution." : "Выделенный эксперт для поддержки 24/7, планирования стратегии и быстрого решения проблем.",
             icon: "support_agent",
         },
         {
-            title: "Security",
-            desc: "Enterprise-grade data protection protocols and asset security measures to safeguard your business intelligence.",
+            title: locale === 'en' ? "Security" : "Безопасность",
+            desc: locale === 'en' ? "Enterprise-grade data protection protocols and asset security measures to safeguard your business intelligence." : "Протоколы защиты данных корпоративного уровня и меры физической безопасности активов.",
             icon: "encrypted",
         },
         {
-            title: "SLA Guarantee",
-            desc: "Contractually binding Service Level Agreements ensuring uptime, response times, and quality of service.",
+            title: locale === 'en' ? "SLA Guarantee" : "Гарантия SLA",
+            desc: locale === 'en' ? "Contractually binding Service Level Agreements ensuring uptime, response times, and quality of service." : "Юридически закрепленные соглашения об уровне сервиса, гарантирующие время безотказной работы и качество.",
             icon: "verified",
         },
     ];
@@ -26,9 +26,9 @@ export default function EnterpriseAdvantages() {
         <section className="py-16 px-6 relative bg-background-dark">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-12">
-                    <h2 className="text-white text-3xl font-bold mb-4">Enterprise Advantages</h2>
+                    <h2 className="text-white text-3xl font-bold mb-4">{locale === 'en' ? 'Enterprise Advantages' : 'Корпоративные Преимущества'}</h2>
                     <p className="text-slate-400 max-w-xl">
-                        We provide scalable, secure, and transparent solutions tailored for complex logistical needs.
+                        {locale === 'en' ? 'We provide scalable, secure, and transparent solutions tailored for complex logistical needs.' : 'Мы предоставляем масштабируемые, безопасные и прозрачные решения для комплексных логистических задач.'}
                     </p>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -55,9 +55,11 @@ export default function EnterpriseAdvantages() {
                                 <span className="material-symbols-outlined">domain</span>
                             </div>
                             <div>
-                                <h3 className="text-white text-xl font-bold mb-3">Large Business Experience</h3>
+                                <h3 className="text-white text-xl font-bold mb-3">{locale === 'en' ? 'Large Business Experience' : 'Опыт работы с крупным бизнесом'}</h3>
                                 <p className="text-slate-400 text-sm leading-relaxed max-w-lg">
-                                    Proven track record managing fleets of 500+ vehicles for Fortune 500 companies. We understand the complexity of scale and deliver seamless transitions.
+                                    {locale === 'en'
+                                        ? 'Proven track record managing fleets of 500+ vehicles for Fortune 500 companies. We understand the complexity of scale and deliver seamless transitions.'
+                                        : 'Подтвержденный опыт управления парками 500+ автомобилей для мировых компаний. Мы понимаем специфику масштаба и гарантируем бесшовный переход.'}
                                 </p>
                             </div>
                         </div>

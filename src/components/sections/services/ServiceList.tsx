@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 interface Service {
     id: string;
@@ -57,35 +58,40 @@ export const ServiceList = ({ services, titles }: ServiceListProps) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, delay: index * 0.1 }}
                         viewport={{ once: true }}
-                        className={`group relative overflow-hidden rounded-3xl ${service.colSpan} h-[500px] cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500`}
+                        className={`${service.colSpan} h-[500px]`}
                     >
-                        <div className={`absolute inset-0 ${service.imageColor} transition-transform duration-700 group-hover:scale-105`}>
-                            <Image
-                                src={service.image}
-                                alt={service.title}
-                                fill
-                                className="object-cover transition-all duration-700 group-hover:scale-110"
-                            />
-                        </div>
-
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-10 flex flex-col justify-end">
-                            <div className="mb-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                                <span className="text-xs font-bold tracking-widest text-primary-main uppercase">
-                                    {service.subtitle}
-                                </span>
+                        <Link
+                            href={`/services/${service.id}`}
+                            className="group relative block w-full h-full overflow-hidden rounded-3xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
+                        >
+                            <div className={`absolute inset-0 ${service.imageColor} transition-transform duration-700 group-hover:scale-105`}>
+                                <Image
+                                    src={service.image}
+                                    alt={service.title}
+                                    fill
+                                    className="object-cover transition-all duration-700 group-hover:scale-110"
+                                />
                             </div>
-                            <h3 className="text-4xl font-bold text-white mb-2 tracking-tight">
-                                {service.title}
-                            </h3>
-                            <p className="text-slate-200/80 line-clamp-2 max-w-sm">
-                                {service.description}
-                            </p>
 
-                            <div className="mt-8 flex items-center gap-4 text-white font-bold text-sm tracking-wider uppercase group-hover:gap-6 transition-all">
-                                <span>Подробнее</span>
-                                <span className="material-symbols-outlined text-xl">arrow_forward</span>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-10 flex flex-col justify-end">
+                                <div className="mb-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                                    <span className="text-xs font-bold tracking-widest text-primary font-bold text-primary uppercase">
+                                        {service.subtitle}
+                                    </span>
+                                </div>
+                                <h3 className="text-4xl font-bold text-white mb-2 tracking-tight uppercase leading-tight">
+                                    {service.title}
+                                </h3>
+                                <p className="text-slate-200/80 line-clamp-2 max-w-sm">
+                                    {service.description}
+                                </p>
+
+                                <div className="mt-8 flex items-center gap-4 text-white font-bold text-sm tracking-widest uppercase group-hover:gap-6 transition-all">
+                                    <span>Подробнее</span>
+                                    <span className="material-symbols-outlined text-xl">arrow_forward</span>
+                                </div>
                             </div>
-                        </div>
+                        </Link>
                     </motion.div>
                 ))}
             </div>

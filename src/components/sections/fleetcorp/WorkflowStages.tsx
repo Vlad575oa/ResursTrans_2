@@ -1,18 +1,18 @@
-export default function WorkflowStages() {
+export default function WorkflowStages({ locale }: { locale: string }) {
     const steps = [
-        { num: "01", title: "Audit", desc: "Deep analysis of current fleet efficiency and costs.", icon: "search", active: true },
-        { num: "02", title: "Model Dev", desc: "Creating a custom optimization strategy.", icon: "architecture", active: true },
-        { num: "03", title: "Launch", desc: "Implementation of new protocols and tools.", icon: "rocket_launch", active: true },
-        { num: "04", title: "Control", desc: "Ongoing monitoring and management.", icon: "tune", active: false },
-        { num: "05", title: "Reporting", desc: "Regular analytics and improvement steps.", icon: "analytics", active: false },
+        { num: "01", title: locale === 'en' ? "Audit" : "Аудит", desc: locale === 'en' ? "Deep analysis of current fleet efficiency and costs." : "Глубокий анализ эффективности и затрат автопарка.", icon: "search", active: true },
+        { num: "02", title: locale === 'en' ? "Model Dev" : "Моделирование", desc: locale === 'en' ? "Creating a custom optimization strategy." : "Создание стратегии оптимизации.", icon: "architecture", active: true },
+        { num: "03", title: locale === 'en' ? "Launch" : "Запуск", desc: locale === 'en' ? "Implementation of new protocols and tools." : "Внедрение новых протоколов и инструментов.", icon: "rocket_launch", active: true },
+        { num: "04", title: locale === 'en' ? "Control" : "Контроль", desc: locale === 'en' ? "Ongoing monitoring and management." : "Текущий мониторинг и управление.", icon: "tune", active: false },
+        { num: "05", title: locale === 'en' ? "Reporting" : "Отчетность", desc: locale === 'en' ? "Regular analytics and improvement steps." : "Регулярная аналитика и шаги по улучшению.", icon: "analytics", active: false },
     ];
 
     return (
         <section className="py-20 px-6 bg-[#0b0d10] border-y border-[#282e39]">
             <div className="max-w-7xl mx-auto">
                 <div className="mb-16 text-center md:text-left">
-                    <span className="text-primary text-sm font-bold uppercase tracking-widest mb-2 block">Our Process</span>
-                    <h2 className="text-white text-3xl md:text-4xl font-bold">Workflow Stages</h2>
+                    <span className="text-primary text-sm font-bold uppercase tracking-widest mb-2 block">{locale === 'en' ? 'Our Process' : 'Наш процесс'}</span>
+                    <h2 className="text-white text-3xl md:text-4xl font-bold">{locale === 'en' ? 'Workflow Stages' : 'Этапы работы'}</h2>
                 </div>
 
                 {/* Desktop Timeline */}
@@ -50,7 +50,7 @@ export default function WorkflowStages() {
                             </div>
                             <div>
                                 <span className={`text-[10px] font-mono mb-1 block ${step.active ? "text-primary" : "text-slate-500"}`}>
-                                    STEP {step.num}
+                                    {locale === 'en' ? 'STEP' : 'ШАГ'} {step.num}
                                 </span>
                                 <h4 className="text-white font-bold text-lg">{step.title}</h4>
                                 <p className="text-slate-500 text-sm mt-1">{step.desc}</p>

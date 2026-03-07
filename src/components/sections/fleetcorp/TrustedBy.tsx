@@ -1,22 +1,22 @@
 const clients = [
-    { name: "GE", icon: "electric_bolt" },
-    { name: "Nike", icon: "checkroom" },
-    { name: "Adidas", icon: "sports_soccer" },
-    { name: "H&M", icon: "storefront" },
-    { name: "Amazon", icon: "shopping_cart" },
-    { name: "Google", icon: "search" },
-    { name: "IBM", icon: "computer" },
-    { name: "Cisco", icon: "router" },
-    { name: "Bayer", icon: "medication" },
-    { name: "Sony", icon: "tv" },
+    { name: "GE", nameRu: "GE", icon: "electric_bolt" },
+    { name: "Nike", nameRu: "Найк", icon: "checkroom" },
+    { name: "Adidas", nameRu: "Адидас", icon: "sports_soccer" },
+    { name: "H&M", nameRu: "H&M", icon: "storefront" },
+    { name: "Amazon", nameRu: "Амазон", icon: "shopping_cart" },
+    { name: "Google", nameRu: "Гугл", icon: "search" },
+    { name: "IBM", nameRu: "АйБиЭм", icon: "computer" },
+    { name: "Cisco", nameRu: "Cisco", icon: "router" },
+    { name: "Bayer", nameRu: "Bayer", icon: "medication" },
+    { name: "Sony", nameRu: "Sony", icon: "tv" },
 ];
 
-export default function TrustedBy() {
+export default function TrustedBy({ locale }: { locale: string }) {
     return (
         <section className="w-full border-y border-white/5 bg-[#0a0c10] py-12 overflow-hidden">
             <div className="mb-8 px-6 lg:px-10 text-center">
                 <p className="text-xs font-bold tracking-[0.3em] text-slate-500 uppercase opacity-60">
-                    Trusted By Industry Leaders
+                    {locale === 'en' ? 'Trusted By Industry Leaders' : 'Нам доверяют лидеры отрасли'}
                 </p>
             </div>
             <div className="relative w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
@@ -31,7 +31,7 @@ export default function TrustedBy() {
                                         </span>
                                     </div>
                                     <span className="text-[10px] font-bold text-slate-500 group-hover:text-white uppercase tracking-[0.2em] transition-colors duration-500">
-                                        {client.name}
+                                        {locale === 'en' ? client.name : client.nameRu}
                                     </span>
                                 </li>
                             ))}
