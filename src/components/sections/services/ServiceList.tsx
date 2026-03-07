@@ -33,7 +33,7 @@ export const ServiceList = ({ services, titles }: ServiceListProps) => {
         <section className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
                 <div>
-                    <div className="flex items-center gap-4 text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-4">
+                    <div className="flex items-center gap-4 text-xs font-bold tracking-[0.2em] text-slate-300 uppercase mb-4">
                         <span className="w-12 h-[1px] bg-slate-700"></span>
                         {titles.edition}
                     </div>
