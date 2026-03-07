@@ -50,6 +50,9 @@ export default function HeaderScroll() {
             <Link className="text-white text-sm font-bold transition-colors border-b-2 border-primary pb-1" href="/">
               Главная
             </Link>
+            <Link className="text-slate-400 hover:text-white text-sm font-bold transition-colors" href="/cases">
+              Кейсы
+            </Link>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -75,6 +78,13 @@ export default function HeaderScroll() {
               onClick={() => setIsMenuOpen(false)}
             >
               Главная
+            </Link>
+            <Link
+              className="text-white text-xl font-bold transition-colors border-b border-white/10 pb-4"
+              href="/cases"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Кейсы
             </Link>
           </nav>
         </div>

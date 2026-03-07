@@ -8,17 +8,6 @@ const Hero = dynamic(
 );
 
 
-const ClientsCarousel = dynamic(
-  () => import("@/components/sections/fleetcorp/ClientsCarousel"),
-  { loading: () => <div className="h-[100px] bg-background-dark" /> }
-);
-
-
-const ChallengesSolutions = dynamic(
-  () => import("@/components/sections/fleetcorp/ChallengesSolutions"),
-  { loading: () => <div className="h-[600px] bg-surface-dark" /> }
-);
-
 const ManagementModel = dynamic(
   () => import("@/components/sections/fleetcorp/ManagementModel"),
   { loading: () => <div className="h-[600px] bg-background-dark" /> }
@@ -38,13 +27,47 @@ const Footer = dynamic(
   { loading: () => <div className="h-[100px] bg-[#05080f]" /> }
 );
 
+const TrustedBy = dynamic(
+  () => import("@/components/sections/fleetcorp/TrustedBy"),
+  { loading: () => <div className="h-[100px] bg-[#0f1116]" /> }
+);
+
+const IndustriesGrid = dynamic(
+  () => import("@/components/sections/fleetcorp/IndustriesGrid"),
+  { loading: () => <div className="h-[600px] bg-background-dark" /> }
+);
+
+const ChallengesDark = dynamic(
+  () => import("@/components/sections/fleetcorp/ChallengesDark"),
+  { loading: () => <div className="h-[600px] bg-[#1a1d23]" /> }
+);
+
+const ServiceGrid = dynamic(
+  () => import("@/components/sections/fleetcorp/ServiceGrid"),
+  { loading: () => <div className="h-[800px] bg-background-dark" /> }
+);
+
+const NumbersScaleGlobal = dynamic(
+  () => import("@/components/sections/fleetcorp/NumbersScaleGlobal"),
+  { loading: () => <div className="h-[400px] bg-[#0b0e14]" /> }
+);
+
+const CTAEnterprise = dynamic(
+  () => import("@/components/sections/fleetcorp/CTAEnterprise"),
+  { loading: () => <div className="h-[300px] bg-background-dark" /> }
+);
+
 export default function Home() {
   return (
     <div className="relative flex min-h-screen w-full flex-col bg-background-dark text-slate-100 overflow-x-hidden">
       <HeaderScroll />
       <Hero />
-      <ClientsCarousel />
-      <ChallengesSolutions />
+      <TrustedBy />
+      <IndustriesGrid />
+      <ChallengesDark />
+      <ServiceGrid />
+      <NumbersScaleGlobal />
+      <CTAEnterprise />
       <ManagementModel />
       <CTASection />
 
