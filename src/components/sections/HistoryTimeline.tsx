@@ -52,7 +52,7 @@ export const HistoryTimeline = () => {
                             viewport={{ margin: "-10%", once: true }}
                             className="flex flex-col lg:flex-row gap-8 lg:gap-20 items-start lg:items-center"
                         >
-                            <div className="flex-1 w-full order-2 lg:order-1">
+                            <div className="flex-[2] w-full order-2 lg:order-1">
                                 <div className="text-6xl md:text-8xl font-black text-white/5 font-mono tracking-tighter mb-4">
                                     {item.year}
                                 </div>
@@ -64,7 +64,7 @@ export const HistoryTimeline = () => {
                                 </p>
                             </div>
 
-                            <div className="flex-1 w-full order-1 lg:order-2">
+                            <div className="flex-1 w-full order-1 lg:order-2 max-w-sm mx-auto lg:mx-0">
                                 <div className="relative aspect-video lg:aspect-square overflow-hidden rounded-3xl border border-white/5 bg-white/5 group">
                                     <Image
                                         src={item.image}
