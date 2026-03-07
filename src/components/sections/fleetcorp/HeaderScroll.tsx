@@ -47,24 +47,8 @@ export default function HeaderScroll() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
-            <Link className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/">
-              Сайт 1
-            </Link>
-            <Link className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/guardian">
-              Сайт 2
-            </Link>
-            <Link className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/enterprise">
-              Калькулятор
-            </Link>
-            <Link className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/showcase">
-              Выбор стиля
-            </Link>
-            <Link className="text-slate-300 hover:text-white text-sm font-medium transition-colors" href="/interactive">
-              Интерактив
-            </Link>
-            <Link className="text-slate-300 hover:text-orange-400 transition-colors relative group" href="/legal-audit" title="Законодательство">
-              <span className="material-symbols-outlined !text-[20px]">gavel</span>
-              <span className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-white text-[10px] px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">Законодательство</span>
+            <Link className="text-white text-sm font-bold transition-colors border-b-2 border-primary pb-1" href="/">
+              Главная
             </Link>
           </nav>
 
@@ -86,47 +70,11 @@ export default function HeaderScroll() {
         <div className="fixed inset-0 z-40 bg-background-dark/95 backdrop-blur-xl md:hidden flex flex-col pt-24 px-6 pb-6">
           <nav className="flex flex-col gap-6">
             <Link
-              className="text-slate-200 hover:text-white text-xl font-medium transition-colors border-b border-white/10 pb-4"
+              className="text-white text-xl font-bold transition-colors border-b border-white/10 pb-4"
               href="/"
               onClick={() => setIsMenuOpen(false)}
             >
-              Сайт 1
-            </Link>
-            <Link
-              className="text-slate-200 hover:text-white text-xl font-medium transition-colors border-b border-white/10 pb-4"
-              href="/guardian"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Сайт 2
-            </Link>
-            <Link
-              className="text-slate-200 hover:text-white text-xl font-medium transition-colors border-b border-white/10 pb-4"
-              href="/enterprise"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Калькулятор
-            </Link>
-            <Link
-              className="text-slate-200 hover:text-white text-xl font-medium transition-colors border-b border-white/10 pb-4"
-              href="/showcase"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Выбор стиля
-            </Link>
-            <Link
-              className="text-slate-200 hover:text-white text-xl font-medium transition-colors border-b border-white/10 pb-4"
-              href="/interactive"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Интерактив
-            </Link>
-            <Link
-              className="text-orange-400 hover:text-orange-300 text-xl font-medium transition-colors border-b border-white/10 pb-4 flex items-center gap-2"
-              href="/legal-audit"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              <span className="material-symbols-outlined !text-[24px]">gavel</span>
-              Законодательство
+              Главная
             </Link>
           </nav>
         </div>

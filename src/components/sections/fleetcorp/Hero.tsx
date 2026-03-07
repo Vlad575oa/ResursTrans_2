@@ -6,26 +6,6 @@ import { motion } from "framer-motion";
 export default function Hero() {
   return (
     <section className="flex-grow relative flex flex-col justify-center min-h-screen pt-20">
-      {/* Navigation Tip */}
-      <motion.div
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 1 }}
-        className="absolute top-[60px] md:top-[80px] left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 pointer-events-none"
-      >
-        <motion.div
-          animate={{ y: [0, -5, 0], opacity: [0.3, 1, 0.3] }}
-          transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="text-primary flex flex-col items-center"
-        >
-          <span className="material-symbols-outlined !text-3xl">arrow_upward</span>
-        </motion.div>
-        <div className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-          <p className="text-[10px] md:text-xs font-black uppercase tracking-[0.2em] text-white/70 whitespace-nowrap">
-            Посмотреть цветовые решения и варианты блоков
-          </p>
-        </div>
-      </motion.div>
       {/* Background Image - ATF с приоритетом */}
       <div
         className="absolute inset-0 z-0 w-full h-full bg-cover bg-center bg-no-repeat"
