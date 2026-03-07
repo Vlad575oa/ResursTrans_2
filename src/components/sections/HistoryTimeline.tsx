@@ -53,9 +53,15 @@ export const HistoryTimeline = () => {
                             className="flex flex-col lg:flex-row gap-8 lg:gap-20 items-start lg:items-center"
                         >
                             <div className="flex-[2] w-full order-2 lg:order-1">
-                                <div className="text-6xl md:text-8xl font-black text-white/10 font-mono tracking-tighter mb-4">
+                                <motion.div
+                                    initial={{ opacity: 0.1 }}
+                                    whileInView={{ opacity: 1 }}
+                                    viewport={{ margin: "-20%", once: false }}
+                                    transition={{ duration: 0.8 }}
+                                    className="text-6xl md:text-8xl font-black text-white font-mono tracking-tighter mb-4"
+                                >
                                     {item.year}
-                                </div>
+                                </motion.div>
                                 <h3 className="text-2xl md:text-3xl font-bold text-primary mb-4 uppercase tracking-tight">
                                     {item.title}
                                 </h3>
