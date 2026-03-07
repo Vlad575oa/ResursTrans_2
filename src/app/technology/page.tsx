@@ -14,12 +14,12 @@ export default function TechnologyPage() {
     return (
         <div className="bg-background-dark min-h-screen flex flex-col">
             <HeaderScroll />
-            <main className="flex-grow pt-20">
-                <section className="py-24 px-6 md:px-10 lg:px-20 relative overflow-hidden text-center bg-[#0c1017] border-b border-[#282e39]">
+            <main className="flex-grow pt-12">
+                <section className="py-12 px-6 md:px-10 lg:px-20 relative overflow-hidden text-center bg-[#0c1017] border-b border-[#282e39]">
                     <div className="absolute inset-0 z-0 opacity-20 bg-[radial-gradient(ellipse_at_bottom,_var(--tw-gradient-stops))] from-blue-900 via-transparent to-transparent pointer-events-none"></div>
                     <div className="max-w-4xl mx-auto relative z-10">
-                        <span className="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-6 block">Innovation First</span>
-                        <h1 className="text-5xl md:text-7xl font-black text-white uppercase leading-tight tracking-tighter mb-8">
+                        <span className="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Innovation First</span>
+                        <h1 className="text-3xl md:text-4xl font-black text-white uppercase leading-tight tracking-tighter mb-6">
                             Цифровая <span className="text-primary tracking-normal">Трансформация</span>
                         </h1>
                         <p className="text-slate-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">

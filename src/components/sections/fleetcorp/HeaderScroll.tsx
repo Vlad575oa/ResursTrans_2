@@ -12,12 +12,10 @@ export default function HeaderScroll() {
   const navLinks = [
     { href: "/", label: "Главная" },
     { href: "/cases", label: "Кейсы" },
-    { href: "/technology", label: "Технологии" },
+    { href: "/technology", label: "Услуги" },
     { href: "/about", label: "О нас" },
     { href: "/news", label: "Новости" },
     { href: "/contacts", label: "Контакты" },
-    { href: "/page-2", label: "Главная v2" },
-    { href: "/cases-2", label: "Кейсы v2" },
   ];
 
   useEffect(() => {

@@ -67,7 +67,6 @@ export default function Home() {
       <ChallengesDark />
       <ServiceGrid />
       <NumbersScaleGlobal />
-      <CTAEnterprise />
       <ManagementModel />
       <CTASection />
 

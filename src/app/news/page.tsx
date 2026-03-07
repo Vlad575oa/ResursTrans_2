@@ -14,12 +14,12 @@ export default function NewsPage() {
     return (
         <div className="bg-background-dark min-h-screen flex flex-col">
             <HeaderScroll />
-            <main className="flex-grow pt-20">
-                <section className="py-24 px-6 md:px-10 lg:px-20 bg-[#0c1017] border-b border-[#282e39] relative overflow-hidden">
+            <main className="flex-grow pt-12">
+                <section className="py-12 px-6 md:px-10 lg:px-20 bg-[#0c1017] border-b border-[#282e39] relative overflow-hidden">
                     <div className="absolute inset-0 z-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-primary/10 via-transparent to-transparent opacity-50 pointer-events-none"></div>
                     <div className="max-w-4xl mx-auto relative z-10">
-                        <span className="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-6 block">Industry Insights</span>
-                        <h1 className="text-5xl md:text-7xl font-black text-white uppercase mb-8">
+                        <span className="text-primary font-bold uppercase tracking-[0.3em] text-xs mb-4 block">Industry Insights</span>
+                        <h1 className="text-3xl md:text-4xl font-black text-white uppercase mb-6">
                             Пресс-центр <span className="text-primary">FleetCorp</span>
                         </h1>
                         <p className="text-slate-400 text-lg md:text-xl max-w-2xl leading-relaxed">

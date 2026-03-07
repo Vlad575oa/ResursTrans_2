@@ -20,7 +20,7 @@ export default function ContactsPage() {
                         <div className="flex flex-col gap-10">
                             <div>
                                 <span className="text-primary font-bold uppercase tracking-widest text-xs mb-4 block">Contact Us</span>
-                                <h1 className="text-4xl md:text-6xl font-black text-white uppercase mb-6">
+                                <h1 className="text-3xl md:text-4xl font-black text-white uppercase mb-6">
                                     Давайте <span className="text-primary">Начнем</span>
                                 </h1>
                                 <p className="text-slate-400 text-lg max-w-md">
