@@ -2,11 +2,23 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export default function HeaderScroll() {
   const [isScrolled, setIsScrolled] = useState(false);
-
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
+
+  const navLinks = [
+    { href: "/", label: "Главная" },
+    { href: "/cases", label: "Кейсы" },
+    { href: "/technology", label: "Технологии" },
+    { href: "/about", label: "О нас" },
+    { href: "/news", label: "Новости" },
+    { href: "/contacts", label: "Контакты" },
+    { href: "/page-2", label: "Главная v2" },
+    { href: "/cases-2", label: "Кейсы v2" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,7 +29,6 @@ export default function HeaderScroll() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Close menu when route changes or resizing to desktop
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
@@ -46,13 +57,22 @@ export default function HeaderScroll() {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <Link className="text-white text-sm font-bold transition-colors border-b-2 border-primary pb-1" href="/">
-              Главная
-            </Link>
-            <Link className="text-slate-400 hover:text-white text-sm font-bold transition-colors" href="/cases">
-              Кейсы
-            </Link>
+          <nav className="hidden md:flex items-center gap-6 lg:gap-8">
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  className={`${isActive
+                    ? "text-white border-b-2 border-primary pb-1"
+                    : "text-slate-400 hover:text-white"
+                    } text-sm font-bold transition-all duration-300 whitespace-nowrap`}
+                  href={link.href}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -70,22 +90,24 @@ export default function HeaderScroll() {
 
       {/* Mobile Navigation Drawer */}
       {isMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-background-dark/95 backdrop-blur-xl md:hidden flex flex-col pt-24 px-6 pb-6">
+        <div className="fixed inset-0 z-40 bg-background-dark/95 backdrop-blur-xl md:hidden flex flex-col pt-24 px-6 pb-6 overflow-y-auto">
           <nav className="flex flex-col gap-6">
-            <Link
-              className="text-white text-xl font-bold transition-colors border-b border-white/10 pb-4"
-              href="/"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Главная
-            </Link>
-            <Link
-              className="text-white text-xl font-bold transition-colors border-b border-white/10 pb-4"
-              href="/cases"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Кейсы
-            </Link>
+            {navLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  className={`${isActive
+                    ? "text-white border-b border-primary"
+                    : "text-slate-300 hover:text-white"
+                    } text-xl font-bold transition-colors pb-4`}
+                  href={link.href}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
           </nav>
         </div>
       )}

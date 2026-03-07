@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
 
 export const metadata: Metadata = {
     title: "FleetCorp - Solutions",
@@ -8,62 +9,7 @@ export const metadata: Metadata = {
 export default function SolutionsPage() {
     return (
         <div className="relative flex min-h-screen w-full flex-col bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-slate-100 antialiased selection:bg-primary selection:text-white overflow-x-hidden">
-            <header className="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-border-dark bg-[#111318]/90 backdrop-blur-md px-6 py-4 lg:px-10">
-                <div className="flex items-center gap-4 text-white">
-                    <div className="size-8 text-primary">
-                        <svg
-                            className="w-full h-full"
-                            fill="none"
-                            viewBox="0 0 48 48"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                clipRule="evenodd"
-                                d="M24 0.757355L47.2426 24L24 47.2426L0.757355 24L24 0.757355ZM21 35.7574V12.2426L9.24264 24L21 35.7574Z"
-                                fill="currentColor"
-                                fillRule="evenodd"
-                            ></path>
-                        </svg>
-                    </div>
-                    <h2 className="text-white text-xl font-bold leading-tight tracking-tight">
-                        FleetCorp
-                    </h2>
-                </div>
-                <nav className="hidden md:flex flex-1 justify-center gap-8">
-                    <a
-                        className="text-slate-300 hover:text-white text-sm font-medium transition-colors"
-                        href="#"
-                    >
-                        Solutions
-                    </a>
-                    <a
-                        className="text-slate-300 hover:text-white text-sm font-medium transition-colors"
-                        href="#"
-                    >
-                        Industries
-                    </a>
-                    <a
-                        className="text-slate-300 hover:text-white text-sm font-medium transition-colors"
-                        href="#"
-                    >
-                        About Us
-                    </a>
-                    <a
-                        className="text-slate-300 hover:text-white text-sm font-medium transition-colors"
-                        href="#"
-                    >
-                        Contact
-                    </a>
-                </nav>
-                <div className="flex items-center gap-3">
-                    <button className="hidden sm:flex h-9 px-4 items-center justify-center rounded-lg bg-surface-dark border border-border-dark text-white text-sm font-bold hover:bg-border-dark transition-colors">
-                        Login
-                    </button>
-                    <button className="h-9 px-4 flex items-center justify-center rounded-lg bg-primary text-white text-sm font-bold hover:bg-blue-600 transition-colors shadow-[0_0_15px_rgba(37,106,244,0.3)]">
-                        Get Started
-                    </button>
-                </div>
-            </header>
+            <HeaderScroll />
             <main className="flex-grow flex flex-col items-center">
                 <section className="w-full border-b border-border-dark bg-[#0f1116] py-10 overflow-hidden">
                     <div className="mb-6 px-6 lg:px-10 text-center">
