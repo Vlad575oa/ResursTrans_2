@@ -1,7 +1,8 @@
-import { Navigation } from "@/components/ui/Navigation";
+import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
 import { AiAssistant } from "@/components/ui/AiAssistant";
 import { getServerTranslations } from "@/lib/server-intl";
 import { ServiceList } from "@/components/sections/services/ServiceList";
+import Footer from "@/components/sections/fleetcorp/Footer";
 
 export default async function ServicesPage() {
     const { t } = await getServerTranslations();
@@ -56,11 +57,13 @@ export default async function ServicesPage() {
     };
 
     return (
-        <main className="min-h-screen bg-cloud-dancer text-anthracite-core selection:bg-burnt-terra selection:text-white pt-20">
-            <Navigation />
+        <main className="min-h-screen bg-[#0a0e1a] text-white selection:bg-primary selection:text-white">
+            <HeaderScroll />
+            <div className="pt-20">
+                <ServiceList services={services} titles={titles} />
+            </div>
             <AiAssistant />
-
-            <ServiceList services={services} titles={titles} />
+            <Footer />
         </main>
     );
 }

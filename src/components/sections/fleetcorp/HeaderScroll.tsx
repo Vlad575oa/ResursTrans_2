@@ -73,6 +73,25 @@ export default function HeaderScroll() {
             })}
           </nav>
 
+          {/* Desktop Right Actions */}
+          <div className="hidden md:flex items-center gap-6 absolute right-0">
+            <div className="flex items-center gap-2 cursor-pointer group">
+              <div className="size-5 rounded-full overflow-hidden border border-white/20">
+                <img
+                  src="https://flagcdn.com/w20/ru.png"
+                  alt="RU"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <span className="text-xs font-bold text-slate-400 group-hover:text-white transition-colors">RU</span>
+              <span className="material-symbols-outlined text-xs text-slate-500">expand_more</span>
+            </div>
+
+            <button className="bg-primary hover:bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest px-6 py-2.5 rounded-lg transition-all shadow-[0_4px_15px_rgba(37,106,244,0.3)] hover:scale-105 active:scale-95">
+              Оставить заявку
+            </button>
+          </div>
+
           {/* Mobile Menu Toggle */}
           <button
             className="md:hidden flex items-center justify-center text-white p-2 rounded-lg hover:bg-white/10 transition-colors"

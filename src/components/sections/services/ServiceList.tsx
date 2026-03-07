@@ -34,17 +34,17 @@ export const ServiceList = ({ services, titles }: ServiceListProps) => {
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
                 <div>
                     <div className="flex items-center gap-4 text-xs font-bold tracking-[0.2em] text-slate-400 uppercase mb-4">
-                        <span className="w-12 h-[1px] bg-slate-200"></span>
+                        <span className="w-12 h-[1px] bg-slate-700"></span>
                         {titles.edition}
                     </div>
-                    <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-6">
+                    <h1 className="text-6xl md:text-8xl font-black tracking-tighter uppercase mb-6 text-white text-glow">
                         {titles.catalogTitle}
                     </h1>
-                    <p className="max-w-md text-slate-500 text-lg leading-relaxed">
+                    <p className="max-w-md text-slate-400 text-lg leading-relaxed">
                         {titles.catalogDescription}
                     </p>
                 </div>
-                <div className="text-xs font-bold tracking-[0.2em] text-slate-400 uppercase md:mb-2">
+                <div className="text-xs font-bold tracking-[0.2em] text-slate-500 uppercase md:mb-2">
                     {titles.company}
                 </div>
             </div>
