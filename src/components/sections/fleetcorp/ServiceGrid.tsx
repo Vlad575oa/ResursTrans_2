@@ -1,39 +1,47 @@
-export default function ServiceGrid() {
-    const services = [
-        {
-            title: "Strategic Outsourcing",
-            desc: "Full operational takeover with guaranteed SLA adherence. We become your dedicated fleet department.",
-            icon: "business_center",
-        },
-        {
-            title: "Fleet Management",
-            desc: "Lifecycle tracking from acquisition to remarketing. Complete asset visibility and control.",
-            icon: "directions_car",
-        },
-        {
-            title: "Predictive Maintenance",
-            desc: "AI-driven scheduling and repair logistics to minimize downtime and extend vehicle lifespan.",
-            icon: "build_circle",
-        },
-        {
-            title: "Driver Management",
-            desc: "Safety training, compliance handling, and payroll integration. Keeping your team safe and compliant.",
-            icon: "sports_motorsports",
-        },
-        {
-            title: "Digital Monitoring",
-            desc: "Real-time telematics and EV performance analytics. Data-driven insights for smarter decisions.",
-            icon: "monitoring",
-        },
-        {
-            title: "Cost Optimization",
-            desc: "Fuel reduction strategies and Total Cost of Ownership (TCO) analysis to maximize ROI.",
-            icon: "account_balance_wallet",
-        },
-    ];
+import Link from "next/link";
 
+const services = [
+    {
+        slug: "strategic-outsourcing",
+        title: "Strategic Outsourcing",
+        desc: "Full operational takeover with guaranteed SLA adherence. We become your dedicated fleet department.",
+        icon: "business_center",
+    },
+    {
+        slug: "fleet-management",
+        title: "Fleet Management",
+        desc: "Lifecycle tracking from acquisition to remarketing. Complete asset visibility and control.",
+        icon: "directions_car",
+    },
+    {
+        slug: "predictive-maintenance",
+        title: "Predictive Maintenance",
+        desc: "AI-driven scheduling and repair logistics to minimize downtime and extend vehicle lifespan.",
+        icon: "build_circle",
+    },
+    {
+        slug: "driver-management",
+        title: "Driver Management",
+        desc: "Safety training, compliance handling, and payroll integration. Keeping your team safe and compliant.",
+        icon: "sports_motorsports",
+    },
+    {
+        slug: "digital-monitoring",
+        title: "Digital Monitoring",
+        desc: "Real-time telematics and EV performance analytics. Data-driven insights for smarter decisions.",
+        icon: "monitoring",
+    },
+    {
+        slug: "cost-optimization",
+        title: "Cost Optimization",
+        desc: "Fuel reduction strategies and Total Cost of Ownership (TCO) analysis to maximize ROI.",
+        icon: "account_balance_wallet",
+    },
+];
+
+export default function ServiceGrid() {
     return (
-        <section className="relative pt-20 pb-16 px-6 overflow-hidden bg-background-dark">
+        <section className="relative pt-20 pb-16 px-6 overflow-hidden bg-background-dark text-slate-100">
             {/* Background Decoration */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] bg-grid-fade"></div>
@@ -65,9 +73,9 @@ export default function ServiceGrid() {
                         </div>
                         <h3 className="text-xl font-bold mb-3 text-slate-100 group-hover:text-primary transition-colors">{s.title}</h3>
                         <p className="text-slate-400 text-sm leading-relaxed mb-6">{s.desc}</p>
-                        <a className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-primary transition-colors gap-1 group/link" href="#">
+                        <Link className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-primary transition-colors gap-1 group/link" href={`/services/${s.slug}`}>
                             Learn more <span className="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-                        </a>
+                        </Link>
                     </div>
                 ))}
             </div>

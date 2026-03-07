@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function CTASection() {
   return (
     <section className="py-20 px-6 bg-background-dark relative border-t border-border-dark/50">
@@ -13,9 +15,9 @@ export default function CTASection() {
           <button className="bg-primary hover:bg-blue-600 text-white px-8 py-4 rounded-lg text-base font-bold transition-all shadow-xl shadow-blue-500/20 w-full sm:w-auto">
             Schedule Consultation
           </button>
-          <button className="bg-transparent hover:bg-slate-800 text-white border border-slate-700 px-8 py-4 rounded-lg text-base font-bold transition-all w-full sm:w-auto">
+          <Link href="/cases/detail" className="bg-transparent hover:bg-slate-800 text-white border border-slate-700 px-8 py-4 rounded-lg text-base font-bold transition-all w-full sm:w-auto flex items-center justify-center">
             View Case Studies
-          </button>
+          </Link>
         </div>
       </div>
     </section>

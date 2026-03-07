@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function NumbersScaleGlobal() {
     const stats = [
         { label: "15+ Years Experience", value: "15+" },
@@ -19,10 +21,10 @@ export default function NumbersScaleGlobal() {
                         </h2>
                         <p className="text-slate-400 text-lg">Our infrastructure is built for mission-critical operations across continents.</p>
                     </div>
-                    <button className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg text-sm font-bold transition-all border border-slate-700 hover:border-primary flex items-center gap-2">
-                        <span>Download 2024 Report</span>
+                    <Link href="/report" className="bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg text-sm font-bold transition-all border border-slate-700 hover:border-primary flex items-center gap-2">
+                        <span>View 2026 Report</span>
                         <span className="material-symbols-outlined text-sm">download</span>
-                    </button>
+                    </Link>
                 </div>
                 <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                     {stats.map((stat) => (

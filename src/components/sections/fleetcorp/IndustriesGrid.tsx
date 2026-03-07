@@ -1,5 +1,6 @@
 const industries = [
     {
+        slug: "industrial-manufacturing",
         name: "Industrial Manufacturing",
         description: "Optimized heavy machinery logistics and raw material transport streams.",
         icon: "factory",
@@ -7,6 +8,7 @@ const industries = [
         colSpan: "lg:col-span-3",
     },
     {
+        slug: "oil-and-gas",
         name: "Oil & Gas",
         description: "Mission-critical reliability for remote extraction sites and pipeline maintenance.",
         icon: "oil_barrel",
@@ -14,6 +16,7 @@ const industries = [
         colSpan: "lg:col-span-3",
     },
     {
+        slug: "construction",
         name: "Construction",
         description: "Real-time equipment tracking across multiple job sites.",
         icon: "construction",
@@ -21,6 +24,7 @@ const industries = [
         colSpan: "lg:col-span-2",
     },
     {
+        slug: "government",
         name: "Government",
         description: "Secure, compliant public sector transport protocols.",
         icon: "account_balance",
@@ -28,6 +32,7 @@ const industries = [
         colSpan: "lg:col-span-2",
     },
     {
+        slug: "logistics",
         name: "Logistics",
         description: "Global supply chain efficiency and route optimization.",
         icon: "local_shipping",
@@ -35,6 +40,8 @@ const industries = [
         colSpan: "lg:col-span-2",
     },
 ];
+
+import Link from "next/link";
 
 export default function IndustriesGrid() {
     return (
@@ -53,7 +60,11 @@ export default function IndustriesGrid() {
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[280px]">
                     {industries.map((item) => (
-                        <div key={item.name} className={`group relative overflow-hidden rounded-xl border border-[#282e39] ${item.colSpan}`}>
+                        <Link
+                            key={item.name}
+                            href={`/industries/${item.slug}`}
+                            className={`group relative overflow-hidden rounded-xl border border-[#282e39] ${item.colSpan} hover:border-primary/50 transition-colors`}
+                        >
                             <div
                                 className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-105"
                                 style={{ backgroundImage: `url('${item.image}')` }}
@@ -66,7 +77,7 @@ export default function IndustriesGrid() {
                                 <h4 className="text-white text-xl font-bold mb-1">{item.name}</h4>
                                 <p className="text-slate-300 text-sm leading-relaxed max-w-md">{item.description}</p>
                             </div>
-                        </div>
+                        </Link>
                     ))}
                 </div>
             </div>
