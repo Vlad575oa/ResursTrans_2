@@ -64,11 +64,11 @@ export const ServiceList = ({ services, titles }: ServiceListProps) => {
                                 src={service.image}
                                 alt={service.title}
                                 fill
-                                className="object-cover opacity-60 mix-blend-multiply"
+                                className="object-cover transition-all duration-700 group-hover:scale-110"
                             />
                         </div>
 
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-10 flex flex-col justify-end">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent p-10 flex flex-col justify-end">
                             <div className="mb-4 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                                 <span className="text-xs font-bold tracking-widest text-primary-main uppercase">
                                     {service.subtitle}

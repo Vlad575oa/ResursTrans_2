@@ -1,85 +1,40 @@
+const clients = [
+    { name: "GE", icon: "electric_bolt" },
+    { name: "Nike", icon: "checkroom" },
+    { name: "Adidas", icon: "sports_soccer" },
+    { name: "H&M", icon: "storefront" },
+    { name: "Amazon", icon: "shopping_cart" },
+    { name: "Google", icon: "search" },
+    { name: "IBM", icon: "computer" },
+    { name: "Cisco", icon: "router" },
+    { name: "Bayer", icon: "medication" },
+    { name: "Sony", icon: "tv" },
+];
+
 export default function TrustedBy() {
     return (
-        <section className="w-full border-b border-[#282e39] bg-[#0f1116] py-10 overflow-hidden">
-            <div className="mb-6 px-6 lg:px-10 text-center">
-                <p className="text-sm font-semibold tracking-widest text-slate-500 uppercase">
+        <section className="w-full border-y border-white/5 bg-[#0a0c10] py-12 overflow-hidden">
+            <div className="mb-8 px-6 lg:px-10 text-center">
+                <p className="text-xs font-bold tracking-[0.3em] text-slate-500 uppercase opacity-60">
                     Trusted By Industry Leaders
                 </p>
             </div>
             <div className="relative w-full inline-flex flex-nowrap overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
-                <ul className="flex items-center justify-center md:justify-start [&_li]:mx-8 [&_img]:max-w-none animate-infinite-scroll">
+                <ul className="flex items-center justify-center md:justify-start [&_li]:mx-10 animate-infinite-scroll">
                     {[1, 2].map((i) => (
-                        <div key={i} className="flex">
-                            <li>
-                                <img
-                                    alt="GE"
-                                    className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAM880deKuHGn23FHSbj7uEISo550NiEUkkflsUE-a1kXI1zuSjhJ1Gv4X32Kk9EqQegIPJ_uofGSVuSHYewDXE9cRI1TF22F83BB2roOdDms7c_3bkOX6YFL2UIYarcjPiS08z8m_0SkdEeMd1SXfp8VnDwBuo8VDfCU-vYUhEetvdHSfaP3MJUI50osxmZDYejATN6jqf4UHYE8n8aHHNVoz1ezS75cOOB1_7lqi6QwXwrY-PytMSgdRX3c1s75jxoztDDNzfzFw"
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    alt="Nike"
-                                    className="h-6 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAzPEZ7VTc7i9eSLDvaUgnr_qAsvqUmTOkxAriCwbYsHvItXyonDiMAnvemuDQwtJe7Xk2t9ZFk4MB70FFDsAd8OL0jRVheuqriSoeNbm7kRWTaxG4YI41Ta4bu2pJ_2DJykp44xV7Oxwk00n_S1cv-FkygFWintZpCPJyUNWo5nwxJYXMV0Teopngg0_1pghvlGKwV5eknowt0y7V3frIxj_u0UvCPwm807Chk_56NroCnzCq5AzJn4uchlDnxTrPDt7ZeHS6idPQ"
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    alt="Adidas"
-                                    className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCE609gCEe7ZXkiEAJKhI90J-B4ysoFQtSmU-A7l07smOgA6EYbyBi9uq1qzTEhei1PE4xtSbi516QJvEqARww4CBdgKj2X3okZDz5eUxa43-NiI3RcWUih8clSzBXSLS56Oh_LY0MS421mP3cyQScYOGvzP7d2aJ2NH7SIfBkSYiA1gBfczCq_w3g8NTUNtuhuT_S7AKDuGN0WJAEqLqHi2UR4a3IWfYLXMicCl9mFDZ325ImWGu1CfpyT8pOJw8XKthJTJu6KTyU"
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    alt="H&M"
-                                    className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqc_u2DRi6dD0MjvrJX7-tXgmIL2rCvuSo-CurrXF_XbIu__wIHZwaMfUR_WIlQ8ZTIY-83di0yWzp0Qw5hL8G3BUn6HteOUzfk-4ueqAHcZfK94G6RRgwtTCWuXr0HmkXkY8Cc4CZ0AwdqVOn-q3jzzEYwpuRNFp5IAfuchKUT5BxBafrclEMQcTGIj4wFdaGRcvuo7lJaZu4hF6R_RwHAuci3cX1AcZjnTBma1d_YSHEh9_yWdM8FKKHOAS1tOIvbKJaxbgZB4g"
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    alt="Amazon"
-                                    className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIE4mlinWGJmR4qkN4ZZF_EZEskkmeE4E9xAfWWc-xlAL-BqVFCi7PdN6XrvD49z_yz5cRPpnXMJbGzFK2J17on_VAHiAh4VwmY4LRxFcfcNYcD_lD4gnXJis2qsox3bZvYRJSfjTfbfJQEVR--SMmeAN2vpMMKv4vokTLQtuPbICIL-ElleMTg1jS0L2uTKpJ9LEsu-gIRaqdAl7EnqKrynzxWG0Sf0a6Ea0MOocVkNDeG2MF8cJCqXe4z21g4nTiMHHx93JvjAU"
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    alt="Google"
-                                    className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcaS2Z1lt0PwUzaMHQ26WZdJMKq3SZQc2p_7wLZEYYVqg728dGonmi0h5CvMhea1KYDs-h8io3SMRJ_UtVq87j4kdDzEH2c9-vYE-iocI-_Xy6TTh2R1rZb0p-rbGO3Z9ceZVxcyDAjI5KMt46h8BW3A76g9D4ubSBum6U_QzLlL0Zv8HC2AF4mhIrgNQubMOEcuLpfckRWTNyvphg5QsbU1-W_RsjCdcqMvHWsybm_VFF4Ego1gm_ke-lsodWAdsEbnFfoenzwnI"
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    alt="IBM"
-                                    className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuBCJeteyUzkJGmmRv_xMdNoQrlLbjiqXb1tO3mgH_T6DJ0qExicx1_DnFR6PcMKajBBrOqQsq3bSBDFpoXwb6gShyc19T94EN5XEbXoN_NTrf6AZrvRmVIYk1l_1YgEsbJvWemQ8sG5cAVD9UN_Tjl5PUC8v8bFddXm2aQwnA78ZdIR0_elCz--Fv23lHPNZ7geXZa6-shaJeus9GVP9AQZsY4LQANH9qfxK2KDhRRwaw8M9PKPnmDHDKf63XPbo3wxnT693W3smfI"
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    alt="Cisco"
-                                    className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCg3daXVMyscibTN1BsryXhlrZXcCsPhx64m1cCZQsl7F5_56s_D6FjmpnMk9fOq9E08z7gVDDZpgI2lrag14dsnELveQuhjG4uKxOkYiZjQL8gKnVwwvjahN4FeQuc_bMyO8yynuGIcsBdQJqkTMCdL_qEgrfvYavPHID3VHUFX6eZ2T4sX-Dvl1TK3nab0dkqFiH52P9_2GREjhZo5316mOqBpxt0v5L2Z_GKbCiqjG-FYSjEyn6Ar2FIgYMOKj5OqmdEWit-igo"
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    alt="Bayer"
-                                    className="h-8 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVKLCLFTHdmlk8qrIL1tkHf2kmrALF5zqLeb41VViMQqwikZITkBKH7NT_YYoUJZjjEVxows-btAPcTT6Gdf6aRk0cUmc45Pl8ZZMRLX_75qZ0EKkAH8OPor8h2H1-7mLCV2w7s1q32idMqokeM7sISMLz6017zU9ISmuYdEeftgxZb9sADiHH1_HvGqewTvmbAEl1ASllegjXfRKtsjjlOoApEuq-MDtDrDUFSZXgRZCcrtsGse_Fs8-VEE0C6RG_QiWsjTYtLn4"
-                                />
-                            </li>
-                            <li>
-                                <img
-                                    alt="Sony"
-                                    className="h-6 w-auto opacity-40 grayscale hover:opacity-100 hover:grayscale-0 transition-all duration-300 brightness-200 contrast-0 invert"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAkOQkQxp-296Pda9Z2sAYUeRaKz90bPrX34ELBVPMf4ii48l5RaXLZgxAKK62U2QwFZpYfM1cYFg4KHhr1XFjqqyZoRw1Ejir6NzlJ3gR93NR5gZDDPqqRlBI482wJZ7oSUI9-O4WzxS_zB3h6MLElD_pKzJojobDJhRHzrwswb25sgS8KQQFAyndoRwoXF2iiY5d7IEtBVrkgbxxPAAhaS5pMtTT8LUkXaL4I8tLlV0q_5TPSQgUTDkTLrOsSFXcN5-gXglhfRQ"
-                                />
-                            </li>
+                        <div key={i} className="flex items-center">
+                            {clients.map((client) => (
+                                <li key={client.name} className="flex flex-col items-center gap-3 group shrink-0">
+                                    <div className="size-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10 group-hover:border-primary/50 group-hover:bg-white/10 transition-all duration-500 shadow-sm group-hover:shadow-[0_0_20px_rgba(37,106,244,0.2)]">
+                                        <span className="material-symbols-outlined text-2xl text-slate-400 group-hover:text-primary transition-colors duration-500">
+                                            {client.icon}
+                                        </span>
+                                    </div>
+                                    <span className="text-[10px] font-bold text-slate-500 group-hover:text-white uppercase tracking-[0.2em] transition-colors duration-500">
+                                        {client.name}
+                                    </span>
+                                </li>
+                            ))}
                         </div>
                     ))}
                 </ul>
