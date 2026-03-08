@@ -61,7 +61,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ local
         <main className="min-h-screen bg-[#0a0e1a] text-white selection:bg-primary selection:text-white">
             <HeaderScroll />
             <div className="pt-20">
-                <ServiceList services={services} titles={titles} />
+                <ServiceList services={services} titles={titles} locale={locale} />
             </div>
             <AiAssistant />
             <Footer locale={locale} />

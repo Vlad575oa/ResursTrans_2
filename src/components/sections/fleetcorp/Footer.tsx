@@ -2,26 +2,29 @@ export default function Footer({ locale }: { locale: string }) {
   return (
     <footer className="bg-[#0b0d10] border-t border-[#282e39] pt-16 pb-8 px-6 md:px-10 lg:px-40">
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-sm">
           {/* Brand & Address */}
           <div className="space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-6 h-6 text-primary">
                 <span className="material-symbols-outlined text-2xl">local_shipping</span>
               </div>
-              <h2 className="text-white text-lg font-bold">FleetCorp</h2>
+              <h2 className="text-white text-lg font-bold">ResursLogistics</h2>
             </div>
-            <div className="text-slate-400 text-sm space-y-2">
-              <p>123 Logistics Way,<br />Tech Park, NY 10001</p>
-              <p>USA</p>
-            </div>
-            <div className="flex gap-4">
-              <a className="w-10 h-10 rounded-full bg-[#161b22] border border-[#282e39] flex items-center justify-center text-slate-400 hover:text-white hover:border-primary transition-all" href="#">
-                <span className="material-symbols-outlined text-sm">alternate_email</span>
-              </a>
-              <a className="w-10 h-10 rounded-full bg-[#161b22] border border-[#282e39] flex items-center justify-center text-slate-400 hover:text-white hover:border-primary transition-all" href="#">
+            <div className="text-slate-400 space-y-3">
+              <p className="flex items-start gap-2">
+                <span className="material-symbols-outlined text-sm mt-1">location_on</span>
+                {locale === 'en' ? '125047, 5 Lesnaya St, Bldg S, Moscow, Russia' : '125047, г. Москва, ул. Лесная, д. 5, стр. С'}
+              </p>
+              <p className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-sm">call</span>
-              </a>
+                <a href="tel:88001234567" className="hover:text-primary transition-colors">8 800 123-45-67</a>
+              </p>
+              <div className="pt-4 border-t border-white/5 space-y-1 text-[11px] uppercase tracking-wider opacity-60">
+                <p>{locale === 'en' ? 'ResursLogistics LLC' : 'ООО «РесурсЛогистика»'}</p>
+                <p>{locale === 'en' ? 'INN: 7712345678' : 'ИНН: 7712345678'}</p>
+                <p>{locale === 'en' ? 'OGRN: 1127746001234' : 'ОГРН: 1127746001234'}</p>
+              </div>
             </div>
           </div>
 

@@ -52,7 +52,7 @@ export const Sustainability = () => {
                             Безопасность как высшая ценность
                         </h2>
                         <p className="text-lg md:text-xl text-white/70 font-light max-w-2xl mx-auto">
-                            Каждое решение «РесурсТранс» — это инвестиция в ваше спокойствие.
+                            Каждое решение «РесурсЛогистика» — это инвестиция в ваше спокойствие.
                         </p>
                     </div>
                 </div>

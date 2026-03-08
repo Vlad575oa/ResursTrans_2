@@ -40,7 +40,7 @@ export const Comparison = () => {
                     <div className="grid grid-cols-12 bg-anthracite-core/5 border-b border-anthracite-core/10 p-6 text-xs font-mono uppercase tracking-widest text-anthracite-core/50">
                         <div className="col-span-12 md:col-span-2">Параметр</div>
                         <div className="col-span-12 md:col-span-5 text-burnt-terra mt-2 md:mt-0 font-bold">Свой автопарк (Риски)</div>
-                        <div className="col-span-12 md:col-span-5 text-safe-green mt-2 md:mt-0 font-bold">РесурсТранс (Выгода)</div>
+                        <div className="col-span-12 md:col-span-5 text-safe-green mt-2 md:mt-0 font-bold">РесурсЛогистика (Выгода)</div>
                     </div>
 
                     {/* Data Rows */}
@@ -63,7 +63,7 @@ export const Comparison = () => {
                                 <span className="font-serif italic text-sm md:text-base">{row.own}</span>
                             </div>
 
-                            {/* ResursTrans (Positive) */}
+                            {/* ResursLogistics (Positive) */}
                             <div className="col-span-12 md:col-span-5 flex gap-4 text-anthracite-core font-medium items-start">
                                 <CheckCircle className="w-5 h-5 text-safe-green shrink-0 mt-0.5" />
                                 <span className="text-sm md:text-base">{row.resurs}</span>

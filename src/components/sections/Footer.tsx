@@ -7,10 +7,10 @@ export function Footer() {
                     <div className="flex flex-col gap-6">
                         <div className="flex items-center gap-2">
                             <span className="material-symbols-outlined text-primary text-3xl">local_shipping</span>
-                            <span className="text-xl font-bold text-slate-900">РесурсТранс</span>
+                            <span className="text-xl font-bold text-slate-900">РесурсЛогистика</span>
                         </div>
                         <p className="text-slate-500 text-sm leading-relaxed">
-                            «РесурсТранс» — дочерняя компания транспортного холдинга федерального уровня, работает на рынке с 2008 года. Основное направление деятельности компании — оказание услуг по аутсорсингу транспортной функции и организация перевозок различными видами автотранспорта.
+                            «РесурсЛогистика» — независимая логистическая компания, работающая на рынке с 2008 года. Основное направление деятельности — комплексный аутсорсинг транспортных функций и управление корпоративными автопарками.
                         </p>
                         <div className="flex gap-4">
                             <a className="text-slate-400 hover:text-primary transition-colors" href="#">
@@ -50,24 +50,24 @@ export function Footer() {
                         <ul className="flex flex-col gap-4">
                             <li className="flex items-start gap-3 text-sm text-slate-500">
                                 <span className="material-symbols-outlined text-primary text-xl shrink-0">location_on</span>
-                                <span>г. Москва, 2-я Хуторская ул.,<br />д. 38А, стр. 14</span>
+                                <span>г. Москва, ул. Лесная, д. 5, стр. С</span>
                             </li>
                             <li className="flex items-center gap-3 text-sm text-slate-500">
                                 <span className="material-symbols-outlined text-primary text-xl shrink-0">call</span>
                                 <span className="flex flex-col">
-                                    <span>8 800-500-2625</span>
-                                    <span>+7 (495) 646-08-39</span>
+                                    <span>8 800 123-4567</span>
+                                    <span>+7 (495) 000-01-02</span>
                                 </span>
                             </li>
                             <li className="flex items-center gap-3 text-sm text-slate-500">
                                 <span className="material-symbols-outlined text-primary text-xl shrink-0">mail</span>
-                                <span>info@resourcetrans.ru</span>
+                                <span>info@res-logistics.ru</span>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div className="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-                    <p className="text-slate-400 text-xs">© 2024 РесурсТранс. Все права защищены.</p>
+                    <p className="text-slate-400 text-xs">© 2026 РесурсЛогистика. Все права защищены.</p>
                     <div className="flex gap-6">
                         <a className="text-slate-400 hover:text-primary text-xs transition-colors" href="/privacy">Политика конфиденциальности</a>
                         <a className="text-slate-400 hover:text-primary text-xs transition-colors" href="/terms">Условия использования</a>

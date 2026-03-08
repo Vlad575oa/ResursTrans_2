@@ -86,6 +86,22 @@ export default async function ContactsPage({ params }: { params: Promise<{ local
                                     <label className="text-xs font-bold text-slate-500 uppercase">{locale === 'en' ? 'Message' : 'Сообщение'}</label>
                                     <textarea rows={4} className="w-full bg-[#0c1017] border border-[#282e39] rounded-xl px-4 py-3 text-white focus:border-primary focus:ring-1 focus:ring-primary transition-all outline-none resize-none" placeholder={locale === 'en' ? 'Tell us about your fleet...' : 'Расскажите о вашем автопарке...'}></textarea>
                                 </div>
+                                <div className="flex items-start gap-3 py-2">
+                                    <input
+                                        type="checkbox"
+                                        id="consent"
+                                        required
+                                        className="mt-1 w-4 h-4 rounded border-[#282e39] bg-[#0c1017] text-primary focus:ring-primary focus:ring-offset-[#0c1017]"
+                                    />
+                                    <label htmlFor="consent" className="text-[10px] md:text-xs text-slate-500 leading-relaxed italic">
+                                        {locale === 'en'
+                                            ? 'I consent to the processing of my personal data in accordance with the '
+                                            : 'Я даю согласие на обработку моих персональных данных в соответствии с '}
+                                        <a href={`/${locale}/privacy`} className="text-primary hover:underline not-italic">
+                                            {locale === 'en' ? 'Privacy Policy' : 'Политикой конфиденциальности'}
+                                        </a>
+                                    </label>
+                                </div>
                                 <button type="submit" className="w-full bg-primary hover:bg-blue-600 text-white font-bold py-4 rounded-xl shadow-glow transition-all">
                                     {locale === 'en' ? 'Send Request' : 'Отправить запрос'}
                                 </button>

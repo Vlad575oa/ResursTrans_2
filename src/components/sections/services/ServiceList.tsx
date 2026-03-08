@@ -29,7 +29,7 @@ interface ServiceListProps {
     titles: Titles;
 }
 
-export const ServiceList = ({ services, titles }: ServiceListProps) => {
+export const ServiceList = ({ services, titles, locale }: { services: Service[]; titles: Titles; locale: string }) => {
     return (
         <section className="py-24 px-6 md:px-12 lg:px-24 max-w-7xl mx-auto">
             <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-8">
@@ -61,7 +61,7 @@ export const ServiceList = ({ services, titles }: ServiceListProps) => {
                         className={`${service.colSpan} h-[500px]`}
                     >
                         <Link
-                            href={`/services/${service.id}`}
+                            href={`/${locale}/services/${service.id}`}
                             className="group relative block w-full h-full overflow-hidden rounded-3xl cursor-pointer shadow-lg hover:shadow-2xl transition-all duration-500"
                         >
                             <div className={`absolute inset-0 ${service.imageColor} transition-transform duration-700 group-hover:scale-105`}>

@@ -640,7 +640,7 @@ export const FleetCalculator = () => {
                                             <div className="flex flex-col sm:flex-row justify-between sm:items-start gap-4">
                                                 <div>
                                                     <p className="text-white text-[10px] sm:text-[11px] uppercase tracking-widest font-black mb-0.5">
-                                                        Экономия с ResursTrans
+                                                        Экономия с ResursLogistics
                                                     </p>
                                                     <p className="text-primary text-2xl sm:text-3xl font-black drop-shadow-md">
                                                         − {Math.round(calculations.savings).toLocaleString()} ₽

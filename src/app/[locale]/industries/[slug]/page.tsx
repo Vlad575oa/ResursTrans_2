@@ -7,7 +7,7 @@ import { getServerTranslations } from "@/lib/server-intl";
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
     const slug = (await params).slug;
     return {
-        title: `${slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} - ResursTrans Industry Solutions`,
+        title: `${slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} - ResursLogistics Industry Solutions`,
         description: `Deep dive into our ${slug.replace(/-/g, ' ')} logistics and fleet management solutions.`,
     };
 }

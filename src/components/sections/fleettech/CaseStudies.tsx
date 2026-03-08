@@ -49,8 +49,8 @@ export default function CaseStudies({ locale }: { locale: string }) {
               Реальные показатели эффективности наших клиентов после интеграции системы FleetTech.
             </p>
           </div>
-          <Link href="/cases/detail" className="group flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider hover:text-blue-400 transition-colors">
-            Смотреть все кейсы
+          <Link href={`/${locale}/cases`} className="group flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider hover:text-blue-400 transition-all duration-300">
+            {locale === 'en' ? 'View all cases' : 'Смотреть все кейсы'}
             <span className="material-symbols-outlined transition-transform group-hover:translate-x-1">
               arrow_right_alt
             </span>
@@ -61,7 +61,7 @@ export default function CaseStudies({ locale }: { locale: string }) {
           {cases.map((item) => (
             <Link
               key={item.title}
-              href={`/cases/${item.slug}`}
+              href={`/${locale}/cases/${item.slug}`}
               className="group relative bg-[#151a23] border border-[#282e39] rounded-xl p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 flex flex-col justify-between h-full"
             >
               <div>

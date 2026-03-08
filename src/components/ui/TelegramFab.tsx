@@ -8,7 +8,7 @@ export default function TelegramFab() {
     const [isOpen, setIsOpen] = useState(false);
     const { TelegramModal } = ru;
 
-    const telegramLink = "https://t.me/resourcetrans"; // Example link
+    const telegramLink = "https://t.me/resurslogistics"; // Example link
 
     const handleProceed = () => {
         window.open(telegramLink, "_blank", "noopener,noreferrer");

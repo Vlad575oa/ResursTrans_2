@@ -1,134 +1,124 @@
-import type { Metadata } from "next";
-import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
-import Footer from "@/components/sections/fleetcorp/Footer";
+import { getServerTranslations } from "@/lib/server-intl";
+import { notFound } from "next/navigation";
 import Link from "next/link";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-    const slug = (await params).slug;
+interface Props {
+    params: Promise<{ locale: string; slug: string }>;
+}
+
+export async function generateStaticParams() {
+    return [
+        { slug: "mining" },
+        { slug: "retail" },
+        { slug: "oil_gas" },
+        { slug: "construction" },
+        { slug: "agriculture" },
+        { slug: "passenger" },
+    ];
+}
+
+export async function generateMetadata({ params }: Props) {
+    const { locale, slug } = await params;
+    const { messages } = await getServerTranslations(locale);
+
+    const cases = (messages.CasesPage as any).items;
+    const caseItem = cases[slug as keyof typeof cases];
+
+    if (!caseItem) return {};
+
     return {
-        title: `${slug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} - FleetTech Case Study`,
-        description: `Detailed results and implementation of the ${slug.replace(/-/g, ' ')} project with FleetTech.`,
+        title: `${caseItem.title} | Case Study | ResursLogistics`,
+        description: caseItem.desc,
+        alternates: {
+            canonical: `/${locale}/cases/${slug}`,
+        },
     };
 }
 
-const caseStudiesContent: Record<string, any> = {
-    "retailer-logistics": {
-        title: "Крупный ритейлер",
-        category: "Логистика",
-        subtitle: "Оптимизация магистральных перевозок",
-        metric: "-27%",
-        metricLabel: "Расходы на ГСМ",
-        description: "Для компании федерального масштаба с парком более 500 грузовых автомобилей критически важна точность планирования и контроль расхода топлива.",
-        challenge: "Высокий процент нецелевых пробегов, сливы топлива и отсутствие прозрачности в работе водителей на длинных плечах.",
-        solution: "Интеграция системы FleetTech с датчиками контроля топлива и модулем AI-маршрутизации. Внедрена система скоринга водителей.",
-        result: "Снижение затрат на ГСМ на 27% за первые 6 месяцев. Сокращение времени простоя на 15%."
-    },
-    "construction-monitoring": {
-        title: "СтройМехТранс",
-        category: "Строительство",
-        subtitle: "Контроль работы спецтехники",
-        metric: "-35%",
-        metricLabel: "Простои техники",
-        description: "Управление парком спецтехники на удаленных строительных площадках требует особого подхода к мониторингу моточасов.",
-        challenge: "Работа техники вхолостую, приписки моточасов и несанкционированное использование оборудования в ночные смены.",
-        solution: "Установка датчиков работы механизмов и системы идентификации водителей. Настройка автоматических уведомлений о выходе из геозон.",
-        result: "Сокращение холостого хода на 35%. Рост коэффициента полезного использования техники на 22%."
-    },
-    "fmcg-distribution": {
-        title: "FMCG Партнер",
-        category: "Дистрибьюция",
-        subtitle: "Точность последней мили",
-        metric: "100%",
-        metricLabel: "Соблюдение графика",
-        description: "В сфере FMCG задержка поставки на один час может привести к штрафам и потере доверия торговых сетей.",
-        challenge: "Сложное планирование в условиях городского трафика и человеческий фактор при распределении заказов.",
-        solution: "Внедрение модуля динамической маршрутизации с учетом пробок. Мобильное приложение для водителей с электронными накладными.",
-        result: "Достигнуто 100% соблюдение графика доставки. Увеличение количества точек на одном маршруте на 12%."
-    }
-};
-
-export default async function CaseStudyDetailPage({ params }: { params: Promise<{ locale: string, slug: string }> }) {
+export default async function CaseDetailPage({ params }: Props) {
     const { locale, slug } = await params;
+    const { messages } = await getServerTranslations(locale);
 
-    const content = caseStudiesContent[slug] || caseStudiesContent["retailer-logistics"];
+    const cases = (messages.CasesPage as any).items;
+    const caseItem = cases[slug as keyof typeof cases];
+
+    if (!caseItem) notFound();
 
     return (
-        <div className="bg-background-dark min-h-screen text-slate-100 flex flex-col">
-            <HeaderScroll />
+        <main className="min-h-screen bg-[#0b0d10] pt-32 pb-20 px-6 md:px-10 lg:px-40">
+            <div className="max-w-4xl mx-auto text-white">
+                <Link
+                    href={`/${locale}/cases`}
+                    className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-12 transition-colors font-bold uppercase tracking-widest text-xs"
+                >
+                    <span className="material-symbols-outlined text-sm">arrow_back</span>
+                    {locale === 'ru' ? 'Назад к кейсам' : 'Back to Cases'}
+                </Link>
 
-            <main className="flex-grow pt-32 pb-20 px-6">
-                <div className="max-w-4xl mx-auto">
-                    <Link href="/cases" className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-12 group">
-                        <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
-                        Назад к кейсам
-                    </Link>
-
-                    <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-8">
-                        <div>
-                            <span className="text-primary font-bold uppercase tracking-[0.2em] text-xs mb-4 block">
-                                {content.category}
+                <div className="space-y-12">
+                    <div className="space-y-6">
+                        <div className="flex items-center gap-4">
+                            <span className="px-3 py-1 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-widest">
+                                {caseItem.subtitle}
                             </span>
-                            <h1 className="text-4xl md:text-6xl font-black text-white uppercase leading-tight">
-                                {content.title}
-                            </h1>
-                            <p className="text-slate-400 text-xl mt-4 font-light">
-                                {content.subtitle}
+                        </div>
+                        <h1 className="text-4xl md:text-7xl font-black text-white tracking-tighter uppercase italic leading-none">
+                            {caseItem.title}
+                        </h1>
+                        <p className="text-xl md:text-2xl text-slate-400 font-medium max-w-2xl leading-relaxed">
+                            {caseItem.desc}
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-12 border-y border-white/10">
+                        <div className="space-y-2">
+                            <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">{locale === 'ru' ? 'Экономия' : 'Savings'}</p>
+                            <p className="text-3xl font-black text-primary">25% — 40%</p>
+                        </div>
+                        <div className="space-y-2">
+                            <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">{locale === 'ru' ? 'Срок окупаемости' : 'ROI Period'}</p>
+                            <p className="text-3xl font-black text-white">3 мес.</p>
+                        </div>
+                        <div className="space-y-2">
+                            <p className="text-slate-500 text-xs font-bold uppercase tracking-widest">{locale === 'ru' ? 'Статус' : 'Status'}</p>
+                            <p className="text-3xl font-black text-white uppercase italic">Active</p>
+                        </div>
+                    </div>
+
+                    <div className="prose prose-invert max-w-none space-y-16">
+                        <section className="space-y-6">
+                            <h2 className="text-3xl font-black text-white uppercase tracking-tight">
+                                {locale === 'ru' ? 'О проекте' : 'About the Project'}
+                            </h2>
+                            <p className="text-slate-300 text-lg leading-relaxed">
+                                {locale === 'ru'
+                                    ? 'Масштабная цифровая трансформация транспортной функции предприятия. Реализация комплексного подхода к управлению активами и персоналом.'
+                                    : 'Large-scale digital transformation of the enterprise transport function. Implementation of a comprehensive approach to asset and personnel management.'}
                             </p>
-                        </div>
-                        <div className="bg-white/5 border border-white/10 p-8 rounded-3xl min-w-[200px] text-center backdrop-blur-sm">
-                            <div className="text-5xl font-black text-white tracking-tighter mb-1">{content.metric}</div>
-                            <div className="text-xs font-bold text-slate-500 uppercase tracking-widest">{content.metricLabel}</div>
-                        </div>
-                    </div>
+                        </section>
 
-                    <div className="relative aspect-video rounded-3xl overflow-hidden border border-white/10 mb-20 bg-slate-900 flex items-center justify-center">
-                        <span className="material-symbols-outlined text-[120px] text-white/5">pie_chart</span>
-                    </div>
-
-                    <div className="grid md:grid-cols-2 gap-16">
-                        <div className="space-y-12">
-                            <section>
-                                <h2 className="text-2xl font-bold text-white uppercase tracking-tight mb-6 flex items-center gap-3">
-                                    <span className="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                                        <span className="material-symbols-outlined text-sm">priority_high</span>
-                                    </span>
-                                    Задача
-                                </h2>
-                                <p className="text-slate-400 leading-relaxed text-lg">{content.challenge}</p>
-                            </section>
-                            <section>
-                                <h2 className="text-2xl font-bold text-white uppercase tracking-tight mb-6 flex items-center gap-3">
-                                    <span className="size-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
-                                        <span className="material-symbols-outlined text-sm">lightbulb</span>
-                                    </span>
-                                    Решение
-                                </h2>
-                                <p className="text-slate-400 leading-relaxed text-lg">{content.solution}</p>
-                            </section>
-                        </div>
-                        <div className="bg-primary/5 border border-primary/10 p-10 rounded-4xl h-fit">
-                            <h2 className="text-2xl font-bold text-white uppercase tracking-tight mb-8">Результат</h2>
-                            <p className="text-xl text-white italic leading-relaxed mb-10">"{content.result}"</p>
-                            <div className="space-y-6">
-                                <div className="flex items-center gap-4">
-                                    <span className="material-symbols-outlined text-primary">check_circle</span>
-                                    <span className="text-slate-300">Стандартизация бизнес-процессов</span>
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <span className="material-symbols-outlined text-primary">check_circle</span>
-                                    <span className="text-slate-300">Полная прозрачность затрат</span>
-                                </div>
-                                <div className="flex items-center gap-4">
-                                    <span className="material-symbols-outlined text-primary">check_circle</span>
-                                    <span className="text-slate-300">Цифровизация отчетности</span>
-                                </div>
+                        <section className="bg-primary/5 border border-primary/20 p-10 rounded-3xl space-y-6 relative overflow-hidden group">
+                            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-[80px] -translate-y-1/2 translate-x-1/2"></div>
+                            <div className="relative z-10">
+                                <h3 className="text-2xl font-black text-white uppercase tracking-tight">
+                                    {locale === 'ru' ? 'Хотите такой же результат?' : 'Want similar results?'}
+                                </h3>
+                                <p className="text-slate-400 text-lg mb-8 max-w-md leading-relaxed">
+                                    {locale === 'ru'
+                                        ? 'Закажите бесплатный аудит вашего автопарка прямо сейчас.'
+                                        : 'Request a free audit of your fleet right now.'}
+                                </p>
+                                <Link
+                                    href={`/${locale}/contacts`}
+                                    className="inline-block bg-primary hover:bg-blue-600 text-white font-bold py-4 px-10 rounded-xl transition-all shadow-glow uppercase text-sm tracking-widest"
+                                >
+                                    {locale === 'ru' ? 'Заказать аудит' : 'Request Audit'}
+                                </Link>
                             </div>
-                        </div>
+                        </section>
                     </div>
                 </div>
-            </main>
-
-            <Footer locale={locale} />
-        </div>
+            </div>
+        </main>
     );
 }

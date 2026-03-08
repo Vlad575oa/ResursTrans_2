@@ -1,36 +1,36 @@
 {
     "hero": {
-        "badge": "О компании",
-        "title": "Мы — лидеры рынка транспортного аутсорсинга",
-        "subtitle": "Более 15 лет помогаем корпоративным клиентам оптимизировать транспортные расходы"
+        "badge": "About Company",
+        "title": "We are market leaders in transport outsourcing",
+        "subtitle": "Helping corporate clients optimize transport costs for over 15 years"
     },
-    "description": "ResursTrans предоставляет полный спектр услуг по аутсорсингу и управлению автопарком. Мы берем на себя сложную логистику, чтобы вы сосредоточились на бизнесе.",
+    "description": "ResursLogistics provides a full range of outsourcing and fleet management services. We handle complex logistics so you can focus on your business.",
     "values": [
         {
-            "title": "Надежность",
-            "text": "Соблюдение SLA на уровне 98% по всем контрактам"
+            "title": "Reliability",
+            "text": "98% SLA compliance across all contracts"
         },
         {
-            "title": "Инновации",
-            "text": "Применяем ИИ и телематику для предиктивного обслуживания"
+            "title": "Innovation",
+            "text": "Applying AI and telematics for predictive maintenance"
         },
         {
-            "title": "Прозрачность",
-            "text": "Детальная отчетность и личный кабинет для каждого клиента"
+            "title": "Transparency",
+            "text": "Detailed reporting and a personal dashboard for every client"
         }
     ],
     "stats": [
         {
             "value": "15+",
-            "label": "Лет опыта"
+            "label": "Years of experience"
         },
         {
             "value": "50+",
-            "label": "Регионов"
+            "label": "Regions"
         },
         {
             "value": "10k+",
-            "label": "Единиц"
+            "label": "Units"
         },
         {
             "value": "98%",
@@ -40,19 +40,19 @@
     "history": [
         {
             "year": "2010",
-            "event": "Основание компании. Первый корпоративный клиент — 50 автомобилей."
+            "event": "Company founded. First corporate client — 50 vehicles."
         },
         {
             "year": "2015",
-            "event": "Расширение до 20 регионов. Запуск первой телематической платформы."
+            "event": "Expansion to 20 regions. Launch of the first telematics platform."
         },
         {
             "year": "2020",
-            "event": "10 000 единиц техники под управлением. Внедрение ИИ-аналитики."
+            "event": "10,000 units under management. Implementation of AI analytics."
         },
         {
             "year": "2026",
-            "event": "Лидер рынка транспортного аутсорсинга в России."
+            "event": "Leader of the transport outsourcing market in Russia."
         }
     ]
 }

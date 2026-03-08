@@ -1,19 +1,23 @@
-"use client";
-
 import Image from "next/image";
-import { motion } from "framer-motion";
 
 export default function Hero({ dict }: { dict: any }) {
+  const titleHtml = dict.title
+    .replace('корпоративным', '<span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400">корпоративным</span>')
+    .replace('нового уровня', '<span class="text-primary text-glow">нового уровня</span>');
+
   return (
-    <section className="flex-grow relative flex flex-col justify-center min-h-screen pt-20">
-      {/* Background Image - ATF с приоритетом */}
-      <div
-        className="absolute inset-0 z-0 w-full h-full bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url("https://lh3.googleusercontent.com/aida-public/AB6AXuAJBK94MihqMW1wwl5gGFOEFRUYX789hlz5YTWsMV5vacSEN3rwXy5beuBGQ_5JmymV5SVu311nqqqKxPQIj4YV-kMmLGiTJn2JkkzOMS6YOtAgD-CaygFvvkPru2xtUghKbcWwSgAb-wjBVFMG3snB4YaPf2BqwGJHyf48sXZlHYY4FfbFgJxwrddv-uMET-1NqXjjyrqUDuRu9_1xa05AM2L5UlRECj5jVRs2CN0br_JHmsnoxgLQkt0G7sDhtxYcC5qbNDVSM6E")`,
-        }}
-        aria-hidden="true"
-      >
+    <section className="flex-grow relative flex flex-col justify-center min-h-screen pt-20 overflow-hidden">
+      {/* Background Image - Optimized with next/image */}
+      <div className="absolute inset-0 z-0 w-full h-full">
+        <Image
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJBK94MihqMW1wwl5gGFOEFRUYX789hlz5YTWsMV5vacSEN3rwXy5beuBGQ_5JmymV5SVu311nqqqKxPQIj4YV-kMmLGiTJn2JkkzOMS6YOtAgD-CaygFvvkPru2xtUghKbcWwSgAb-wjBVFMG3snB4YaPf2BqwGJHyf48sXZlHYY4FfbFgJxwrddv-uMET-1NqXjjyrqUDuRu9_1xa05AM2L5UlRECj5jVRs2CN0br_JHmsnoxgLQkt0G7sDhtxYcC5qbNDVSM6E"
+          alt="Fleet Management Background"
+          fill
+          priority
+          className="object-cover object-center"
+          sizes="100vw"
+          quality={90}
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0a0e1a] via-[#0a0e1a]/80 to-transparent"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0e1a] via-transparent to-[#0a0e1a]/40"></div>
       </div>
@@ -34,11 +38,11 @@ export default function Hero({ dict }: { dict: any }) {
             {/* H1 - Critical ATF Content */}
             <h1
               className="text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold leading-[1.1] tracking-tight"
-              dangerouslySetInnerHTML={{ __html: dict.title.replace('корпоративным', '<span class=\"text-transparent bg-clip-text bg-gradient-to-r from-white to-slate-400\">корпоративным</span>').replace('нового уровня', '<span class=\"text-primary text-glow\">нового уровня</span>') }}
+              dangerouslySetInnerHTML={{ __html: titleHtml }}
             />
 
             {/* Description */}
-            <div className="glass-panel p-6 rounded-xl max-w-2xl border-l-4 border-l-primary">
+            <div className="bg-white/5 backdrop-blur-md border border-white/10 p-6 rounded-xl max-w-2xl border-l-4 border-l-primary">
               <p className="text-slate-200 text-lg md:text-xl font-normal leading-relaxed">
                 {dict.description}
               </p>
@@ -47,8 +51,7 @@ export default function Hero({ dict }: { dict: any }) {
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full">
               <button className="w-full sm:w-auto relative overflow-hidden rounded-lg bg-primary px-8 py-4 text-white text-base font-bold shadow-[0_0_20px_rgba(37,106,244,0.4)] hover:shadow-[0_0_30px_rgba(37,106,244,0.6)] hover:bg-blue-600 transition-all duration-300 group">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
-                <span className="flex items-center justify-center gap-2">
+                <span className="flex items-center justify-center gap-2 relative z-10">
                   {dict.submitRequest || 'Получить коммерческое предложение'}
                   <span className="material-symbols-outlined text-xl">
                     arrow_forward
@@ -64,7 +67,7 @@ export default function Hero({ dict }: { dict: any }) {
             </div>
           </div>
 
-          {/* Right Column: Abstract Visualization */}
+          {/* Right Column: Abstract Visualization (Pure CSS implementation for Server Component) */}
           <div className="hidden lg:flex lg:col-span-5 justify-end relative">
             {/* Decorative technological circle */}
             <div className="relative w-80 h-80 rounded-full border border-primary/20 flex items-center justify-center animate-[spin_20s_linear_infinite]">
@@ -73,14 +76,14 @@ export default function Hero({ dict }: { dict: any }) {
             </div>
 
             {/* Floating glass card */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 glass-panel p-5 rounded-2xl w-72 shadow-2xl animate-[float_6s_ease-in-out_infinite]">
+            <div className="absolute top-1/2 left-0 -translate-y-1/2 bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-2xl w-72 shadow-2xl animate-[float_6s_ease-in-out_infinite]">
               <div className="flex items-center justify-between mb-4">
                 <span className="text-xs text-slate-400 font-medium uppercase">
                   {dict.visuals?.efficiency || 'Эффективность'}
                 </span>
                 <span className="text-green-400 text-xs font-bold">+24%</span>
               </div>
-              <div className="h-2 w-full bg-white/10 rounded-full mb-4 overflow-hidden">
+              <div className="h-2 w-full bg-white/10 rounded-full mb-4 overflow-hidden text-[0px]">
                 <div className="h-full bg-gradient-to-r from-primary to-blue-400 w-[78%] rounded-full shadow-[0_0_10px_#256af4]"></div>
               </div>
               <div className="flex items-center gap-3">

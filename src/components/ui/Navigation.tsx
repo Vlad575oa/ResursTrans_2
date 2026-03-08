@@ -22,7 +22,7 @@ export const Navigation = () => {
                         <div className="h-10 w-10 flex items-center justify-center bg-primary-main/10 text-primary-main rounded-lg group-hover:scale-110 transition-transform">
                             <span className="material-symbols-outlined text-2xl">local_shipping</span>
                         </div>
-                        <h2 className="text-navy text-xl font-bold tracking-tight">РесурсТранс</h2>
+                        <h2 className="text-navy text-xl font-bold tracking-tight">РесурсЛогистика</h2>
                     </Link>
 
                     {/* Desktop Navigation - Server Rendered for Speed Index */}

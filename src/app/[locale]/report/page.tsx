@@ -3,7 +3,7 @@ import Footer from "@/components/sections/fleetcorp/Footer";
 import Link from "next/link";
 
 export const metadata = {
-    title: "Quarterly Fleet Efficiency Report - ResursTrans",
+    title: "Quarterly Fleet Efficiency Report - ResursLogistics",
     description: "Detailed analysis of fleet performance, cost savings, and environmental impact.",
 };
 
