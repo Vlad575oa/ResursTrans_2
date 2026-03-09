@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
-import dynamic from "next/dynamic";
+import { default as dynamicImport } from "next/dynamic";
 import { getServerTranslations } from "@/lib/server-intl";
 import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
+
+// Force static generation with revalidation for TTFB optimization
+export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;

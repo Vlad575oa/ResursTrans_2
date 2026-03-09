@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter_Tight, Playfair_Display, Manrope } from "next/font/google";
 import "../globals.css";
 import StructuredData from "@/components/seo/StructuredData";
+import { CRITICAL_CSS } from "@/lib/critical-css";
 
 const interTight = Inter_Tight({
   variable: "--font-sans",
@@ -9,6 +10,8 @@ const interTight = Inter_Tight({
   weight: ["400", "500", "700", "900"],
   display: "swap",
   preload: true,
+  fallback: ['system-ui', 'Arial'],
+  adjustFontFallback: true,
 });
 
 const playfair = Playfair_Display({
@@ -17,6 +20,8 @@ const playfair = Playfair_Display({
   style: ["normal", "italic"],
   display: "swap",
   preload: true,
+  fallback: ['Times New Roman', 'serif'],
+  adjustFontFallback: true,
 });
 
 const manrope = Manrope({
@@ -25,6 +30,8 @@ const manrope = Manrope({
   weight: ["400", "700", "800"],
   display: "swap",
   preload: true,
+  fallback: ['system-ui', 'Arial'],
+  adjustFontFallback: true,
 });
 
 import TelegramFab from "@/components/ui/TelegramFab";
@@ -55,6 +62,11 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
+        {/* Critical CSS - Inline for LCP optimization */}
+        <style 
+          dangerouslySetInnerHTML={{ __html: CRITICAL_CSS }} 
+          suppressHydrationWarning 
+        />
         {/* Font Preloads for Critical Fonts */}
         <link
           rel="preload"

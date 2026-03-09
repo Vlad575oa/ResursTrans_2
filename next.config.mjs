@@ -1,6 +1,11 @@
-import type { NextConfig } from "next";
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
-const nextConfig: NextConfig = {
+const withConfig = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+});
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   images: {
     remotePatterns: [
       {
@@ -12,6 +17,8 @@ const nextConfig: NextConfig = {
         hostname: 'images.unsplash.com',
       }
     ],
+    // Enable AVIF format support
+    formats: ['image/avif', 'image/webp'],
   },
   // Performance: Add Cache-Control headers for static assets
   async headers() {
@@ -22,6 +29,10 @@ const nextConfig: NextConfig = {
         headers: [
           {
             key: 'Cache-Control',
+            value: 'public, max-age=31536000, immutable',
+          },
+          {
+            key: 'CDN-Cache-Control',
             value: 'public, max-age=31536000, immutable',
           },
         ],
@@ -46,8 +57,22 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        // Cache API responses
+        source: '/api/:path*',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=60, stale-while-revalidate=300',
+          },
+        ],
+      },
     ];
   },
+  // Enable compression
+  compress: true,
+  // Remove X-Powered-By header
+  poweredByHeader: false,
 };
 
-export default nextConfig;
+export default withConfig(nextConfig);
