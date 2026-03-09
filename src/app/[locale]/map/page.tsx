@@ -3,7 +3,6 @@
 import { use, useState, useEffect, Suspense } from "react";
 import dynamic from "next/dynamic";
 import { ArrowRight, MapPin, Phone, Building2, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 // Lazy load Globe component with no SSR - deferred for performance
@@ -94,21 +93,17 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
 
             {/* Content Overlay */}
             <div className="absolute inset-0 z-10 w-full h-full pointer-events-none">
-                {/* Main Heading - Optimized with priority font */}
+                {/* Main Heading - CSS fade-in animation */}
                 <div className="absolute top-24 left-10 lg:left-24 pointer-events-auto">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5 }}
-                    >
+                    <div className="fade-in-up" style={{ animationDelay: '0.2s' }}>
                         <h1 className="text-4xl lg:text-7xl font-black text-white tracking-tighter leading-none uppercase italic opacity-60">
                             Global <span className="text-primary">Presence</span>
                         </h1>
                         <div className="h-1 w-32 bg-primary/40 mt-4"></div>
-                    </motion.div>
+                    </div>
                 </div>
 
-                {/* Scattered Branch Labels - Render only on mobile simplified */}
+                {/* Scattered Branch Labels - CSS fade-in animation */}
                 {branches.slice(0, 8).map((branch, i) => {
                     const positions = [
                         { top: '15%', left: '10%' },
@@ -123,18 +118,14 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                     const pos = positions[i % positions.length];
 
                     return (
-                        <motion.div
+                        <div
                             key={branch.name}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            transition={{ delay: 0.05 * i, duration: 0.5 }}
-                            className="absolute pointer-events-auto hidden md:block"
-                            style={{ top: pos.top, left: pos.left }}
+                            className="absolute pointer-events-auto hidden md:block fade-in"
+                            style={{ top: pos.top, left: pos.left, animationDelay: `${0.05 * i}s` }}
                         >
-                            <motion.button
-                                whileHover={{ scale: 1.1, zIndex: 50 }}
+                            <button
                                 onClick={() => setSelectedBranch(branch)}
-                                className={`group flex flex-col items-center p-2 lg:p-3 rounded-2xl border backdrop-blur-md transition-all duration-500 shadow-2xl ${selectedBranch?.name === branch.name
+                                className={`group flex flex-col items-center p-2 lg:p-3 rounded-2xl border backdrop-blur-md transition-all duration-300 shadow-2xl hover:scale-110 hover:z-40 ${selectedBranch?.name === branch.name
                                     ? "bg-primary/40 border-primary shadow-primary/30 z-40 scale-110"
                                     : "bg-white/5 border-white/10 hover:border-white/25 hover:bg-white/10 z-10"
                                     }`}
@@ -145,8 +136,8 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                                         {branch.name.replace('Филиал в г. ', '').replace('Branch', '').replace(' Subdivision', '').replace('ОП в г. ', '')}
                                     </span>
                                 </div>
-                            </motion.button>
-                        </motion.div>
+                            </button>
+                        </div>
                     );
                 })}
             </div>
@@ -177,54 +168,49 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                 </div>
             </div>
 
-            {/* Selected Branch Detail Modal */}
-            <AnimatePresence>
-                {selectedBranch && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-                        animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] w-full max-w-md px-6 md:bottom-12"
-                    >
-                        <div className="bg-zinc-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl">
-                            <div className="flex justify-between items-start mb-4">
-                                <div>
-                                    <h2 className="text-lg font-bold text-white">{selectedBranch.name}</h2>
-                                    <p className="text-primary text-xs font-mono uppercase tracking-widest">{locale === 'ru' ? 'Региональный офис' : 'Regional Branch'}</p>
-                                </div>
-                                <button
-                                    onClick={() => setSelectedBranch(null)}
-                                    className="p-2 hover:bg-white/5 rounded-full transition-colors"
-                                >
-                                    <X className="w-5 h-5 text-slate-400" />
-                                </button>
+            {/* Selected Branch Detail Modal - CSS transitions */}
+            {selectedBranch && (
+                <div
+                    className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] w-full max-w-md px-6 md:bottom-12 modal-slide-up"
+                >
+                    <div className="bg-zinc-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl">
+                        <div className="flex justify-between items-start mb-4">
+                            <div>
+                                <h2 className="text-lg font-bold text-white">{selectedBranch.name}</h2>
+                                <p className="text-primary text-xs font-mono uppercase tracking-widest">{locale === 'ru' ? 'Региональный офис' : 'Regional Branch'}</p>
                             </div>
-
-                            <div className="space-y-3">
-                                <div className="flex items-start gap-3">
-                                    <div className="p-2 bg-white/5 rounded-lg text-primary flex-shrink-0">
-                                        <MapPin className="w-4 h-4" />
-                                    </div>
-                                    <p className="text-slate-300 text-sm leading-relaxed">{selectedBranch.address}</p>
-                                </div>
-                                <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-white/5 rounded-lg text-primary flex-shrink-0">
-                                        <Phone className="w-4 h-4" />
-                                    </div>
-                                    <a href={`tel:${selectedBranch.phone}`} className="text-white font-bold hover:text-primary transition-colors italic">
-                                        {selectedBranch.phone}
-                                    </a>
-                                </div>
-                            </div>
-
-                            <button className="w-full mt-4 bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
-                                <span>{locale === 'ru' ? 'Связаться с филиалом' : 'Contact Branch'}</span>
-                                <ArrowRight className="w-4 h-4" />
+                            <button
+                                onClick={() => setSelectedBranch(null)}
+                                className="p-2 hover:bg-white/5 rounded-full transition-colors"
+                            >
+                                <X className="w-5 h-5 text-slate-400" />
                             </button>
                         </div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
+
+                        <div className="space-y-3">
+                            <div className="flex items-start gap-3">
+                                <div className="p-2 bg-white/5 rounded-lg text-primary flex-shrink-0">
+                                    <MapPin className="w-4 h-4" />
+                                </div>
+                                <p className="text-slate-300 text-sm leading-relaxed">{selectedBranch.address}</p>
+                            </div>
+                            <div className="flex items-center gap-3">
+                                <div className="p-2 bg-white/5 rounded-lg text-primary flex-shrink-0">
+                                    <Phone className="w-4 h-4" />
+                                </div>
+                                <a href={`tel:${selectedBranch.phone}`} className="text-white font-bold hover:text-primary transition-colors italic">
+                                    {selectedBranch.phone}
+                                </a>
+                            </div>
+                        </div>
+
+                        <button className="w-full mt-4 bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
+                            <span>{locale === 'ru' ? 'Связаться с филиалом' : 'Contact Branch'}</span>
+                            <ArrowRight className="w-4 h-4" />
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {/* Footer-like status bar */}
             <div className="absolute bottom-6 left-8 right-8 flex justify-between items-center z-10">

@@ -1,0 +1,11 @@
+# *
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /api/
+
+# Host
+Host: https://resurslogistics.ru
+
+# Sitemaps
+Sitemap: https://resurslogistics.ru/sitemap.xml

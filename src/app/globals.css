@@ -537,3 +537,47 @@ details[open] summary~* {
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
   background: rgba(37, 106, 244, 0.6);
 }
+
+/* Performance: CSS-only animations to replace Framer Motion */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes modal-slide-up {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+
+.fade-in {
+  animation: fade-in 0.5s ease-out forwards;
+}
+
+.fade-in-up {
+  animation: fade-in-up 0.5s ease-out forwards;
+}
+
+.modal-slide-up {
+  animation: modal-slide-up 0.3s ease-out forwards;
+}
