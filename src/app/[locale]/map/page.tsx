@@ -1,10 +1,20 @@
 "use client";
 
-import { use, useState, useEffect } from "react";
-import { Globe } from "@/components/ui/Globe";
+import { use, useState, useEffect, Suspense } from "react";
+import dynamic from "next/dynamic";
 import { ArrowRight, MapPin, Phone, Building2, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+
+// Lazy load Globe component with no SSR
+const Globe = dynamic(() => import("@/components/ui/Globe"), { 
+    ssr: false,
+    loading: () => (
+        <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-800/20 via-[#05070a] to-[#05070a] flex items-center justify-center">
+            <div className="w-16 h-16 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+        </div>
+    )
+});
 
 interface Branch {
     name: string;
@@ -19,26 +29,6 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
     const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        // Fetch translations for branches
-        const fetchBranches = async () => {
-            try {
-                const response = await fetch(`/api/admin/content?locale=${locale}&section=contacts`);
-                const data = await response.json();
-                if (data?.regionalBranches) {
-                    setBranches(data.regionalBranches);
-                } else {
-                    // Fallback to static import simulation or general messages
-                    const res = await fetch(`/api/admin/content?locale=${locale}&section=ru`); // Just in case
-                    // For simplicity in this demo, let's assume we can get it from a common endpoint 
-                    // or just use the regionalBranches we know exist in the messages.
-                }
-            } catch (e) {
-                console.error("Failed to fetch branches", e);
-            }
-        };
-
-        // Since I'm an AI and I know the structure, I'll provide a fallback/initial state
-        // derived from the actual messages I've seen.
         const mockBranches = locale === 'ru' ? [
             { name: "Филиал в г. Москве", address: "127276, г. Москва, ул. Ботаническая, д. 10 Д, стр. 1", phone: "+7 (495) 150-00-59" },
             { name: "Филиал в г. Хабаровске", address: "680000, г. Хабаровск, ул. Пушкина, д. 50", phone: "+7 (421) 259-89-95" },
@@ -77,10 +67,11 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
 
     return (
         <div className="relative h-screen w-screen bg-[#05070a] overflow-hidden flex items-center justify-center font-sans">
-            {/* Background Globe Container - Truly Centered */}
+            {/* Background Globe Container - Lazy loaded */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-0 pointer-events-none flex items-center justify-center overflow-hidden w-[160vh] h-[160vh] lg:w-[130vh] lg:h-[130vh] transition-opacity duration-1000 opacity-30 lg:opacity-50">
-                <Globe className="w-full h-full" />
-                {/* Enhanced radial fade for central immersion */}
+                <Suspense fallback={null}>
+                    <Globe className="w-full h-full" />
+                </Suspense>
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,transparent_0%,rgba(5,7,10,0.5)_60%,#05070a_90%)]" />
             </div>
 
@@ -96,14 +87,13 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
             </div>
 
             {/* Content Overlay */}
-            {/* Content Overlay */}
             <div className="absolute inset-0 z-10 w-full h-full pointer-events-none">
-                {/* Main Heading - Floating style */}
+                {/* Main Heading - Optimized with priority font */}
                 <div className="absolute top-24 left-10 lg:left-24 pointer-events-auto">
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 1 }}
+                        transition={{ duration: 0.5 }}
                     >
                         <h1 className="text-4xl lg:text-7xl font-black text-white tracking-tighter leading-none uppercase italic opacity-60">
                             Global <span className="text-primary">Presence</span>
@@ -112,8 +102,8 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                     </motion.div>
                 </div>
 
-                {/* Scattered Branch Labels */}
-                {branches.map((branch, i) => {
+                {/* Scattered Branch Labels - Render only on mobile simplified */}
+                {branches.slice(0, 8).map((branch, i) => {
                     const positions = [
                         { top: '15%', left: '10%' },
                         { top: '25%', left: '30%' },
@@ -123,12 +113,6 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                         { top: '55%', left: '85%' },
                         { top: '75%', left: '75%' },
                         { top: '88%', left: '55%' },
-                        { top: '82%', left: '25%' },
-                        { top: '68%', left: '8%' },
-                        { top: '48%', left: '15%' },
-                        { top: '35%', left: '50%' },
-                        { top: '62%', left: '35%' },
-                        { top: '52%', left: '62%' },
                     ];
                     const pos = positions[i % positions.length];
 
@@ -137,14 +121,14 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                             key={branch.name}
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
-                            transition={{ delay: 0.1 * i, duration: 1 }}
-                            className="absolute pointer-events-auto"
+                            transition={{ delay: 0.05 * i, duration: 0.5 }}
+                            className="absolute pointer-events-auto hidden md:block"
                             style={{ top: pos.top, left: pos.left }}
                         >
                             <motion.button
                                 whileHover={{ scale: 1.1, zIndex: 50 }}
                                 onClick={() => setSelectedBranch(branch)}
-                                className={`group flex flex-col items-center p-2 lg:p-3 rounded-2xl border backdrop-blur-md transition-all duration-700 shadow-2xl ${selectedBranch?.name === branch.name
+                                className={`group flex flex-col items-center p-2 lg:p-3 rounded-2xl border backdrop-blur-md transition-all duration-500 shadow-2xl ${selectedBranch?.name === branch.name
                                     ? "bg-primary/40 border-primary shadow-primary/30 z-40 scale-110"
                                     : "bg-white/5 border-white/10 hover:border-white/25 hover:bg-white/10 z-10"
                                     }`}
@@ -155,15 +139,36 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                                         {branch.name.replace('Филиал в г. ', '').replace('Branch', '').replace(' Subdivision', '').replace('ОП в г. ', '')}
                                     </span>
                                 </div>
-                                <div className="h-0 group-hover:h-auto overflow-hidden transition-all duration-500">
-                                    <span className="text-[8px] text-slate-400 font-mono mt-1 block max-w-[120px] leading-tight text-center">
-                                        {branch.address.split(',')[0]}
-                                    </span>
-                                </div>
                             </motion.button>
                         </motion.div>
                     );
                 })}
+            </div>
+
+            {/* Mobile-optimized Branch List */}
+            <div className="absolute bottom-20 left-4 right-4 z-20 md:hidden">
+                <div className="bg-zinc-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-4 max-h-48 overflow-y-auto">
+                    <h3 className="text-sm font-bold text-white mb-3 uppercase tracking-wider">{locale === 'ru' ? 'Филиалы' : 'Branches'}</h3>
+                    <div className="space-y-2">
+                        {branches.map((branch, i) => (
+                            <button
+                                key={branch.name}
+                                onClick={() => setSelectedBranch(branch)}
+                                className={`w-full text-left p-3 rounded-xl border transition-all ${selectedBranch?.name === branch.name
+                                    ? "bg-primary/20 border-primary"
+                                    : "bg-white/5 border-white/10 hover:bg-white/10"
+                                    }`}
+                            >
+                                <div className="flex items-center gap-2">
+                                    <div className={`w-2 h-2 rounded-full ${selectedBranch?.name === branch.name ? "bg-primary animate-pulse" : "bg-slate-500"}`}></div>
+                                    <span className="text-xs font-medium text-white truncate">
+                                        {branch.name.replace('Филиал в г. ', '').replace('Branch', '').replace(' Subdivision', '').replace('ОП в г. ', '')}
+                                    </span>
+                                </div>
+                            </button>
+                        ))}
+                    </div>
+                </div>
             </div>
 
             {/* Selected Branch Detail Modal */}
@@ -173,12 +178,12 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                         initial={{ opacity: 0, scale: 0.9, y: 20 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
                         exit={{ opacity: 0, scale: 0.9, y: 20 }}
-                        className="fixed bottom-12 left-1/2 -translate-x-1/2 z-[60] w-full max-w-md px-6"
+                        className="fixed bottom-24 left-1/2 -translate-x-1/2 z-[60] w-full max-w-md px-6 md:bottom-12"
                     >
                         <div className="bg-zinc-900/90 backdrop-blur-xl border border-white/10 rounded-2xl p-6 shadow-2xl">
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <h2 className="text-xl font-bold text-white">{selectedBranch.name}</h2>
+                                    <h2 className="text-lg font-bold text-white">{selectedBranch.name}</h2>
                                     <p className="text-primary text-xs font-mono uppercase tracking-widest">{locale === 'ru' ? 'Региональный офис' : 'Regional Branch'}</p>
                                 </div>
                                 <button
@@ -189,15 +194,15 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                                 </button>
                             </div>
 
-                            <div className="space-y-4">
+                            <div className="space-y-3">
                                 <div className="flex items-start gap-3">
-                                    <div className="p-2 bg-white/5 rounded-lg text-primary">
+                                    <div className="p-2 bg-white/5 rounded-lg text-primary flex-shrink-0">
                                         <MapPin className="w-4 h-4" />
                                     </div>
                                     <p className="text-slate-300 text-sm leading-relaxed">{selectedBranch.address}</p>
                                 </div>
                                 <div className="flex items-center gap-3">
-                                    <div className="p-2 bg-white/5 rounded-lg text-primary">
+                                    <div className="p-2 bg-white/5 rounded-lg text-primary flex-shrink-0">
                                         <Phone className="w-4 h-4" />
                                     </div>
                                     <a href={`tel:${selectedBranch.phone}`} className="text-white font-bold hover:text-primary transition-colors italic">
@@ -206,7 +211,7 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                                 </div>
                             </div>
 
-                            <button className="w-full mt-6 bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
+                            <button className="w-full mt-4 bg-primary hover:bg-primary/90 text-white font-bold py-3 rounded-xl flex items-center justify-center gap-2 transition-all">
                                 <span>{locale === 'ru' ? 'Связаться с филиалом' : 'Contact Branch'}</span>
                                 <ArrowRight className="w-4 h-4" />
                             </button>
@@ -222,10 +227,10 @@ export default function MapPage({ params }: { params: Promise<{ locale: string }
                         <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
                         {locale === 'ru' ? 'СИСТЕМЫ ОНЛАЙН' : 'SYSTEMS ONLINE'}
                     </span>
-                    <span>14 OFFICES NATIONWIDE</span>
+                    <span className="hidden md:inline">14 OFFICES NATIONWIDE</span>
                 </div>
-                <div className="text-[10px] font-mono text-slate-600">
-                    &copy; 2026 RESURSLOGISTICS // GLOBE_ENGINE_V2
+                <div className="text-[10px] font-mono text-slate-600 hidden md:block">
+                    &copy; 2026 RESURSLOGISTICS
                 </div>
             </div>
         </div>
