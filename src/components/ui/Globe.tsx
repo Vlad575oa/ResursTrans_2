@@ -3,7 +3,11 @@
 import { useEffect, useRef } from "react";
 import createGlobe from "cobe";
 
-export function Globe({ className }: { className?: string }) {
+interface GlobeProps {
+    className?: string;
+}
+
+export default function Globe({ className }: GlobeProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {

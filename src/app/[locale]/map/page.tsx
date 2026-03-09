@@ -7,7 +7,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 
 // Lazy load Globe component with no SSR
-const Globe = dynamic(() => import("@/components/ui/Globe"), { 
+const Globe = dynamic(async () => {
+    const module = await import("@/components/ui/Globe");
+    return module.default;
+}, {
     ssr: false,
     loading: () => (
         <div className="absolute inset-0 z-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-slate-800/20 via-[#05070a] to-[#05070a] flex items-center justify-center">
