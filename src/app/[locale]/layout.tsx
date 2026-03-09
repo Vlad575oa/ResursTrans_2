@@ -34,7 +34,6 @@ const manrope = Manrope({
   adjustFontFallback: true,
 });
 
-import TelegramFab from "@/components/ui/TelegramFab";
 import ChatBotWrapper from "@/components/ui/ChatBotWrapper";
 
 export const metadata: Metadata = {
@@ -63,9 +62,9 @@ export default async function RootLayout({
     <html lang={locale} className="dark" suppressHydrationWarning>
       <head>
         {/* Critical CSS - Inline for LCP optimization */}
-        <style 
-          dangerouslySetInnerHTML={{ __html: CRITICAL_CSS }} 
-          suppressHydrationWarning 
+        <style
+          dangerouslySetInnerHTML={{ __html: CRITICAL_CSS }}
+          suppressHydrationWarning
         />
         {/* Font Preloads for Critical Fonts */}
         <link
@@ -91,7 +90,6 @@ export default async function RootLayout({
       >
         {children}
         <ChatBotWrapper />
-        <TelegramFab />
       </body>
     </html>
   );
