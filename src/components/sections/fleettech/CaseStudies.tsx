@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SmartLink } from "@/components/ui/BackButton";
 
 export default function CaseStudies({ locale, dict }: { locale: string; dict: any }) {
   const cases = dict.items;
@@ -25,9 +26,10 @@ export default function CaseStudies({ locale, dict }: { locale: string; dict: an
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {cases.map((item: any) => (
-            <Link
+            <SmartLink
               key={item.title}
               href={`/${locale}/cases/${item.slug}`}
+              sectionId="cases"
               className="group relative bg-[#151a23] border border-[#282e39] rounded-xl p-8 hover:border-primary/50 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/5 flex flex-col justify-between h-full"
             >
               <div>
@@ -62,7 +64,7 @@ export default function CaseStudies({ locale, dict }: { locale: string; dict: an
                   {item.outcome}
                 </p>
               </div>
-            </Link>
+            </SmartLink>
           ))}
         </div>
 

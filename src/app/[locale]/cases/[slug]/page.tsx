@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
 import Footer from "@/components/sections/fleetcorp/Footer";
+import { BackButton } from "@/components/ui/BackButton";
 
 interface Props {
     params: Promise<{ locale: string; slug: string }>;
@@ -53,13 +54,12 @@ export default async function CaseDetailPage({ params }: Props) {
 
             <main className="flex-grow pt-32 pb-20 px-6 md:px-10 lg:px-20">
                 <div className="max-w-4xl mx-auto text-white">
-                    <Link
+                    <BackButton
                         href={`/${locale}/cases`}
-                        className="inline-flex items-center gap-2 text-primary hover:text-white mb-12 transition-colors font-bold uppercase tracking-widest text-xs group"
-                    >
-                        <span className="material-symbols-outlined text-sm group-hover:-translate-x-1 transition-transform">arrow_back</span>
-                        {detailDict.back}
-                    </Link>
+                        sectionId="cases"
+                        defaultLabel={detailDict.back}
+                        className="mb-12 font-bold uppercase tracking-widest text-xs group"
+                    />
 
                     <div className="space-y-12">
                         <div className="space-y-6">

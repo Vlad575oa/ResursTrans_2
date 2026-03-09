@@ -3,6 +3,7 @@ import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
 import Footer from "@/components/sections/fleetcorp/Footer";
 import Link from "next/link";
 import { getServerTranslations } from "@/lib/server-intl";
+import { BackButton } from "@/components/ui/BackButton";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string, slug: string }> }): Promise<Metadata> {
     const { locale, slug } = await params;
@@ -33,10 +34,12 @@ export default async function IndustryPage({ params }: { params: Promise<{ local
 
             <main className="flex-grow pt-32 pb-20 px-6">
                 <div className="max-w-4xl mx-auto">
-                    <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-12 group">
-                        <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
-                        {legalDict.backHome}
-                    </Link>
+                    <BackButton
+                        href={`/${locale}`}
+                        sectionId="industries"
+                        defaultLabel={legalDict.backHome}
+                        className="mb-12"
+                    />
 
                     <div className="flex flex-col gap-4 mb-12">
                         <h2 className="text-primary text-sm font-bold tracking-[0.2em] uppercase">{industryDict.title}</h2>

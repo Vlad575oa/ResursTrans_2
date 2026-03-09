@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function CasesHero({ locale, dict }: { locale: string; dict: any }) {
     return (
-        <section className="relative pt-32 pb-24 px-6 md:px-10 lg:px-40 overflow-hidden bg-background-dark text-slate-100">
+        <section id="cases" className="relative pt-32 pb-24 px-6 md:px-10 lg:px-40 overflow-hidden bg-background-dark text-slate-100">
             {/* Background Glow */}
             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/4 w-[800px] h-[800px] bg-primary/20 rounded-full blur-[120px] pointer-events-none"></div>
 

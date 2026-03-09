@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import HeaderScroll from "@/components/sections/fleetcorp/HeaderScroll";
 import Footer from "@/components/sections/fleetcorp/Footer";
+import { BackButton } from "@/components/ui/BackButton";
 
 interface Props {
     params: Promise<{ locale: string; slug: string }>;
@@ -55,13 +56,12 @@ export default async function ServiceDetailPage({ params }: Props) {
 
             <div className="pt-32 pb-20 px-6 md:px-10 lg:px-40">
                 <div className="max-w-4xl mx-auto text-white">
-                    <Link
+                    <BackButton
                         href={`/${locale}`}
-                        className="inline-flex items-center gap-2 text-primary hover:text-primary/80 mb-12 transition-colors font-bold uppercase tracking-widest text-xs"
-                    >
-                        <span className="material-symbols-outlined text-sm">arrow_back</span>
-                        {detailDict.back}
-                    </Link>
+                        sectionId="services"
+                        defaultLabel={detailDict.back}
+                        className="mb-12 font-bold uppercase tracking-widest text-xs"
+                    />
 
                     <div className="space-y-8">
                         <div className="space-y-4">

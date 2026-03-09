@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SmartLink } from "@/components/ui/BackButton";
 
 export default function ServiceGrid({ dict, locale }: { dict: any; locale: string }) {
     const services = [
@@ -41,7 +42,7 @@ export default function ServiceGrid({ dict, locale }: { dict: any; locale: strin
     ];
 
     return (
-        <section className="relative pt-20 pb-16 px-6 overflow-hidden bg-background-dark text-slate-100">
+        <section id="services" className="relative pt-20 pb-16 px-6 overflow-hidden bg-background-dark text-slate-100">
             {/* Background Decoration */}
             <div className="absolute inset-0 z-0 pointer-events-none">
                 <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] bg-grid-fade"></div>
@@ -73,9 +74,13 @@ export default function ServiceGrid({ dict, locale }: { dict: any; locale: strin
                         </div>
                         <h3 className="text-xl font-bold mb-3 text-slate-100 group-hover:text-primary transition-colors">{s.title}</h3>
                         <p className="text-slate-400 text-sm leading-relaxed mb-6">{s.desc}</p>
-                        <Link className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-primary transition-colors gap-1 group/link" href={`/${locale}/services/${s.slug}`}>
+                        <SmartLink
+                            href={`/${locale}/services/${s.slug}`}
+                            sectionId="services"
+                            className="inline-flex items-center text-sm font-semibold text-slate-300 hover:text-primary transition-colors gap-1 group/link"
+                        >
                             {dict?.learnMore || "Learn More"} <span className="material-symbols-outlined text-sm group-hover/link:translate-x-1 transition-transform">arrow_forward</span>
-                        </Link>
+                        </SmartLink>
                     </div>
                 ))}
             </div>

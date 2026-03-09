@@ -74,13 +74,13 @@ export default function TelegramConfirmLink({ url, label, dict }: Props) {
                                 <div className="grid grid-cols-2 gap-4 w-full pt-4">
                                     <button
                                         onClick={() => setIsOpen(false)}
-                                        className="py-4 px-6 rounded-2xl bg-white/5 border border-white/10 text-[10px] font-black uppercase tracking-widest text-slate-400 hover:bg-white/10 transition-all"
+                                        className="py-4 px-6 rounded-2xl bg-[#1c2128] text-slate-300 hover:bg-[#282e39] transition-all font-bold text-sm"
                                     >
                                         {TelegramModal?.cancel || "Cancel"}
                                     </button>
                                     <button
                                         onClick={handleConfirm}
-                                        className="py-4 px-6 rounded-2xl bg-primary text-background-dark text-[10px] font-black uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-white transition-all shadow-xl shadow-primary/20"
+                                        className="py-4 px-6 rounded-2xl bg-[#007aff] text-white hover:bg-blue-600 transition-all font-bold text-sm shadow-lg shadow-blue-500/20 flex items-center justify-center gap-2"
                                     >
                                         {TelegramModal?.proceed || "Proceed"}
                                         <ArrowRight size={14} />

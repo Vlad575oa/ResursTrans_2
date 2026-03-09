@@ -5,9 +5,10 @@ import createGlobe from "cobe";
 
 interface GlobeProps {
     className?: string;
+    onRender?: (phi: number) => void;
 }
 
-export default function Globe({ className }: GlobeProps) {
+export default function Globe({ className, onRender }: GlobeProps) {
     const canvasRef = useRef<HTMLCanvasElement>(null);
 
     useEffect(() => {
@@ -52,6 +53,7 @@ export default function Globe({ className }: GlobeProps) {
             onRender: (state) => {
                 state.phi = phi;
                 phi += 0.005;
+                if (onRender) onRender(phi);
             },
         });
 

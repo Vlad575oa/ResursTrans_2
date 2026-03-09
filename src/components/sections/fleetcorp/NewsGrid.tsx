@@ -6,6 +6,8 @@ import Link from "next/link";
 
 import { slugify, truncateContent } from "@/lib/utils";
 
+import { SmartLink } from "@/components/ui/BackButton";
+
 interface NewsArticle {
     slug?: string;
     title: string;
@@ -32,7 +34,7 @@ export default function NewsGrid({ locale, articles }: { locale: string; article
     }));
 
     return (
-        <section className="py-24 px-6 md:px-10 lg:px-20 bg-background-dark">
+        <section id="news" className="py-24 px-6 md:px-10 lg:px-20 bg-background-dark">
             <div className="max-w-[1440px] mx-auto">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     {displayNews.map((item, idx) => (
@@ -43,7 +45,7 @@ export default function NewsGrid({ locale, articles }: { locale: string; article
                             transition={{ delay: idx * 0.1 }}
                             className="group bg-[#161b22]/70 backdrop-blur-md border border-[#282e39] rounded-2xl overflow-hidden hover:border-primary/50 transition-all duration-500 flex flex-col"
                         >
-                            <Link href={`/${locale}/news/${item.slug}`} className="relative h-60 w-full overflow-hidden block">
+                            <SmartLink href={`/${locale}/news/${item.slug}`} sectionId="news" className="relative h-60 w-full overflow-hidden block">
                                 <img
                                     src={item.image}
                                     alt={item.title}
@@ -52,7 +54,7 @@ export default function NewsGrid({ locale, articles }: { locale: string; article
                                 <div className="absolute top-4 left-4 bg-primary px-3 py-1 rounded-full text-[10px] font-bold text-white uppercase tracking-widest">
                                     {item.category}
                                 </div>
-                            </Link>
+                            </SmartLink>
                             <div className="p-8 flex-grow flex flex-col justify-between">
                                 <div>
                                     <span className="text-slate-500 text-xs font-mono mb-4 block">{item.date}</span>
@@ -63,10 +65,10 @@ export default function NewsGrid({ locale, articles }: { locale: string; article
                                         {item.preview}
                                     </p>
                                 </div>
-                                <Link href={`/${locale}/news/${item.slug}`} className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest hover:gap-4 transition-all w-fit">
+                                <SmartLink href={`/${locale}/news/${item.slug}`} sectionId="news" className="flex items-center gap-2 text-primary font-bold text-xs uppercase tracking-widest hover:gap-4 transition-all w-fit">
                                     {locale === 'en' ? 'Read More' : 'Читать полностью'}
                                     <span className="material-symbols-outlined text-lg">arrow_right_alt</span>
-                                </Link>
+                                </SmartLink>
                             </div>
                         </motion.article>
                     ))}

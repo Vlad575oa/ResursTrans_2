@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SmartLink } from "@/components/ui/BackButton";
 
 export default function IndustriesGrid({ dict, locale }: { dict: any; locale: string }) {
     const industries = [
@@ -45,7 +46,7 @@ export default function IndustriesGrid({ dict, locale }: { dict: any; locale: st
     ];
 
     return (
-        <section className="w-full px-6 py-20 lg:px-20 bg-background-dark">
+        <section id="industries" className="w-full px-6 py-20 lg:px-20 bg-background-dark">
             <div className="max-w-[1440px] mx-auto">
                 <div className="mb-10 flex flex-col gap-2">
                     <h2 className="text-primary text-sm font-bold tracking-[0.15em] uppercase">
@@ -60,9 +61,10 @@ export default function IndustriesGrid({ dict, locale }: { dict: any; locale: st
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 auto-rows-[280px]">
                     {industries.map((item) => (
-                        <Link
+                        <SmartLink
                             key={item.name}
                             href={`/${locale}/industries/${item.slug}`}
+                            sectionId="industries"
                             className={`group relative overflow-hidden rounded-xl border border-[#282e39] ${item.colSpan} hover:border-primary/50 transition-colors`}
                         >
                             <div
@@ -77,7 +79,7 @@ export default function IndustriesGrid({ dict, locale }: { dict: any; locale: st
                                 <h4 className="text-white text-xl font-bold mb-1">{item.name}</h4>
                                 <p className="text-slate-300 text-sm leading-relaxed max-w-md">{item.description}</p>
                             </div>
-                        </Link>
+                        </SmartLink>
                     ))}
                 </div>
             </div>

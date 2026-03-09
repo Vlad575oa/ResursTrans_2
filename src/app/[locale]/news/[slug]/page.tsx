@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getServerTranslations } from "@/lib/server-intl";
 import { notFound } from "next/navigation";
 import { slugify, truncateContent } from "@/lib/utils";
+import { BackButton } from "@/components/ui/BackButton";
 
 interface Props {
     params: Promise<{ locale: string; slug: string }>;
@@ -40,10 +41,12 @@ export default async function NewsDetailPage({ params }: Props) {
 
             <main className="flex-grow pt-32 pb-20 px-6">
                 <div className="max-w-4xl mx-auto">
-                    <Link href={`/${locale}`} className="inline-flex items-center gap-2 text-primary hover:text-white transition-colors mb-12 group uppercase text-xs font-bold tracking-widest">
-                        <span className="material-symbols-outlined group-hover:-translate-x-1 transition-transform text-sm">arrow_back</span>
-                        {detailDict.back}
-                    </Link>
+                    <BackButton
+                        href={`/${locale}/news`}
+                        sectionId="news"
+                        defaultLabel={detailDict.back}
+                        className="mb-12 uppercase text-xs font-bold tracking-widest"
+                    />
 
                     <article>
                         <header className="mb-12">

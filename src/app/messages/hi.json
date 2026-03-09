@@ -1286,6 +1286,10 @@
         {
           "label": "केस",
           "href": "/cases"
+        },
+        {
+          "label": "कैलकुलेटर",
+          "href": "/calculator"
         }
       ]
     },
